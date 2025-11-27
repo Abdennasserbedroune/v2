@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Production-Ready AI Agent | Technical Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #050505;
+            color: #e0e0e0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .doc-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.8));
+            border-bottom: 1px solid rgba(100, 216, 203, 0.25);
+            padding: 10px 18px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .doc-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(100, 216, 203, 0.5);
+            background: rgba(100, 216, 203, 0.12);
+            color: #e0fffb;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+        }
+
+        .doc-back-link i {
+            font-size: 0.85rem;
+        }
+
+        .doc-back-link:hover {
+            background: rgba(100, 216, 203, 0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            transform: translateY(-1px);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 32px 20px 40px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 20px 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-size: 2.1rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        header .subtitle {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
+        header .meta {
+            margin-top: 20px;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        header .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: #101010;
+            border: 1px solid rgba(100, 216, 203, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+
+        .toc h2 {
+            color: #64D8CB;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .toc li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #64D8CB;
+        }
+
+        .toc a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #64D8CB;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 45px;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            color: #64D8CB;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(100, 216, 203, 0.3);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: #64D8CB;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 0.96rem;
+        }
+
+        /* Code blocks */
+        code {
+            background: #1a1a1a;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #64D8CB;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #1a1a1a;
+            border: 1px solid rgba(100, 216, 203, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #e0e0e0;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: rgba(100, 216, 203, 0.1);
+            border-left: 4px solid #64D8CB;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .info-box h4 {
+            margin-top: 0;
+            color: #64D8CB;
+        }
+
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box h4 {
+            margin-top: 0;
+            color: #ffc107;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: rgba(100, 216, 203, 0.2);
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            color: #64D8CB;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-top: 1px solid rgba(100, 216, 203, 0.1);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        tr:hover {
+            background: rgba(100, 216, 203, 0.05);
+        }
+
+        /* Tech stack badges */
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tech-badge {
+            background: rgba(100, 216, 203, 0.1);
+            border: 1px solid rgba(100, 216, 203, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #64D8CB;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Architecture diagram */
+        .architecture {
+            background: #1a1a1a;
+            border: 1px solid rgba(100, 216, 203, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 2;
+            color: #64D8CB;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(100, 216, 203, 0.2);
+            margin-top: 80px;
+        }
+
+        footer a {
+            color: #64D8CB;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(100, 216, 203, 0.4);
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="doc-topbar">
+        <a href="portfolio_with_projects.html" class="doc-back-link">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to portfolio</span>
+        </a>
+    </div>
+    <header>
+        <h1><i class="fas fa-robot"></i> Building a Production-Ready AI Agent</h1>
+        <p class="subtitle">A Complete Technical Journey from Concept to Deployment</p>
+        <div class="meta">
+            <div class="meta-item">
+                <i class="fas fa-user"></i>
+                <span>By Abdennasser Bedroune</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-clock"></i>
+                <span>20 min read</span>
+            </div>
+            <div class="meta-item">
+                <i class="fab fa-github"></i>
+                <a href="https://github.com/Abdennasserbedroune/chatbot" target="_blank" style="color: #fff;">View on GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2><i class="fas fa-list"></i> Table of Contents</h2>
+            <ul>
+                <li><a href="#overview">Project Overview and Architecture</a></li>
+                <li><a href="#database">The Profile Database: 40+ Bilingual Q&A Entries</a></li>
+                <li><a href="#orchestration">Intelligent Context Orchestration</a></li>
+                <li><a href="#security">Security Implementation: Defense in Depth</a></li>
+                <li><a href="#streaming">The Streaming Pipeline: Real-Time Responses</a></li>
+                <li><a href="#error-handling">Robust Error Handling and Retry Logic</a></li>
+                <li><a href="#bilingual">Bilingual Support: Seamless Language Switching</a></li>
+                <li><a href="#testing">Testing Strategy: 80%+ Coverage</a></li>
+                <li><a href="#challenges">Challenges and Solutions</a></li>
+                <li><a href="#deployment">Deployment and Production Readiness</a></li>
+                <li><a href="#learnings">Key Learnings and Future Improvements</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ul>
+        </div>
+
+        <!-- Introduction -->
+        <section>
+            <p>When I set out to build an AI chatbot assistant, my goal was clear: create a multilingual chatbot that could intelligently answer questions about my professional profile while maintaining production-grade security, performance, and reliability. What started as a simple chat interface evolved into a comprehensive system with 40+ Q&A entries, streaming responses, and robust error handling. This article documents the entire journey—from architectural decisions to implementation challenges.</p>
+        </section>
+
+        <!-- Project Overview -->
+        <section id="overview">
+            <h2>Project Overview and Architecture</h2>
+            <p>The AI Agent is built as a <strong>Next.js application</strong> leveraging the <strong>Groq API</strong> for AI inference. I chose Groq specifically because it offers free-tier access with approximately 30 requests per minute, making it ideal for a personal project that needed cloud-based LLM capabilities without infrastructure overhead.</p>
+
+            <p>The architecture follows a clear separation of concerns. The frontend handles user interactions and displays streaming responses, while the backend manages API calls, context orchestration, security validations, and rate limiting. All communication happens through a single <code>/api/chat</code> endpoint that implements Server-Sent Events (SSE) for real-time streaming.</p>
+
+            <h3>Core Technology Stack</h3>
+            <div class="tech-badges">
+                <span class="tech-badge">Next.js 13+</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">Groq API</span>
+                <span class="tech-badge">Mixtral-8x7b-32768</span>
+                <span class="tech-badge">Zod</span>
+                <span class="tech-badge">Jest</span>
+                <span class="tech-badge">Playwright</span>
+                <span class="tech-badge">Server-Sent Events</span>
+            </div>
+
+            <div class="info-box">
+                <h4><i class="fas fa-lightbulb"></i> Why Groq?</h4>
+                <p>Groq provides free-tier access with ~30 requests/minute, cloud-based inference with no infrastructure management, fast response times with the Mixtral model, and reliable uptime for production use.</p>
+            </div>
+        </section>
+
+        <!-- Profile Database -->
+        <section id="database">
+            <h2>The Profile Database: 40+ Bilingual Q&A Entries</h2>
+            <p>One of the most time-consuming aspects was building a comprehensive profile database. I created over 40 question-answer pairs covering my skills, projects, experience, education, and professional background. Each entry exists in both English and French, enabling true bilingual support.</p>
+
+            <p>The profile data lives in <code>/public/data/profile.json</code> and follows a structured format that the system can easily parse and search. This approach allows the chatbot to surface relevant information based on user queries through intelligent context orchestration rather than relying solely on the AI model's general knowledge.</p>
+
+            <h3>Profile Structure</h3>
+            <pre><code>{
+  "id": "unique-identifier",
+  "question": "What are your technical skills?",
+  "answer": "I have strong expertise in...",
+  "language": "en",
+  "category": "skills",
+  "keywords": ["react", "nodejs", "typescript"]
+}</code></pre>
+
+            <div class="info-box">
+                <h4><i class="fas fa-database"></i> Database Benefits</h4>
+                <ul>
+                    <li>Prevents AI hallucination with factual profile data</li>
+                    <li>Enables context-aware responses without fine-tuning</li>
+                    <li>Easy to update without code changes</li>
+                    <li>Supports multilingual content natively</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Context Orchestration -->
+        <section id="orchestration">
+            <h2>Intelligent Context Orchestration</h2>
+            <p>Rather than sending all 40+ profile entries to the AI on every request, I implemented a <strong>relevance scoring system</strong> that automatically surfaces the most pertinent information. This was crucial for keeping API costs low and improving response quality.</p>
+
+            <h3>The Orchestration Process</h3>
+            <div class="architecture">
+User Query
+    ↓
+Keyword Extraction
+    ↓
+Match Against Profile Keywords
+    ↓
+Calculate Relevance Scores
+    ↓
+Select Top 5 Entries
+    ↓
+Inject into System Prompt
+    ↓
+AI Generates Response
+            </div>
+
+            <p>For example, when a user asks "What projects have you built?", the system identifies keywords like "projects" and "built," then retrieves profile entries tagged with those terms. The AI receives these specific entries as context, enabling accurate responses without hallucination.</p>
+
+            <h3>Example System Prompt</h3>
+            <pre><code>You are a helpful AI assistant with access to profile information...
+
+Available Profile Context:
+1. Q: What are your skills?
+   A: I have strong skills in React, Node.js, TypeScript...
+2. Q: What projects have you built?
+   A: I've built several full-stack applications...
+
+Instructions:
+- Use the profile context above to answer questions
+- If context lacks information, ask clarifying questions
+- Maintain a professional yet friendly tone</code></pre>
+        </section>
+
+        <!-- Security -->
+        <section id="security">
+            <h2>Security Implementation: Defense in Depth</h2>
+            <p>Security was paramount throughout development. I implemented multiple layers of protection following industry best practices for AI Agent security.</p>
+
+            <h3>Input Validation and Sanitization</h3>
+            <p>Every request passes through Zod schema validation before processing. Messages must be between 1-4096 characters, roles must be either 'user' or 'assistant', and the last message must always come from the user. This prevents malformed requests from reaching the AI.</p>
+
+            <p>Beyond validation, all message content undergoes sanitization to remove control characters, invalid UTF-8 sequences, and potential prompt injection attempts. I strip characters in ranges 0x00-0x08, 0x0B-0x0C, 0x0E-0x1F, and 0x7F that could be used maliciously.</p>
+
+            <h3>API Key Protection</h3>
+            <div class="warning-box">
+                <h4><i class="fas fa-shield-alt"></i> Critical Security Measures</h4>
+                <ul>
+                    <li>API key stored exclusively in environment variables</li>
+                    <li>Never logged or exposed in error messages</li>
+                    <li>Never sent to the frontend</li>
+                    <li>All API communication happens server-side only</li>
+                </ul>
+            </div>
+
+            <h3>Rate Limiting</h3>
+            <p>I implemented a <strong>token bucket rate limiter</strong> that restricts each IP address to 30 requests per minute, matching Groq's free tier limits. The limiter uses a fair distribution algorithm and includes automatic cleanup of inactive IP tracking data.</p>
+
+            <h3>CORS Configuration</h3>
+            <p>Proper CORS headers ensure the API only accepts requests with correct Content-Type validation. Only POST and OPTIONS methods are permitted, preventing unauthorized cross-origin access.</p>
+        </section>
+
+        <!-- Streaming -->
+        <section id="streaming">
+            <h2>The Streaming Pipeline: Real-Time Responses</h2>
+            <p>Implementing streaming responses was one of the most technically challenging aspects. Users expect modern AI Agents to display text as it's generated, not wait for complete responses. I built this using <strong>Server-Sent Events (SSE)</strong>, which maintains a persistent connection for unidirectional server-to-client streaming.</p>
+
+            <h3>Complete Pipeline Flow</h3>
+            <div class="architecture">
+Client Request
+    ↓
+Rate Limit Check (per IP)
+    ↓
+Input Validation (Zod)
+    ↓
+Message Sanitization
+    ↓
+Context Orchestration (relevant profile entries)
+    ↓
+Groq API Call (with retry + backoff)
+    ↓
+SSE Stream (chunk by chunk)
+    ↓
+Error Handling (graceful fallback)
+    ↓
+Connection Cleanup
+            </div>
+
+            <h3>SSE Response Format</h3>
+            <pre><code>// Successful streaming
+data: {"type": "content", "data": "Hello"}
+data: {"type": "content", "data": " from"}
+data: {"type": "content", "data": " Groq"}
+data: {"type": "done"}
+
+// Error response
+data: {"type": "error", "error": "User-friendly message", "code": "ERROR_CODE"}</code></pre>
+
+            <p>The frontend consumes this stream using the EventSource API, parsing each data chunk and appending it to the chat interface with a typing effect. This creates the illusion of the AI "thinking" and responding in real-time.</p>
+        </section>
+
+        <!-- Error Handling -->
+        <section id="error-handling">
+            <h2>Robust Error Handling and Retry Logic</h2>
+            <p>Network issues, API timeouts, and service outages are inevitable. I built comprehensive error handling specifically tailored to Groq's API behavior.</p>
+
+            <h3>Groq-Specific Error Handling</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Error Type</th>
+                        <th>Status Code</th>
+                        <th>User Message</th>
+                        <th>Recovery Strategy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Invalid API Key</td>
+                        <td>401</td>
+                        <td>Authentication failed</td>
+                        <td>Check GROQ_API_KEY</td>
+                    </tr>
+                    <tr>
+                        <td>Rate Limited</td>
+                        <td>429</td>
+                        <td>Rate limit exceeded</td>
+                        <td>Retry after delay</td>
+                    </tr>
+                    <tr>
+                        <td>Timeout</td>
+                        <td>408</td>
+                        <td>Request timed out</td>
+                        <td>Auto-retry with backoff</td>
+                    </tr>
+                    <tr>
+                        <td>Service Down</td>
+                        <td>503</td>
+                        <td>Service unavailable</td>
+                        <td>Auto-retry with backoff</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Exponential Backoff Strategy</h3>
+            <p>For transient errors like timeouts or service unavailability, the system automatically retries with <strong>exponential backoff</strong>. The initial retry happens after 1 second, then 2 seconds, then 4 seconds, with a maximum of 3 retries configurable via <code>GROQ_MAX_RETRIES</code>.</p>
+
+            <div class="info-box">
+                <h4><i class="fas fa-redo"></i> Retry Logic Benefits</h4>
+                <ul>
+                    <li>Prevents overwhelming the API during outages</li>
+                    <li>Gives temporary issues time to resolve</li>
+                    <li>Improves user experience with automatic recovery</li>
+                    <li>Reduces manual intervention requirements</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Bilingual Support -->
+        <section id="bilingual">
+            <h2>Bilingual Support: Seamless Language Switching</h2>
+            <p>Supporting both English and French required more than just translating UI strings. The system needed to detect the user's language, retrieve appropriate profile entries, and maintain language consistency throughout the conversation.</p>
+
+            <p>I implemented automatic language detection that analyzes the user's first message to determine their preferred language. Once detected, the system filters the profile database to only retrieve entries in that language. This prevents mixing English and French responses mid-conversation.</p>
+
+            <h3>Language Detection Flow</h3>
+            <ol>
+                <li>User sends first message</li>
+                <li>System analyzes message content for language indicators</li>
+                <li>Sets conversation language preference</li>
+                <li>Filters profile database by language</li>
+                <li>Instructs AI to respond in detected language</li>
+                <li>Maintains consistency for entire conversation</li>
+            </ol>
+
+            <p>The language parameter is included in every API request, allowing the AI to respond appropriately. Users can explicitly switch languages at any time by sending a message in their preferred language, and the system adapts immediately.</p>
+        </section>
+
+        <!-- Testing -->
+        <section id="testing">
+            <h2>Testing Strategy: 80%+ Coverage</h2>
+            <p>Quality assurance was critical given the complexity of the system. I implemented a comprehensive testing strategy covering unit tests, integration tests, and end-to-end tests.</p>
+
+            <h3>Unit Tests (Jest)</h3>
+            <ul>
+                <li><code>groqClient.test.ts</code> - Groq SDK wrapper with mocked API calls</li>
+                <li><code>chatValidation.test.ts</code> - Zod schema validation edge cases</li>
+                <li><code>rateLimiter.test.ts</code> - Token bucket algorithm correctness</li>
+                <li><code>prompt.test.ts</code> - Context orchestration relevance scoring</li>
+                <li><code>profile.test.ts</code> - Profile data retrieval and filtering</li>
+            </ul>
+
+            <h3>Integration Tests</h3>
+            <ul>
+                <li><code>chat-route.test.ts</code> - Full API route handler with streaming</li>
+                <li>Tests for valid requests, malformed JSON, rate limiting</li>
+                <li>Timeout scenarios and error responses</li>
+            </ul>
+
+            <h3>E2E Tests (Playwright)</h3>
+            <ul>
+                <li>Full UI interaction testing</li>
+                <li>Stream cancellation handling</li>
+                <li>Error state rendering</li>
+                <li>Multi-message conversation flows</li>
+            </ul>
+
+            <div class="info-box">
+                <h4><i class="fas fa-check-circle"></i> Key Test Scenarios</h4>
+                <ul>
+                    <li>✅ Successful streaming responses</li>
+                    <li>✅ 400 errors for invalid input</li>
+                    <li>✅ 429 errors with Retry-After headers</li>
+                    <li>✅ Proper error messages for API failures</li>
+                    <li>✅ Automatic retry with exponential backoff</li>
+                    <li>✅ Graceful stream cancellation cleanup</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Challenges -->
+        <section id="challenges">
+            <h2>Challenges and Solutions</h2>
+
+            <h3>Challenge: Managing Groq Free Tier Limits</h3>
+            <p>The 30 requests per minute limit required careful rate limiting implementation.</p>
+            <p><strong>Solution:</strong> Token bucket algorithm with per-IP tracking, which fairly distributes the quota and prevents abuse while accommodating legitimate burst traffic.</p>
+
+            <h3>Challenge: Preventing Prompt Injection</h3>
+            <p>Malicious users could attempt to inject commands into messages to manipulate the AI's behavior.</p>
+            <p><strong>Solution:</strong> Comprehensive input sanitization that removes control characters and validates message structure, combined with a well-designed system prompt that clearly defines the AI's role and boundaries.</p>
+
+            <h3>Challenge: Streaming Response Reliability</h3>
+            <p>SSE connections can break unexpectedly due to network issues or user navigation.</p>
+            <p><strong>Solution:</strong> Graceful error handling with automatic reconnection attempts, cleanup of server-side resources when connections close, and clear error messages to users when streams fail.</p>
+
+            <h3>Challenge: Context Window Management</h3>
+            <p>The Mixtral model has a 32,768 token context window. With long conversations, tokens could be exhausted.</p>
+            <p><strong>Solution:</strong> Limit the number of profile entries injected (top 5 only), implement conversation history trimming for very long chats, and monitor token usage to warn before hitting limits.</p>
+
+            <h3>Challenge: Bilingual Consistency</h3>
+            <p>Early implementations sometimes mixed languages mid-conversation.</p>
+            <p><strong>Solution:</strong> Made language detection explicit rather than automatic per-message, filtered profile data by language before context injection, and instructed the AI explicitly about language consistency in the system prompt.</p>
+        </section>
+
+        <!-- Deployment -->
+        <section id="deployment">
+            <h2>Deployment and Production Readiness</h2>
+            <p>The application is deployed on <strong>Vercel</strong>, leveraging Next.js native support for seamless deployment. Environment variables are securely configured through Vercel's dashboard, ensuring the API key never appears in source code or logs.</p>
+
+            <h3>Production Checklist</h3>
+            <div class="info-box">
+                <ul>
+                    <li>✅ GROQ_API_KEY set in environment</li>
+                    <li>✅ npm run build succeeds without errors</li>
+                    <li>✅ npm run lint passes with zero warnings</li>
+                    <li>✅ npm run type-check validates all TypeScript</li>
+                    <li>✅ npm run test passes all test suites</li>
+                    <li>✅ Streaming tested with real API key</li>
+                    <li>✅ Rate limiting verified under load</li>
+                    <li>✅ Error logs verified (no sensitive data exposure)</li>
+                    <li>✅ SSL/HTTPS enabled via Vercel</li>
+                    <li>✅ CORS configured for production domain</li>
+                </ul>
+            </div>
+
+            <h3>Production Optimizations</h3>
+            <ul>
+                <li>Next.js automatic code splitting for faster page loads</li>
+                <li>Server-side rendering for initial chat interface</li>
+                <li>Static generation for documentation pages</li>
+                <li>Edge runtime support for minimal latency</li>
+            </ul>
+        </section>
+
+        <!-- Learnings -->
+        <section id="learnings">
+            <h2>Key Learnings and Future Improvements</h2>
+            <p>Building this AI Agent taught me invaluable lessons about production AI systems:</p>
+
+            <h3>Key Learnings</h3>
+            <ul>
+                <li><strong>Security cannot be an afterthought</strong> - It must be designed in from the beginning</li>
+                <li><strong>Streaming greatly improves perceived performance</strong> - Even when total response time is similar</li>
+                <li><strong>Comprehensive error handling builds user trust</strong> - When things go wrong</li>
+                <li><strong>Testing saves time in the long run</strong> - By catching bugs early</li>
+                <li><strong>Rate limiting is essential</strong> - For free-tier API usage</li>
+            </ul>
+
+            <h3>Future Enhancements</h3>
+            <ul>
+                <li>Implementing conversation memory across sessions using a database</li>
+                <li>Adding support for additional languages beyond English and French</li>
+                <li>Integrating web search for questions outside the profile database</li>
+                <li>Implementing user authentication for personalized conversations</li>
+                <li>Adding analytics to understand common queries and improve the profile database</li>
+            </ul>
+        </section>
+
+        <!-- Conclusion -->
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>Building this production-ready AI Agent was a comprehensive exercise in full-stack development, API integration, security implementation, and user experience design. The result is a system that reliably answers questions about my professional profile in two languages, handles errors gracefully, prevents abuse through rate limiting, and provides a smooth streaming experience that feels modern and responsive.</p>
+
+            <p>The complete source code is available at <a href="https://github.com/Abdennasserbedroune/chatbot" target="_blank">GitHub</a>, and the live application is deployed at <a href="https://ai-agent-v1-teal.vercel.app" target="_blank">ai-agent-v1-teal.vercel.app</a>. I encourage developers building similar AI Agents to explore the codebase, run the tests, and adapt the patterns to their own use cases.</p>
+
+            <div class="info-box">
+                <h4><i class="fas fa-rocket"></i> Project Highlights</h4>
+                <ul>
+                    <li>40+ bilingual Q&A entries with intelligent context orchestration</li>
+                    <li>Production-grade security with input validation and rate limiting</li>
+                    <li>Real-time streaming responses via Server-Sent Events</li>
+                    <li>Comprehensive error handling with automatic retry logic</li>
+                    <li>Deployed on Vercel with zero-downtime deployments</li>
+                </ul>
+            </div>
+
+            <p>This project demonstrates that with careful planning, attention to security, and thorough testing, it's entirely possible to build enterprise-grade AI applications using free-tier APIs and modern web frameworks.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>Built with passion by <a href="https://github.com/Abdennasserbedroune" target="_blank">Abdennasser Bedroune</a></p>
+        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.6);">
+            <a href="https://github.com/Abdennasserbedroune/chatbot" target="_blank">
+                <i class="fab fa-github"></i> View Source Code
+            </a> | 
+            <a href="https://ai-agent-v1-teal.vercel.app" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+        </p>
+        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.6);">
+            <a href="portfolio_with_projects.html">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a> | 
+            <a href="fanpocket_documentation.html">
+                <i class="fas fa-file-alt"></i> Fanpocket Documentation
+            </a>
+        </p>
+    </footer>
+
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Back to top button
+        document.querySelector('.back-to-top').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const button = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                button.style.display = 'flex';
+            } else {
+                button.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

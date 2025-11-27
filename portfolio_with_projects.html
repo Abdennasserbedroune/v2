@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abdennasser Bedroune - Data Analyst and Full Stack Developer portfolio. Experienced in Python, SQL, Power BI, and web development.">
+    <meta name="keywords" content="Data Analyst, Full Stack Developer, Python, SQL, Power BI, Web Development, Abdennasser Bedroune">
+    <meta name="author" content="Abdennasser Bedroune">
+    <title>Abdennasser Bedroune - Data Analyst Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100%;
+            background: #0a0a0a;
+            border-right: 1px solid rgba(100, 216, 203, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .sidebar-content {
+            width: 100%;
+            max-width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 40px;
+        }
+
+        .sidebar-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .sidebar-header h1 {
+            width: 80px;
+            height: 80px;
+            background: #64D8CB;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a0a0a;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0 0 5px 0;
+            line-height: 1.2;
+        }
+
+        .sidebar-header p {
+            font-size: 0.8rem;
+            color: #64D8CB;
+            font-weight: 400;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .sidebar-nav {
+            width: 100%;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .sidebar-nav ul li {
+            margin: 0;
+            width: 100%;
+        }
+
+        .sidebar-nav ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-nav ul li a .nav-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-nav ul li a .nav-text {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .sidebar-nav ul li a:hover {
+            background: rgba(100, 216, 203, 0.08);
+            color: #64D8CB;
+            transform: translateX(5px);
+        }
+
+        .sidebar-nav ul li a:hover .nav-icon {
+            transform: scale(1.1);
+        }
+
+        .sidebar-nav ul li a.active {
+            background: rgba(100, 216, 203, 0.15);
+            color: #64D8CB;
+            border-color: rgba(100, 216, 203, 0.3);
+        }
+
+        .sidebar-nav ul li a.active .nav-icon {
+            transform: scale(1.1);
+        }
+
+        .sidebar-nav ul li a:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(100, 216, 203, 0.4);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .social-links a {
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            color: #64D8CB;
+            background: rgba(100, 216, 203, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(100, 216, 203, 0.1);
+            border: 1px solid rgba(100, 216, 203, 0.3);
+            border-radius: 8px;
+            color: #64D8CB;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(100, 216, 203, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(100, 216, 203, 0.3);
+        }
+
+        .social-links a:focus {
+            outline: 2px solid #64D8CB;
+            outline-offset: 2px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 50px 80px 100px 80px;
+            min-height: 100vh;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1001;
+            background: rgba(100, 216, 203, 0.1);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(100, 216, 203, 0.3);
+            border-radius: 50px;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #64D8CB;
+        }
+
+        .language-toggle:hover {
+            background: rgba(100, 216, 203, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(100, 216, 203, 0.3);
+        }
+
+        .language-toggle:focus {
+            outline: 2px solid #64D8CB;
+            outline-offset: 2px;
+        }
+
+        .language-toggle i {
+            margin-right: 8px;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 60px;
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .section-header p {
+            font-size: 0.9rem;
+            color: #64D8CB;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1.9fr;
+            gap: 24px;
+            margin-bottom: 20px;
+            align-items: stretch;
+        }
+
+        .about-right {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .profile-card {
+            background: #1a1a1a;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(100, 216, 203, 0.18);
+        }
+
+        .profile-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .bio-card {
+            background: #141414;
+            border-radius: 24px;
+            padding: 24px 26px;
+            border: 1px solid rgba(100, 216, 203, 0.18);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .bio-card h3 {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .bio-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 8px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: #111111;
+            border-radius: 16px;
+            padding: 18px 20px;
+            border: 1px solid rgba(100, 216, 203, 0.18);
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .info-card {
+            background: #111111;
+            border-radius: 16px;
+            padding: 18px 20px;
+            border: 1px solid rgba(100, 216, 203, 0.18);
+        }
+
+        .info-card h3 {
+            font-size: 1.05rem;
+            color: #ffffff;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 i {
+            color: #64D8CB;
+        }
+
+        .language-item,
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .language-item:last-child,
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .language-name,
+        .skill-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .language-level,
+        .skill-level {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hobby-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hobby-item:last-child {
+            border-bottom: none;
+        }
+
+        .hobby-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hobby-name i {
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .skill-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .skill-icon.javascript { background: #f7df1e; color: #000000; }
+        .skill-icon.css { background: #1572b6; color: #ffffff; }
+        .skill-icon.html { background: #e34f26; color: #ffffff; }
+        .skill-icon.python { background: #3776ab; color: #ffffff; }
+        .skill-icon.sql { background: #cc2927; color: #ffffff; }
+        .skill-icon.react { background: #61dafb; color: #000000; }
+
+        /* Experiences */
+        .experiences-container {
+            background: #1a1a1a;
+            border-radius: 24px;
+            padding: 35px;
+            border: 1px solid rgba(100, 216, 203, 0.2);
+        }
+
+        .experience-item {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 30px;
+            border-left: 2px solid rgba(100, 216, 203, 0.3);
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background: #64D8CB;
+            border-radius: 50%;
+            border: 3px solid #000000;
+            box-shadow: 0 0 15px rgba(100, 216, 203, 0.5);
+        }
+
+        .experience-company {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .company-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .experience-item h4 {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .experience-date {
+            font-size: 0.9rem;
+            color: #64D8CB;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .experience-item p {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            background: #1a1a1a;
+            border-radius: 20px;
+            border: 1px solid rgba(100, 216, 203, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 420px;
+        }
+
+        .project-image-container {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            flex-shrink: 0;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 20px;
+        }
+
+        .overlay-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .overlay-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateX(5px);
+        }
+
+        .overlay-link[data-type="docs"] {
+            border-left: 4px solid #4ade80;
+        }
+
+        .overlay-link[data-type="website"] {
+            border-left: 4px solid #60a5fa;
+        }
+
+        .overlay-link i {
+            font-size: 1.1rem;
+        }
+
+        .project-content {
+            padding: 18px 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(100, 216, 203, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(100, 216, 203, 0.2);
+        }
+
+        .project-number {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: rgba(100, 216, 203, 0.1);
+        }
+
+        .project-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 14px;
+            box-shadow: 0 8px 20px rgba(100, 216, 203, 0.2);
+        }
+
+        .project-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ffffff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card:hover h3 {
+            color: #64D8CB;
+        }
+
+        .project-card p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 10px;
+            z-index: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+            z-index: 1;
+        }
+
+        .tech-tag {
+            padding: 4px 10px;
+            background: rgba(100, 216, 203, 0.1);
+            border: 1px solid rgba(100, 216, 203, 0.3);
+            border-radius: 20px;
+            font-size: 0.72rem;
+            color: #64D8CB;
+        }
+
+
+        .view-project:focus {
+            outline: 2px solid #64D8CB;
+            outline-offset: 2px;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            border-top: 1px solid rgba(100, 216, 203, 0.2);
+            padding: 40px 80px;
+            margin-left: 250px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left h3 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-left p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-right a {
+            color: #64D8CB;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-right a:hover {
+            color: #ffffff;
+        }
+
+        /* Modern Chat Input Box */
+        .chat-container {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            max-width: 500px;
+            z-index: 2000;
+        }
+
+        .chat-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 16px;
+            background: rgba(13, 13, 15, 0.4);
+            border: 1px solid rgba(100, 216, 203, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        .chat-input-wrapper:hover,
+        .chat-input-wrapper:focus-within {
+            background: rgba(13, 13, 15, 0.75);
+            border-color: rgba(100, 216, 203, 0.4);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(100, 216, 203, 0.15);
+        }
+
+        .chat-input-box {
+            flex: 1;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.9rem;
+            padding: 10px 12px;
+            outline: none;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input-box:focus {
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .chat-input-box::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.3s ease;
+        }
+
+        .chat-input-box:focus::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .chat-send-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, #64D8CB, #4f46e5);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .chat-send-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
+            transform: rotate(180deg);
+        }
+
+        .chat-send-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(100, 216, 203, 0.4);
+            background: linear-gradient(135deg, #7ae8dd, #6366f1);
+        }
+
+        .chat-send-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main-content { padding: 50px 50px 80px 50px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-image-container { height: 220px; }
+            .overlay-link { padding: 12px 20px; font-size: 0.9rem; }
+            .chat-container { width: 75%; max-width: 450px; }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid rgba(100, 216, 203, 0.2);
+            }
+            .main-content { margin-left: 0; padding: 40px 30px 60px 30px; }
+            footer { margin-left: 0; padding: 30px; }
+            .footer-content { flex-direction: column; gap: 20px; text-align: center; }
+            .about-grid, .info-grid { grid-template-columns: 1fr; }
+            .language-toggle { top: 20px; right: 20px; }
+            .profile-card { height: 350px; }
+            .bio-card { height: auto; }
+            .project-image-container { height: 200px; }
+            .project-card { height: auto; }
+            .project-content { padding: 20px; }
+            .project-number { font-size: 2.5rem; top: 10px; right: 15px; }
+            .project-icon { width: 45px; height: 45px; font-size: 1.3rem; }
+            .project-card h3 { font-size: 1.2rem; }
+            .overlay-link { padding: 10px 16px; font-size: 0.85rem; gap: 8px; }
+            .overlay-content { gap: 12px; padding: 15px; }
+            .chat-container { width: 90%; max-width: 400px; bottom: 20px; }
+            .chat-input-wrapper { padding: 10px 12px; }
+            .chat-send-btn { width: 40px; height: 40px; }
+            .chat-send-btn svg { width: 18px; height: 18px; }
+        }
+
+        @media (max-width: 480px) {
+            .main-content { padding: 30px 20px 50px 20px; }
+            .profile-card { height: 300px; }
+            .project-image-container { height: 180px; }
+            .project-content { padding: 16px; }
+            .project-number { font-size: 2rem; }
+            .project-icon { width: 40px; height: 40px; font-size: 1.1rem; margin-bottom: 12px; }
+            .project-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+            .project-card p { font-size: 0.85rem; }
+            .tech-tag { font-size: 0.7rem; padding: 4px 10px; }
+            .overlay-link { padding: 10px 14px; font-size: 0.8rem; }
+            .chat-container { width: 92%; max-width: 350px; bottom: 15px; }
+            .chat-input-wrapper { padding: 8px 10px; gap: 8px; }
+            .chat-input-box { font-size: 0.85rem; padding: 8px 10px; }
+            .chat-send-btn { width: 36px; height: 36px; }
+            .chat-send-btn svg { width: 16px; height: 16px; }
+        }    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <button class="language-toggle" onclick="toggleLanguage()" aria-label="Switch language">
+        <i class="fas fa-globe" aria-hidden="true"></i>
+        <span id="langText">Français</span>
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" role="navigation" aria-label="Main navigation">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h1>A</h1>
+                <h2>Abdennasser Bedroune</h2>
+                <p data-en="AI Automation Engineer" data-fr="Ingénieur en Automatisation IA">AI Automation Engineer</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="#about" class="active" data-en="About" data-fr="À propos">
+                            <span class="nav-icon"><i class="fas fa-user" aria-hidden="true"></i></span>
+                            <span class="nav-text">À propos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#experiences" data-en="Experiences" data-fr="Expériences">
+                            <span class="nav-icon"><i class="fas fa-briefcase" aria-hidden="true"></i></span>
+                            <span class="nav-text">Expériences</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects" data-en="Projects" data-fr="Projets">
+                            <span class="nav-icon"><i class="fas fa-code" aria-hidden="true"></i></span>
+                            <span class="nav-text">Projets</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/abdennasser-bedroune-19308917a/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                </a>
+                <a href="https://github.com/Abdennasserbedroune?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                </a>
+                <a href="mailto:Abdennasser.bedroune@gmail.com" aria-label="Email">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- About -->
+        <section id="about">
+            <div class="section-header">
+                <h2>Abdennasser Bedroune</h2>
+                <p data-en="AI Automation Engineer" data-fr="Ingénieur en Automatisation IA">AI Automation Engineer</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="profile-card">
+                    <img src="images/" alt="Abdennasser Bedroune professional photo">
+                </div>
+                <div class="about-right">
+                    <div class="bio-card">
+                        <h3 data-en="Biography" data-fr="Biographie">Biographie</h3>
+                        <p data-en="Over the past two years, I've specialized in building robust data pipelines and annotation systems for computer vision projects. My work extends into AI-agent orchestration and workflow automation, where I develop agentic chatbots capable of autonomous reasoning and multi-step workflow execution. Using platforms like n8n, I connect disparate systems and automate processes ranging from data processing to business operations. I excel at integrating AI agents with APIs and managing complex automation pipelines from conception to deployment." 
+                           data-fr="Au cours des deux dernières années, je me suis spécialisé dans la création de pipelines de données robustes et de systèmes d'annotation pour des projets de vision par ordinateur. Mon expertise s'étend à l'orchestration d'agents IA et à l'automatisation de workflows, où je développe des chatbots agentiques capables de raisonnement autonome et d'exécution de workflows multi-étapes. En utilisant des plateformes comme n8n, je connecte des systèmes disparates et automatise des processus allant du traitement de données aux opérations métier. J'excelle dans l'intégration d'agents IA avec des APIs et dans la gestion de pipelines d'automatisation complexes de bout en bout.">
+                            Over the past two years, I've specialized in building robust data pipelines and annotation systems for computer vision projects. My work extends into AI-agent orchestration and workflow automation, where I develop agentic chatbots capable of autonomous reasoning and multi-step workflow execution. Using platforms like n8n, I connect disparate systems and automate processes ranging from data processing to business operations. I excel at integrating AI agents with APIs and managing complex automation pipelines from conception to deployment.
+                        </p>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="left-column">
+                            <div class="info-card">
+                                <h3><i class="fas fa-language" aria-hidden="true"></i> <span data-en="Languages" data-fr="Langues">Langues</span></h3>
+                                <div class="language-item">
+                                    <div class="language-name">
+                                        <i class="fas fa-flag" style="color: #006233;" aria-hidden="true"></i>
+                                        <span data-en="Arabic" data-fr="Arabe">Arabe</span>
+                                    </div>
+                                    <div class="language-level" data-en="Native" data-fr="Langue maternelle">Langue maternelle</div>
+                                </div>
+                                <div class="language-item">
+                                    <div class="language-name">
+                                        <i class="fas fa-flag" style="color: #0055A4;" aria-hidden="true"></i>
+                                        <span data-en="French" data-fr="Français">Français</span>
+                                    </div>
+                                    <div class="language-level" data-en="Professional" data-fr="Professionnel">Professionnel</div>
+                                </div>
+                                <div class="language-item">
+                                    <div class="language-name">
+                                        <i class="fas fa-flag" style="color: #012169;" aria-hidden="true"></i>
+                                        <span data-en="English" data-fr="Anglais">Anglais</span>
+                                    </div>
+                                    <div class="language-level" data-en="Fluent" data-fr="Courant">Courant</div>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <h3><i class="fas fa-heart" aria-hidden="true"></i> <span data-en="Hobbies" data-fr="Centres d'intérêt">Centres d'intérêt</span></h3>
+                                <div class="hobby-item">
+                                    <div class="hobby-name">
+                                        <i class="fas fa-book" style="color: #4a6fa5;" aria-hidden="true"></i>
+                                        <span data-en="Reading" data-fr="Lecture">Lecture</span>
+                                    </div>
+                                </div>
+                                <div class="hobby-item">
+                                    <div class="hobby-name">
+                                        <i class="fas fa-futbol" style="color: #2ecc71;" aria-hidden="true"></i>
+                                        <span data-en="Football" data-fr="Football">Football</span>
+                                    </div>
+                                </div>
+                                <div class="hobby-item">
+                                    <div class="hobby-name">
+                                        <i class="fas fa-music" style="color: #9b59b6;" aria-hidden="true"></i>
+                                        <span data-en="Making Music" data-fr="Composition musicale">Composition musicale</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3><i class="fas fa-code" aria-hidden="true"></i> <span data-en="Skills" data-fr="Compétences">Compétences</span></h3>
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background: #00e5d6;"><i class="fas fa-code-branch" aria-hidden="true"></i></div>
+                                    <span>n8n</span>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <div class="skill-icon python"><i class="fab fa-python" aria-hidden="true"></i></div>
+                                    <span>Python</span>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <div class="skill-icon html"><i class="fab fa-html5" aria-hidden="true"></i></div>
+                                    <span>HTML</span>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <div class="skill-icon css"><i class="fab fa-css3-alt" aria-hidden="true"></i></div>
+                                    <span>CSS</span>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <div class="skill-icon react"><i class="fab fa-react" aria-hidden="true"></i></div>
+                                    <span>React</span>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <div class="skill-icon sql"><i class="fas fa-database" aria-hidden="true"></i></div>
+                                    <span>SQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experiences -->
+        <section id="experiences">
+            <div class="section-header">
+                <h2 data-en="Professional Experiences" data-fr="Expériences professionnelles">Expériences professionnelles</h2>
+            </div>
+            <div class="experiences-container">
+                <article class="experience-item">
+                    <div class="experience-company">
+                        <div class="company-icon"><img src="images/bee.jpeg" alt="Beewant" style="width: 24px; height: 24px; object-fit: contain;"></div>
+                        <h4 data-en="AI Automation Engineer" data-fr="Ingénieur en Automatisation IA">Ingénieur en Automatisation IA</h4>
+                    </div>
+                    <div class="experience-date">Beewant • 2023 - <span data-en="Present" data-fr="Présent">Présent</span></div>
+                    <p data-en="Built end-to-end AI automation systems for computer vision and customer support applications. Developed a car-damage detection pipeline by annotating 800+ vehicle images across 15+ damage categories, creating a model that reduced manual insurance review time by over 60%. Engineered a YOLO-based content moderation system combined with AI inpainting that processes 10,000+ panoramic images daily, replacing manual workflows. Created an intelligent customer support chatbot using LangChain that autonomously handles order tracking, inventory checks, and issue routing, integrating with internal APIs and communication platforms (Slack, email, CRM systems)."
+                       data-fr="Conçu des systèmes d'automatisation IA de bout en bout pour la vision par ordinateur et le support client. Développé un pipeline de détection de dommages automobiles en annotant plus de 800 images de véhicules couvrant plus de 15 catégories de dommages, créant un modèle ayant réduit le temps de révision manuelle des assurances de plus de 60%. Élaboré un système de modération de contenu basé sur YOLO combiné à l'inpainting IA qui traite plus de 10 000 images panoramiques par jour, remplaçant les flux de travail manuels. Créé un chatbot de support client intelligent utilisant LangChain qui gère de manière autonome le suivi des commandes, les vérifications de stock et le routage des problèmes, avec intégration aux APIs internes et plateformes de communication (Slack, e-mail, systèmes CRM).">
+                        Conçu des systèmes d'automatisation IA de bout en bout pour la vision par ordinateur et le support client. Développé un pipeline de détection de dommages automobiles en annotant plus de 800 images de véhicules couvrant plus de 15 catégories de dommages, créant un modèle ayant réduit le temps de révision manuelle des assurances de plus de 60%. Élaboré un système de modération de contenu basé sur YOLO combiné à l'inpainting IA qui traite plus de 10 000 images panoramiques par jour, remplaçant les flux de travail manuels. Créé un chatbot de support client intelligent utilisant LangChain qui gère de manière autonome le suivi des commandes, les vérifications de stock et le routage des problèmes, avec intégration aux APIs internes et plateformes de communication (Slack, e-mail, systèmes CRM).
+                    </p>
+                </article>
+                <article class="experience-item">
+                    <div class="experience-company">
+                        <div class="company-icon"><img src="images/tik.png" alt="TikTok" style="width: 24px; height: 24px; object-fit: contain;"></div>
+                        <h4 data-en="Content Moderator" data-fr="Modérateur de Contenu">Modérateur de Contenu</h4>
+                    </div>
+                    <div class="experience-date">Majorel (TikTok) • 2021 - 2022</div>
+                    <p data-en="Reviewed large volumes of user-generated video content for TikTok to ensure compliance with platform safety guidelines and community standards. Evaluated sensitive content and made context-based moderation decisions to maintain platform integrity and user safety."
+                       data-fr="Examiné de grands volumes de contenu vidéo généré par les utilisateurs pour TikTok afin d'assurer la conformité avec les directives de sécurité et les normes de la communauté de la plateforme. Évalué du contenu sensible et pris des décisions de modération basées sur le contexte pour maintenir l'intégrité de la plateforme et la sécurité des utilisateurs.">
+                        Examiné de grands volumes de contenu vidéo généré par les utilisateurs pour TikTok afin d'assurer la conformité avec les directives de sécurité et les normes de la communauté de la plateforme. Évalué du contenu sensible et pris des décisions de modération basées sur le contexte pour maintenir l'intégrité de la plateforme et la sécurité des utilisateurs.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <div class="section-header">
+                <h2 data-en="My Projects" data-fr="Mes projets">Mes projets</h2>
+            </div>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-image-container">
+                        <img src="images/vvv.png" alt="AI Agent Assistant" class="project-image">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <a href="chatbot_documentation.html" class="overlay-link" data-type="docs">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Read Documentation</span>
+                                </a>
+                                <a href="https://chatbot-v1-teal.vercel.app" target="_blank" class="overlay-link" data-type="website">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>Visit Website</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">01</div>
+                        <div class="project-icon"><i class="fas fa-robot" aria-hidden="true"></i></div>
+                        <h3>AI Agent Assistant</h3>
+                        <p>Production-ready multilingual AI Agent with Groq API and 40+ Q&A entries.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Groq API</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-image-container">
+                        <img src="images/afcon.png" alt="Fanpocket PWA" class="project-image">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <a href="fanpocket_documentation.html" class="overlay-link" data-type="docs">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Read Documentation</span>
+                                </a>
+                                <a href="https://github.com/Abdennasserbedroune/Fanpocket" target="_blank" class="overlay-link" data-type="website">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>Visit GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">02</div>
+                        <div class="project-icon"><i class="fas fa-futbol" aria-hidden="true"></i></div>
+                        <h3>Fanpocket PWA</h3>
+                        <p>Progressive Web App for Moroccan football fans with offline maps and trilingual support.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">PWA</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-image-container">
+                        <img src="images/writer.png" alt="Truetale" class="project-image">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <a href="Truetaledoc.html" class="overlay-link" data-type="docs">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Read Documentation</span>
+                                </a>
+                                <a href="#" class="overlay-link" data-type="website">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>Visit Website</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">03</div>
+                        <div class="project-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+                        <h3>Truetale</h3>
+                        <p>AI-powered content creation platform for writers and creators.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-image-container">
+                        <img src="images/cv.png" alt="Pathwise" class="project-image">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <a href="#" class="overlay-link" data-type="docs">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Read Documentation</span>
+                                </a>
+                                <a href="#" class="overlay-link" data-type="website">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>Visit Website</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">04</div>
+                        <div class="project-icon"><i class="fas fa-briefcase" aria-hidden="true"></i></div>
+                        <h3>Pathwise</h3>
+                        <p>AI-powered career path analyzer and resume builder.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">OpenAI</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3>Abdennasser Bedroune</h3>
+                <p>&copy; 2025 All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modern Chat Input Box -->
+    <div class="chat-container">
+        <div class="chat-input-wrapper">
+            <input type="text" id="chatQuickInput" class="chat-input-box" placeholder="Ask me about anything" aria-label="Ask a question">
+            <button class="chat-send-btn" id="chatQuickSend" aria-label="Send question">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Send icon">
+                    <path d="M3 12L21 3l-4 9 4 9-18-9z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+        const AI_AGENT_URL = 'https://abdennasserbedroune.github.io/ai-agent';
+        const chatInput = document.getElementById('chatQuickInput');
+        const chatSendBtn = document.getElementById('chatQuickSend');
+        
+        const placeholderTexts = {
+            en: [
+                "Ask me about anything",
+                "Ask me about my projects",
+                "Ask me about my experience",
+                "Ask me about my skills",
+                "I'm Abdennasser iA — get to know me"
+            ],
+            fr: [
+                "Posez-moi vos questions",
+                "Demandez-moi mes projets",
+                "Demandez-moi mon expérience",
+                "Demandez-moi mes compétences",
+                "Je suis Abdennasser iA — apprenez à me connaître"
+            ]
+        };
+        
+        let placeholderIndex = 0;
+        let placeholderInterval = null;
+
+        function cyclePlaceholder() {
+            if (!chatInput) return;
+            const texts = placeholderTexts[currentLang];
+            chatInput.placeholder = texts[placeholderIndex];
+            placeholderIndex = (placeholderIndex + 1) % texts.length;
+        }
+
+        function startPlaceholderCycle() {
+            if (placeholderInterval) {
+                clearInterval(placeholderInterval);
+            }
+            placeholderIndex = 0;
+            cyclePlaceholder();
+            placeholderInterval = setInterval(cyclePlaceholder, 3000);
+        }
+
+        function stopPlaceholderCycle() {
+            if (placeholderInterval) {
+                clearInterval(placeholderInterval);
+                placeholderInterval = null;
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'fr' : 'en';
+            const langText = document.getElementById('langText');
+            if (langText) {
+                langText.textContent = currentLang === 'en' ? 'Français' : 'English';
+            }
+            document.querySelectorAll('[data-en][data-fr]').forEach(el => {
+                const translation = el.getAttribute(`data-${currentLang}`);
+                if (translation) {
+                    el.textContent = translation;
+                }
+            });
+            startPlaceholderCycle();
+        }
+    
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelectorAll('.sidebar-nav a').forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    
+        function openAIAgent(message = '') {
+            const finalUrl = message
+                ? `${CHATBOT_URL}?q=${encodeURIComponent(message)}`
+                : CHATBOT_URL;
+            const newWindow = window.open(finalUrl, '_blank');
+            if (newWindow) {
+                newWindow.opener = null;
+            }
+        }
+
+        function handleChatSubmit() {
+            if (!chatInput) return;
+            const message = chatInput.value.trim();
+            if (!message) return;
+            openAIAgent(message);
+            chatInput.value = '';
+            stopPlaceholderCycle();
+            setTimeout(() => {
+                if (!chatInput.value) {
+                    startPlaceholderCycle();
+                }
+            }, 500);
+        }
+
+        if (chatSendBtn) {
+            chatSendBtn.addEventListener('click', handleChatSubmit);
+        }
+
+        if (chatInput) {
+            chatInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
+                    handleChatSubmit();
+                }
+            });
+            
+            chatInput.addEventListener('focus', () => {
+                stopPlaceholderCycle();
+            });
+            
+            chatInput.addEventListener('blur', () => {
+                if (!chatInput.value) {
+                    startPlaceholderCycle();
+                }
+            });
+            
+            // Start the placeholder cycle on page load
+            startPlaceholderCycle();
+        }
+    </script>
+    
+</body>
+</html>

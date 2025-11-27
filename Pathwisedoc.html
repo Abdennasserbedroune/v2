@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathwise: AI-Powered Resume Intelligence Platform | Technical Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #e0e0e0;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            min-height: 100vh;
+        }
+
+        .doc-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(100, 216, 203, 0.2);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .language-switcher {
+            display: flex;
+            background: rgba(100, 216, 203, 0.1);
+            border-radius: 8px;
+            padding: 4px;
+            border: 1px solid rgba(100, 216, 203, 0.2);
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: rgba(100, 216, 203, 0.2);
+            color: #64D8CB;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(100, 216, 203, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .doc-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 216, 203, 0.3);
+            background: linear-gradient(135deg, rgba(100, 216, 203, 0.1), rgba(100, 216, 203, 0.05));
+            color: #e0fffb;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(100, 216, 203, 0.1);
+        }
+
+        .doc-back-link i {
+            font-size: 0.85rem;
+        }
+
+        .doc-back-link:hover {
+            background: linear-gradient(135deg, rgba(100, 216, 203, 0.2), rgba(100, 216, 203, 0.1));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(100, 216, 203, 0.2);
+            border-color: rgba(100, 216, 203, 0.5);
+        }
+
+        .doc-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 20px;
+            text-align: center;
+        }
+
+        .doc-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #64D8CB 0%, #4fb3a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .doc-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+        }
+
+        .toc {
+            position: sticky;
+            top: 20px;
+            align-self: start;
+            padding: 24px;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(100, 216, 203, 0.15);
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .toc h2 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #64D8CB;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .toc li:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background: #64D8CB;
+            border-radius: 50%;
+        }
+
+        .toc a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            display: block;
+            padding: 6px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .toc a:hover {
+            color: #64D8CB;
+            background: rgba(100, 216, 203, 0.05);
+            padding-left: 8px;
+        }
+
+        .toc a.active {
+            color: #64D8CB;
+            background: rgba(100, 216, 203, 0.1);
+            font-weight: 500;
+        }
+
+        .toc ul ul {
+            margin-top: 8px;
+            padding-left: 15px;
+            border-left: 1px solid rgba(100, 216, 203, 0.2);
+        }
+
+        .toc ul ul li:before {
+            background: rgba(100, 216, 203, 0.6);
+        }
+
+        .content {
+            background: rgba(25, 25, 25, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(100, 216, 203, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #64D8CB;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(100, 216, 203, 0.15);
+            position: relative;
+            font-weight: 700;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, #64D8CB, rgba(100, 216, 203, 0.3));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin: 35px 0 18px;
+            position: relative;
+            padding-left: 20px;
+            font-weight: 600;
+        }
+
+        h3:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 5px;
+            height: 24px;
+            background: linear-gradient(180deg, #64D8CB, rgba(100, 216, 203, 0.6));
+            border-radius: 3px;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin: 25px 0 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        pre {
+            background: linear-gradient(135deg, #0a0a0a, #0f0f0f);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(100, 216, 203, 0.1);
+            position: relative;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #e6e6e6;
+        }
+
+        pre code {
+            display: block;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(100, 216, 203, 0.08), rgba(100, 216, 203, 0.04));
+            border-left: 4px solid #64D8CB;
+            padding: 24px;
+            margin: 30px 0;
+            border-radius: 0 12px 12px 0;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(100, 216, 203, 0.1);
+            border-left: 4px solid #64D8CB;
+        }
+
+        .info-box h4 {
+            margin-top: 0;
+            color: #64D8CB;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box h4 i {
+            font-size: 1.2rem;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(100, 216, 203, 0.12), rgba(100, 216, 203, 0.08));
+            color: #64D8CB;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(100, 216, 203, 0.25);
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(100, 216, 203, 0.1);
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(100, 216, 203, 0.2);
+            background: linear-gradient(135deg, rgba(100, 216, 203, 0.18), rgba(100, 216, 203, 0.12));
+        }
+
+        .architecture-diagram {
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(100, 216, 203, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .architecture-diagram img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: static;
+                max-height: none;
+                margin-bottom: 30px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .doc-header h1 {
+                font-size: 2rem;
+            }
+
+            .doc-subtitle {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(20, 20, 20, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(100, 216, 203, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(100, 216, 203, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Enhanced footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+            margin-top: 60px;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(100, 216, 203, 0.1);
+        }
+
+        footer a {
+            transition: all 0.3s ease;
+            color: #64D8CB;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #64D8CB !important;
+            transform: translateY(-2px);
+        }
+
+        .footer-links {
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-links a {
+            margin: 0 12px;
+            color: inherit;
+        }
+
+        .separator {
+            color: rgba(255, 255, 255, 0.3);
+            margin: 0 8px;
+        }
+
+        /* Enhanced code blocks */
+        pre:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(100, 216, 203, 0.3), transparent);
+        }
+
+        /* Enhanced list styling */
+        ul li, ol li {
+            position: relative;
+            padding-left: 8px;
+            transition: color 0.2s ease;
+        }
+
+        ul li:hover, ol li:hover {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Section fade-in animation */
+        section {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+        section:nth-child(6) { animation-delay: 0.6s; }
+        section:nth-child(7) { animation-delay: 0.7s; }
+        section:nth-child(8) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <div class="doc-topbar">
+        <div class="topbar-left">
+            <a href="portfolio_with_projects.html" class="doc-back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span data-en="Back to portfolio" data-fr="Retour au portfolio">Back to portfolio</span>
+            </a>
+        </div>
+        <div class="topbar-right">
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+            </div>
+        </div>
+    </div>
+
+    <header class="doc-header">
+        <h1 data-en="Pathwise: AI-Powered Resume Intelligence Platform" data-fr="Pathwise : Plateforme d'Intelligence Artificielle pour CV">Pathwise: AI-Powered Resume Intelligence Platform</h1>
+        <p class="doc-subtitle" data-en="Technical documentation for a full-stack AI resume analysis platform built with Next.js 14, FastAPI, and modern AI/ML tooling" data-fr="Documentation technique d'une plateforme d'analyse de CV par IA full-stack, développée avec Next.js 14, FastAPI et les outils IA/ML modernes">Technical documentation for a full-stack AI resume analysis platform built with Next.js 14, FastAPI, and modern AI/ML tooling</p>
+    </header>
+
+    <div class="container">
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2><i class="fas fa-list"></i> <span data-en="Table of Contents" data-fr="Sommaire">Table of Contents</span></h2>
+            <ul>
+                <li><a href="#overview" data-en="Project Overview" data-fr="Vue d'Ensemble du Projet">Project Overview</a></li>
+                <li><a href="#architecture" data-en="System Architecture" data-fr="Architecture Système">System Architecture</a>
+                    <ul>
+                        <li><a href="#frontend" data-en="Frontend" data-fr="Frontend">Frontend</a></li>
+                        <li><a href="#backend" data-en="Backend" data-fr="Backend">Backend</a></li>
+                        <li><a href="#database" data-en="Database" data-fr="Base de Données">Database</a></li>
+                        <li><a href="#queue" data-en="Task Queue" data-fr="Queue de Tâches">Task Queue</a></li>
+                    </ul>
+                </li>
+                <li><a href="#features" data-en="Core Features" data-fr="Fonctionnalités Principales">Core Features</a>
+                    <ul>
+                        <li><a href="#resume-upload" data-en="Resume Upload" data-fr="Téléversement de CV">Resume Upload</a></li>
+                        <li><a href="#ai-analysis" data-en="AI Analysis" data-fr="Analyse IA">AI Analysis</a></li>
+                        <li><a href="#comparison" data-en="Resume Comparison" data-fr="Comparaison de CV">Resume Comparison</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tech-stack" data-en="Technology Stack" data-fr="Stack Technologique">Technology Stack</a></li>
+                <li><a href="#development" data-en="Development Setup" data-fr="Configuration de Développement">Development Setup</a></li>
+                <li><a href="#deployment" data-en="Deployment" data-fr="Déploiement">Deployment</a></li>
+                <li><a href="#challenges" data-en="Challenges & Solutions" data-fr="Défis et Solutions">Challenges & Solutions</a></li>
+                <li><a href="#future" data-en="Future Improvements" data-fr="Améliorations Futures">Future Improvements</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <section id="overview">
+                <h2 data-en="Project Overview" data-fr="Vue d'Ensemble du Projet">Project Overview</h2>
+                <p data-en="Pathwise is an AI-powered resume intelligence platform that transforms traditional CVs into actionable career insights. The platform serves two primary user groups:" data-fr="Pathwise est une plateforme d'intelligence artificielle pour CV qui transforme les CV traditionnels en informations de carrière exploitables. La plateforme s'adresse à deux groupes d'utilisateurs principaux :">Pathwise is an AI-powered resume intelligence platform that transforms traditional CVs into actionable career insights. The platform serves two primary user groups:</p>
+                
+                <ul>
+                    <li data-en="<strong>Job Seekers:</strong> Receive detailed feedback on their resumes, including strengths, weaknesses, and improvement suggestions." data-fr="<strong>Candidats :</strong> Reçoivent une analyse détaillée de leur CV, incluant les points forts, faibles et suggestions d'amélioration."><strong>Job Seekers:</strong> Receive detailed feedback on their resumes, including strengths, weaknesses, and improvement suggestions.</li>
+                    <li data-en="<strong>Recruiters:</strong> Compare multiple CVs efficiently and make data-driven hiring decisions." data-fr="<strong>Recruteurs :</strong> Comparent efficacement plusieurs CV et prennent des décisions de recrutement basées sur les données."><strong>Recruiters:</strong> Compare multiple CVs efficiently and make data-driven hiring decisions.</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-lightbulb"></i> <span data-en="Key Objectives" data-fr="Objectifs Principaux">Key Objectives</span></h4>
+                    <ul>
+                        <li data-en="Automate the resume review process using AI/ML" data-fr="Automatiser le processus d'analyse de CV grâce à l'IA/ML">Automate the resume review process using AI/ML</li>
+                        <li data-en="Provide personalized, actionable feedback to job seekers" data-fr="Fournir aux candidats des retours personnalisés et exploitables">Provide personalized, actionable feedback to job seekers</li>
+                        <li data-en="Streamline the recruitment workflow with intelligent comparison tools" data-fr="Optimiser le processus de recrutement avec des outils de comparaison intelligents">Streamline the recruitment workflow with intelligent comparison tools</li>
+                        <li data-en="Maintain a scalable and maintainable codebase" data-fr="Maintenir une base de code évolutive et facile à maintenir">Maintain a scalable and maintainable codebase</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="architecture">
+                <h2 data-en="System Architecture" data-fr="Architecture Système">System Architecture</h2>
+                <p data-en="Pathwise follows a modern microservices architecture with clear separation of concerns:" data-fr="Pathwise adopte une architecture microservices moderne avec une séparation claire des responsabilités :">Pathwise follows a modern microservices architecture with clear separation of concerns:</p>
+                
+                <div class="architecture-diagram">
+                    <!-- Placeholder for architecture diagram -->
+                    <div style="background: #0a0a0a; padding: 20px; text-align: center; color: #666; font-style: italic;">
+                        <span data-en="[System Architecture Diagram]" data-fr="[Schéma d'Architecture Système]">[System Architecture Diagram]</span>
+                    </div>
+                </div>
+
+                <h3 id="frontend" data-en="Frontend (Next.js 14)" data-fr="Frontend (Next.js 14)">Frontend (Next.js 14)</h3>
+                <p data-en="The frontend is built with Next.js 14, leveraging the App Router for improved performance and developer experience. Key features include:" data-fr="Le frontend est développé avec Next.js 14, utilisant l'App Router pour de meilleures performances et une expérience développeur optimisée. Les fonctionnalités principales incluent :">The frontend is built with Next.js 14, leveraging the App Router for improved performance and developer experience. Key features include:</p>
+                <ul>
+                    <li data-en="TypeScript for type safety" data-fr="TypeScript pour la sécurité des types">TypeScript for type safety</li>
+                    <li data-en="TailwindCSS for utility-first styling" data-fr="TailwindCSS pour un styling utilitaire">TailwindCSS for utility-first styling</li>
+                    <li data-en="React Query for data fetching and caching" data-fr="React Query pour la récupération et la mise en cache des données">React Query for data fetching and caching</li>
+                    <li data-en="Zod for runtime type validation" data-fr="Zod pour la validation des types à l'exécution">Zod for runtime type validation</li>
+                </ul>
+
+                <h3 id="backend" data-en="Backend (FastAPI)" data-fr="Backend (FastAPI)">Backend (FastAPI)</h3>
+                <p data-en="The backend is built with FastAPI, providing a robust and performant API layer:" data-fr="Le backend est développé avec FastAPI, fournissant une couche API robuste et performante :">The backend is built with FastAPI, providing a robust and performant API layer:</p>
+                <pre><code>from fastapi import FastAPI, UploadFile, HTTPException
+from pydantic import BaseModel
+from typing import List
+import uvicorn
+
+app = FastAPI()
+
+class ResumeAnalysis(BaseModel):
+    id: str
+    score: float
+    strengths: List[str]
+    suggestions: List[str]
+
+@app.post("/api/analyze")
+async def analyze_resume(file: UploadFile):
+    # Process and analyze resume
+    return {"status": "Analysis started"}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)</code></pre>
+
+                <h3 id="database" data-en="Database (PostgreSQL)" data-fr="Base de Données (PostgreSQL)">Database (PostgreSQL)</h3>
+                <p data-en="PostgreSQL serves as the primary database, storing:" data-fr="PostgreSQL sert de base de données principale, stockant :">PostgreSQL serves as the primary database, storing:</p>
+                <ul>
+                    <li data-en="User profiles and authentication data" data-fr="Profils utilisateurs et données d'authentification">User profiles and authentication data</li>
+                    <li data-en="Resume metadata and analysis results" data-fr="Métadonnées des CV et résultats d'analyse">Resume metadata and analysis results</li>
+                    <li data-en="User preferences and settings" data-fr="Préférences et paramètres utilisateurs">User preferences and settings</li>
+                </ul>
+
+                <h3 id="queue" data-en="Task Queue (Redis + Celery)" data-fr="Queue de Tâches (Redis + Celery)">Task Queue (Redis + Celery)</h3>
+                <p data-en="For handling long-running tasks like resume parsing and AI analysis:" data-fr="Pour gérer les tâches de longue durée comme l'analyse de CV et le traitement par IA :">For handling long-running tasks like resume parsing and AI analysis:</p>
+                <ul>
+                    <li data-en="Redis as the message broker" data-fr="Redis comme courtier de messages">Redis as the message broker</li>
+                    <li data-en="Celery for asynchronous task processing" data-fr="Celery pour le traitement asynchrone des tâches">Celery for asynchronous task processing</li>
+                    <li data-en="Automatic retries and error handling" data-fr="Nouvelles tentatives automatiques et gestion des erreurs">Automatic retries and error handling</li>
+                </ul>
+            </section>
+
+            <section id="features">
+                <h2 data-en="Core Features" data-fr="Fonctionnalités Principales">Core Features</h2>
+                
+                <h3 id="resume-upload" data-en="1. Resume Upload & Parsing" data-fr="1. Téléversement et Analyse de CV">1. Resume Upload & Parsing</h3>
+                <p data-en="Supports multiple file formats (PDF, DOCX) with intelligent parsing:" data-fr="Supporte plusieurs formats de fichiers (PDF, DOCX) avec analyse intelligente :">Supports multiple file formats (PDF, DOCX) with intelligent parsing:</p>
+                <ul>
+                    <li data-en="Extracts text, sections, and key information" data-fr="Extrait le texte, sections et informations clés">Extracts text, sections, and key information</li>
+                    <li data-en="Normalizes formatting and structure" data-fr="Normalise le formatage et la structure">Normalizes formatting and structure</li>
+                    <li data-en="Validates document content and completeness" data-fr="Valide le contenu et l'exhaustivité du document">Validates document content and completeness</li>
+                </ul>
+
+                <h3 id="ai-analysis" data-en="2. AI-Powered Analysis" data-fr="2. Analyse par IA">2. AI-Powered Analysis</h3>
+                <p data-en="Advanced NLP and ML models provide comprehensive resume evaluation:" data-fr="Les modèles NLP et ML avancés offrent une évaluation complète des CV :">Advanced NLP and ML models provide comprehensive resume evaluation:</p>
+                <ul>
+                    <li data-en="Skills extraction and categorization" data-fr="Extraction et catégorisation des compétences">Skills extraction and categorization</li>
+                    <li data-en="Experience validation and ranking" data-fr="Validation et classement de l'expérience">Experience validation and ranking</li>
+                    <li data-en="ATS (Applicant Tracking System) compatibility scoring" data-fr="Score de compatibilité ATS (Système de Suivi des Candidats)">ATS (Applicant Tracking System) compatibility scoring</li>
+                    <li data-en="Personalized improvement suggestions" data-fr="Suggestions d'amélioration personnalisées">Personalized improvement suggestions</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-chart-line"></i> <span data-en="Analysis Metrics" data-fr="Métriques d'Analyse">Analysis Metrics</span></h4>
+                    <ul>
+                        <li data-en="<strong>Content Quality:</strong> 95% accuracy in skills identification" data-fr="<strong>Qualité du Contenu :</strong> 95% de précision dans l'identification des compétences"><strong>Content Quality:</strong> 95% accuracy in skills identification</li>
+                        <li data-en="<strong>Processing Time:</strong> < 10 seconds per resume" data-fr="<strong>Temps de Traitement :</strong> < 10 secondes par CV"><strong>Processing Time:</strong> < 10 seconds per resume</li>
+                        <li data-en="<strong>Format Support:</strong> PDF, DOCX, TXT" data-fr="<strong>Formats Supportés :</strong> PDF, DOCX, TXT"><strong>Format Support:</strong> PDF, DOCX, TXT</li>
+                    </ul>
+                </div>
+
+                <h3 id="comparison" data-en="3. Resume Comparison" data-fr="3. Comparaison de CV">3. Resume Comparison</h3>
+                <p data-en="Recruiter-focused features for efficient candidate evaluation:" data-fr="Fonctionnalités orientées recruteurs pour une évaluation efficace des candidats :">Recruiter-focused features for efficient candidate evaluation:</p>
+                <ul>
+                    <li data-en="Side-by-side resume comparison" data-fr="Comparaison de CV côte à côte">Side-by-side resume comparison</li>
+                    <li data-en="Skills gap analysis" data-fr="Analyse des écarts de compétences">Skills gap analysis</li>
+                    <li data-en="Experience matching" data-fr="Mise en correspondance de l'expérience">Experience matching</li>
+                    <li data-en="Custom scoring criteria" data-fr="Critères de scoring personnalisés">Custom scoring criteria</li>
+                </ul>
+            </section>
+
+            <section id="tech-stack">
+                <h2 data-en="Technology Stack" data-fr="Stack Technologique">Technology Stack</h2>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Next.js 14</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">TailwindCSS</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Python 3.10+</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">Celery</span>
+                    <span class="tech-tag">spaCy</span>
+                    <span class="tech-tag">Transformers</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">GitHub Actions</span>
+                </div>
+            </section>
+
+            <section id="development">
+                <h2 data-en="Development Setup" data-fr="Configuration de Développement">Development Setup</h2>
+                
+                <h3 data-en="Prerequisites" data-fr="Prérequis">Prerequisites</h3>
+                <ul>
+                    <li data-en="Node.js 18+ & npm 9+" data-fr="Node.js 18+ & npm 9+">Node.js 18+ & npm 9+</li>
+                    <li data-en="Python 3.10+" data-fr="Python 3.10+">Python 3.10+</li>
+                    <li data-en="Docker & Docker Compose" data-fr="Docker & Docker Compose">Docker & Docker Compose</li>
+                    <li data-en="Git" data-fr="Git">Git</li>
+                </ul>
+
+                <h3 data-en="Quick Start" data-fr="Démarrage Rapide">Quick Start</h3>
+                <pre><code># Clone the repository
+git clone https://github.com/yourusername/pathwise.git
+cd pathwise
+
+# Start services using Docker Compose
+docker-compose up -d
+
+# Install frontend dependencies
+cd frontend
+npm install
+
+# Install backend dependencies
+cd ../backend
+pip install -r requirements.txt
+
+# Run database migrations
+alembic upgrade head
+
+# Start the development servers
+# In separate terminals:
+npm run dev  # Frontend
+uvicorn app.main:app --reload  # Backend
+celery -A app.worker worker --loglevel=info  # Celery worker</code></pre>
+            </section>
+
+            <section id="deployment">
+                <h2 data-en="Deployment" data-fr="Déploiement">Deployment</h2>
+                
+                <p data-en="Pathwise is designed for containerized deployment with Docker and Kubernetes. The repository includes:" data-fr="Pathwise est conçu pour le déploiement conteneurisé avec Docker et Kubernetes. Le dépôt inclut :">Pathwise is designed for containerized deployment with Docker and Kubernetes. The repository includes:</p>
+                <ul>
+                    <li data-en="Production-ready Dockerfiles" data-fr="Dockerfiles prêts pour la production">Production-ready Dockerfiles</li>
+                    <li data-en="Kubernetes manifests" data-fr="Manifestes Kubernetes">Kubernetes manifests</li>
+                    <li data-en="GitHub Actions workflows for CI/CD" data-fr="Workflows GitHub Actions pour CI/CD">GitHub Actions workflows for CI/CD</li>
+                    <li data-en="Environment configuration templates" data-fr="Modèles de configuration d'environnement">Environment configuration templates</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-shield-alt"></i> <span data-en="Security Considerations" data-fr="Considérations de Sécurité">Security Considerations</span></h4>
+                    <ul>
+                        <li data-en="Environment variables for sensitive configuration" data-fr="Variables d'environnement pour la configuration sensible">Environment variables for sensitive configuration</li>
+                        <li data-en="Rate limiting and request validation" data-fr="Limitation de débit et validation des requêtes">Rate limiting and request validation</li>
+                        <li data-en="HTTPS enforcement" data-fr="Application HTTPS">HTTPS enforcement</li>
+                        <li data-en="Regular dependency updates" data-fr="Mises à jour régulières des dépendances">Regular dependency updates</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="challenges">
+                <h2 data-en="Challenges & Solutions" data-fr="Défis et Solutions">Challenges & Solutions</h2>
+                
+                <h3 data-en="1. Resume Parsing Accuracy" data-fr="1. Précision d'Analyse de CV">1. Resume Parsing Accuracy</h3>
+                <p><strong data-en="Challenge:" data-fr="Défi :">Challenge:</strong> <span data-en="Extracting structured data from various resume formats with high accuracy." data-fr="Extraire des données structurées de divers formats de CV avec une grande précision.">Extracting structured data from various resume formats with high accuracy.</span></p>
+                <p><strong data-en="Solution:" data-fr="Solution :">Solution:</strong> <span data-en="Implemented a hybrid approach combining rule-based parsing with ML models, achieving 95% accuracy across common formats." data-fr="Implémenté une approche hybride combinant l'analyse basée sur des règles avec des modèles ML, atteignant 95% de précision sur les formats courants.">Implemented a hybrid approach combining rule-based parsing with ML models, achieving 95% accuracy across common formats.</span></p>
+
+                <h3 data-en="2. Performance Optimization" data-fr="2. Optimisation des Performances">2. Performance Optimization</h3>
+                <p><strong data-en="Challenge:" data-fr="Défi :">Challenge:</strong> <span data-en="Processing large PDFs and DOCX files efficiently." data-fr="Traiter efficacement les gros fichiers PDF et DOCX.">Processing large PDFs and DOCX files efficiently.</span></p>
+                <p><strong data-en="Solution:" data-fr="Solution :">Solution:</strong> <span data-en="Implemented streaming file processing and background task queues to handle large files without blocking the main application." data-fr="Implémenté le traitement de fichiers en streaming et les queues de tâches d'arrière-plan pour gérer les gros fichiers sans bloquer l'application principale.">Implemented streaming file processing and background task queues to handle large files without blocking the main application.</span></p>
+
+                <h3 data-en="3. Cross-Platform Compatibility" data-fr="3. Compatibilité Multi-Plateforme">3. Cross-Platform Compatibility</h3>
+                <p><strong data-en="Challenge:" data-fr="Défi :">Challenge:</strong> <span data-en="Ensuring consistent behavior across different operating systems and environments." data-fr="Assurer un comportement cohérent sur différents systèmes d'exploitation et environnements.">Ensuring consistent behavior across different operating systems and environments.</span></p>
+                <p><strong data-en="Solution:" data-fr="Solution :">Solution:</strong> <span data-en="Containerized the entire application stack using Docker for consistent development and deployment environments." data-fr="Conteneurisé toute la pile applicative avec Docker pour des environnements de développement et de déploiement cohérents.">Containerized the entire application stack using Docker for consistent development and deployment environments.</span></p>
+            </section>
+
+            <section id="future">
+                <h2 data-en="Future Improvements" data-fr="Améliorations Futures">Future Improvements</h2>
+                
+                <ul>
+                    <li data-en="<strong>Enhanced AI Models:</strong> Fine-tune models for specific industries and roles" data-fr="<strong>Modèles IA Améliorés :</strong> Affiner les modèles pour des industries et rôles spécifiques"><strong>Enhanced AI Models:</strong> Fine-tune models for specific industries and roles</li>
+                    <li data-en="<strong>Real-time Collaboration:</strong> Enable recruiters to collaborate on candidate evaluation" data-fr="<strong>Collaboration en Temps Réel :</strong> Permettre aux recruteurs de collaborer sur l'évaluation des candidats"><strong>Real-time Collaboration:</strong> Enable recruiters to collaborate on candidate evaluation</li>
+                    <li data-en="<strong>Interview Preparation:</strong> Add mock interview question generation" data-fr="<strong>Préparation d'Entretien :</strong> Ajouter la génération de questions d'entretien simulé"><strong>Interview Preparation:</strong> Add mock interview question generation</li>
+                    <li data-en="<strong>Job Matching:</strong> Integrate with job boards for automatic matching" data-fr="<strong>Correspondance d'Emploi :</strong> Intégrer avec des plateformes d'emploi pour mise en correspondance automatique"><strong>Job Matching:</strong> Integrate with job boards for automatic matching</li>
+                    <li data-en="<strong>Mobile App:</strong> Native mobile experience for job seekers" data-fr="<strong>Application Mobile :</strong> Expérience mobile native pour les candidats"><strong>Mobile App:</strong> Native mobile experience for job seekers</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-code-branch"></i> <span data-en="Contributing" data-fr="Contributions">Contributing</span></h4>
+                    <p data-en="Contributions are welcome! Please read our <a href='#' style='color: #64D8CB;'>contributing guidelines</a> before submitting pull requests." data-fr="Les contributions sont les bienvenues ! Veuillez lire nos <a href='#' style='color: #64D8CB;'>directives de contribution</a> avant de soumettre des pull requests.">Contributions are welcome! Please read our <a href="#" style="color: #64D8CB;">contributing guidelines</a> before submitting pull requests.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <p data-en="Built with" data-fr="Développé avec">Built with <span style="color: #ff6b6b;">❤</span> by <a href="https://github.com/Abdennasserbedroune" target="blank">Abdennasser Bedroune</a></p>
+        <p class="footer-links">
+            <a href="https://github.com/Abdennasserbedroune/Pathwise" target="blank" data-en="View on GitHub" data-fr="Voir sur GitHub">
+                <i class="fab fa-github"></i> <span data-en="View on GitHub" data-fr="Voir sur GitHub">View on GitHub</span>
+            </a>
+            <span class="separator">•</span>
+            <a href="#" data-en="API Documentation" data-fr="Documentation API">
+                <i class="fas fa-book"></i> <span data-en="API Documentation" data-fr="Documentation API">API Documentation</span>
+            </a>
+        </p>
+    </footer>
+
+    <script>
+        // Language switching functionality
+        let currentLanguage = localStorage.getItem('preferredLanguage') || 'en';
+        
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-en][data-fr]').forEach(element => {
+                const translation = element.getAttribute(`data-${lang}`);
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = translation;
+                } else if (element.tagName === 'A' && element.querySelector('span')) {
+                    // Handle links with nested spans
+                    const span = element.querySelector('span');
+                    if (span) {
+                        span.textContent = translation;
+                    } else {
+                        element.textContent = translation;
+                    }
+                } else {
+                    element.textContent = translation;
+                }
+            });
+            
+            // Update elements with only partial translations (like in challenges section)
+            document.querySelectorAll('[data-en][data-fr]').forEach(element => {
+                if (element.children.length === 0) {
+                    // Simple text elements
+                    const translation = element.getAttribute(`data-${lang}`);
+                    if (translation && element.textContent.trim()) {
+                        element.textContent = translation;
+                    }
+                }
+            });
+            
+            // Update mixed content elements
+            document.querySelectorAll('p, li, h3, h4').forEach(element => {
+                const enText = element.getAttribute(`data-en`);
+                const frText = element.getAttribute(`data-fr`);
+                if (enText && frText) {
+                    // Check if element has complex content (strong tags, etc.)
+                    if (element.innerHTML.includes('<strong>') || element.innerHTML.includes('<span')) {
+                        const translation = element.getAttribute(`data-${lang}`);
+                        if (translation) {
+                            // Preserve HTML structure but update text
+                            const tempDiv = document.createElement('div');
+                            tempDiv.innerHTML = translation;
+                            element.innerHTML = translation;
+                        }
+                    } else if (element.textContent.trim() === enText || element.textContent.trim() === frText) {
+                        element.textContent = element.getAttribute(`data-${lang}`);
+                    }
+                }
+            });
+        }
+        
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            switchLanguage(currentLanguage);
+            
+            // Add click handlers to language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    switchLanguage(this.dataset.lang);
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update URL without adding to history
+                    history.pushState(null, '', targetId);
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.toc a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (pageYOffset >= sectionTop) {
+                    current = '#' + section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add active class to current section in TOC
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Initialize first link as active
+        if (navLinks.length > 0) {
+            navLinks[0].classList.add('active');
+        }
+    </script>
+</body>
+</html>

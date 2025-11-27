@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanpocket: Building a PWA for Moroccan Football Fans | Technical Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #050505;
+            color: #e0e0e0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .doc-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.8));
+            border-bottom: 1px solid rgba(231, 76, 60, 0.4);
+            padding: 10px 18px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .doc-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(231, 76, 60, 0.7);
+            background: rgba(231, 76, 60, 0.16);
+            color: #fff4f2;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+        }
+
+        .doc-back-link i {
+            font-size: 0.85rem;
+        }
+
+        .doc-back-link:hover {
+            background: rgba(231, 76, 60, 0.24);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            transform: translateY(-1px);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 32px 20px 40px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 20px 50px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-size: 2.1rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        header .subtitle {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
+        header .meta {
+            margin-top: 20px;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        header .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: #101010;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+
+        .toc h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .toc li::before {
+            content: "⚽";
+            position: absolute;
+            left: 0;
+        }
+
+        .toc a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #e74c3c;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 45px;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            color: #e74c3c;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(231, 76, 60, 0.3);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: #e74c3c;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 0.96rem;
+        }
+
+        /* Code blocks */
+        code {
+            background: #1a1a1a;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #e74c3c;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #1a1a1a;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #e0e0e0;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .info-box h4 {
+            margin-top: 0;
+            color: #e74c3c;
+        }
+
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box h4 {
+            margin-top: 0;
+            color: #ffc107;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: rgba(231, 76, 60, 0.2);
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-top: 1px solid rgba(231, 76, 60, 0.1);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        tr:hover {
+            background: rgba(231, 76, 60, 0.05);
+        }
+
+        /* Tech stack badges */
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tech-badge {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #e74c3c;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Architecture diagram */
+        .architecture {
+            background: #1a1a1a;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 2;
+            color: #e74c3c;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(231, 76, 60, 0.3);
+            margin-top: 80px;
+        }
+
+        footer a {
+            color: #e74c3c;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="doc-topbar">
+        <a href="portfolio_with_projects.html" class="doc-back-link">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to portfolio</span>
+        </a>
+    </div>
+    <header>
+        <h1><i class="fas fa-futbol"></i> Fanpocket: A PWA for Football Fans</h1>
+        <p class="subtitle">Building a Progressive Web App for Moroccan Football Culture</p>
+        <div class="meta">
+            <div class="meta-item">
+                <i class="fas fa-user"></i>
+                <span>By Abdennasser Bedroune</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-clock"></i>
+                <span>18 min read</span>
+            </div>
+            <div class="meta-item">
+                <i class="fab fa-github"></i>
+                <a href="https://github.com/Abdennasserbedroune/Fanpocket" target="_blank" style="color: #fff;">View on GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2><i class="fas fa-list"></i> Table of Contents</h2>
+            <ul>
+                <li><a href="#overview">Project Vision and Purpose</a></li>
+                <li><a href="#architecture">System Architecture and Design</a></li>
+                <li><a href="#tech-stack">Technology Stack Deep Dive</a></li>
+                <li><a href="#pwa">Progressive Web App Implementation</a></li>
+                <li><a href="#monorepo">Monorepo Structure and Workspaces</a></li>
+                <li><a href="#features">Core Features and Functionality</a></li>
+                <li><a href="#i18n">Internationalization: Trilingual Support</a></li>
+                <li><a href="#maps">Interactive Maps with React Leaflet</a></li>
+                <li><a href="#backend">Backend API Architecture</a></li>
+                <li><a href="#challenges">Development Challenges and Solutions</a></li>
+                <li><a href="#deployment">Deployment Strategy</a></li>
+                <li><a href="#learnings">Key Learnings and Future Roadmap</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ul>
+        </div>
+
+        <!-- Introduction -->
+        <section>
+            <p>Football is more than just a sport in Morocco—it's a way of life, a source of national pride, and a unifying force that brings communities together. When I set out to build Fanpocket, my vision was to create a digital companion for Moroccan football fans that would connect them with their local football culture, help them discover stadiums, track their favorite teams, and stay updated on matches in real-time.</p>
+
+            <p>This article documents the complete journey of building Fanpocket: a production-ready Progressive Web App (PWA) that combines modern web technologies, mobile-first design, and a deep understanding of the Moroccan football landscape. From architectural decisions to implementation challenges, this is the story of bringing a football fan experience to life on the web.</p>
+        </section>
+
+        <!-- Project Vision -->
+        <section id="overview">
+            <h2>Project Vision and Purpose</h2>
+
+            <h3>The Problem</h3>
+            <p>Moroccan football fans face several challenges when it comes to engaging with their local football culture:</p>
+            <ul>
+                <li><strong>Fragmented Information</strong> - Stadium locations, team schedules, and match information are scattered across multiple sources</li>
+                <li><strong>Limited Digital Presence</strong> - Many local teams and stadiums lack comprehensive online presence</li>
+                <li><strong>Language Barriers</strong> - Content is often available in only one language (French, Arabic, or English)</li>
+                <li><strong>Mobile Access</strong> - Fans need instant access to information while on the go, often in areas with poor connectivity</li>
+            </ul>
+
+            <h3>The Solution: Fanpocket</h3>
+            <p>Fanpocket is designed as a comprehensive digital companion that addresses these challenges through:</p>
+
+            <div class="info-box">
+                <h4><i class="fas fa-bullseye"></i> Core Objectives</h4>
+                <ul>
+                    <li><strong>Stadium Discovery</strong> - Interactive map showing all football stadiums across Morocco with detailed information</li>
+                    <li><strong>Team Tracking</strong> - Follow your favorite teams, view their schedules, and get match notifications</li>
+                    <li><strong>Match Updates</strong> - Real-time scores, upcoming fixtures, and match results</li>
+                    <li><strong>Offline Access</strong> - Progressive Web App functionality allowing offline browsing of cached content</li>
+                    <li><strong>Multilingual</strong> - Full support for English, French, and Arabic to serve all Moroccan football fans</li>
+                    <li><strong>Community Features</strong> - Connect with other fans, share experiences, and build the football community</li>
+                </ul>
+            </div>
+
+            <h3>Target Audience</h3>
+            <p>Fanpocket is built for:</p>
+            <ul>
+                <li><strong>Local Fans</strong> - Moroccans who follow domestic leagues and local teams</li>
+                <li><strong>Travelers</strong> - Tourists and visitors who want to experience Moroccan football culture</li>
+                <li><strong>Diaspora</strong> - Moroccan expats staying connected with home country football</li>
+                <li><strong>International Fans</strong> - Global football enthusiasts interested in African football</li>
+            </ul>
+        </section>
+
+        <!-- Architecture -->
+        <section id="architecture">
+            <h2>System Architecture and Design</h2>
+
+            <p>Fanpocket follows a modern <strong>monorepo architecture</strong> with clear separation of concerns between client, server, and shared code. This architectural decision enables code reuse, consistent type safety, and streamlined development workflows.</p>
+
+            <h3>High-Level Architecture</h3>
+            <div class="architecture">
+Client (Next.js 14+ PWA)
+    ↓
+API Gateway / Load Balancer
+    ↓
+Express.js REST API
+    ↓
+MongoDB Database
+    ↓
+External Services:
+    - Firebase Cloud Messaging (Notifications)
+    - Map Tile Providers (OpenStreetMap)
+            </div>
+
+            <h3>Monorepo Structure</h3>
+            <pre><code>fanpocket/
+├── client/              # Next.js PWA frontend
+│   ├── app/            # Next.js 14 App Router
+│   ├── components/     # Reusable React components
+│   ├── lib/           # Client utilities
+│   ├── public/        # Static assets, manifest
+│   └── styles/        # Tailwind CSS
+├── server/            # Express.js API backend
+│   ├── src/
+│   │   ├── controllers/  # Route handlers
+│   │   ├── models/       # Mongoose schemas
+│   │   ├── routes/       # API endpoints
+│   │   ├── middleware/   # Auth, validation
+│   │   └── services/     # Business logic
+│   └── server.ts
+├── shared/            # Shared TypeScript types
+│   ├── types/         # Common interfaces
+│   └── constants/     # Shared constants
+└── docs/             # Documentation</code></pre>
+
+            <div class="info-box">
+                <h4><i class="fas fa-cogs"></i> Architectural Benefits</h4>
+                <ul>
+                    <li><strong>Type Safety</strong> - Shared TypeScript types ensure consistency between frontend and backend</li>
+                    <li><strong>Code Reuse</strong> - Common utilities and constants used across the entire stack</li>
+                    <li><strong>Unified Development</strong> - Single repository simplifies CI/CD and version control</li>
+                    <li><strong>Independent Deployment</strong> - Client and server can be deployed separately</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section id="tech-stack">
+            <h2>Technology Stack Deep Dive</h2>
+
+            <h3>Frontend Technologies</h3>
+            <div class="tech-badges">
+                <span class="tech-badge">Next.js 14+</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">React 18</span>
+                <span class="tech-badge">Tailwind CSS</span>
+                <span class="tech-badge">shadcn/ui</span>
+                <span class="tech-badge">next-pwa</span>
+                <span class="tech-badge">next-i18next</span>
+                <span class="tech-badge">React Leaflet</span>
+            </div>
+
+            <h4>Next.js 14 with App Router</h4>
+            <p>I chose Next.js 14 for several compelling reasons. The new App Router provides better performance through React Server Components, improved routing with nested layouts, and built-in data fetching optimizations. The framework's server-side rendering capabilities are crucial for SEO while the static site generation features enable fast page loads.</p>
+
+            <h4>PWA Implementation with next-pwa</h4>
+            <p>The <code>next-pwa</code> package transforms the Next.js app into a full-fledged Progressive Web App. This enables:</p>
+            <ul>
+                <li>Installation on user devices (appears like a native app)</li>
+                <li>Offline functionality through service workers</li>
+                <li>Background sync for data updates</li>
+                <li>Push notifications via Firebase Cloud Messaging</li>
+                <li>Caching strategies for optimal performance</li>
+            </ul>
+
+            <h4>Styling with Tailwind CSS and shadcn/ui</h4>
+            <p>Tailwind CSS provides utility-first styling that keeps the bundle size small and development speed high. Combined with shadcn/ui components, I get accessible, well-designed UI components that can be customized to match the Moroccan football aesthetic—bold reds and greens inspired by the national flag.</p>
+
+            <h3>Backend Technologies</h3>
+            <div class="tech-badges">
+                <span class="tech-badge">Express.js</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">MongoDB</span>
+                <span class="tech-badge">Mongoose</span>
+                <span class="tech-badge">JWT</span>
+                <span class="tech-badge">Firebase Admin</span>
+            </div>
+
+            <h4>Express.js API Server</h4>
+            <p>Express.js provides a lightweight, flexible foundation for the REST API. With TypeScript, the entire backend maintains compile-time type safety, catching errors early in development. The middleware architecture allows clean separation of concerns for authentication, validation, and error handling.</p>
+
+            <h4>MongoDB with Mongoose</h4>
+            <p>MongoDB's document-based structure perfectly fits the varied data shapes in Fanpocket—stadiums, teams, matches, users, and notifications all have flexible schemas that can evolve. Mongoose provides schema validation, relationship management, and a clean query interface.</p>
+
+            <h4>JWT Authentication</h4>
+            <p>JSON Web Tokens enable stateless authentication, crucial for a distributed system. Users authenticate once and receive a token that grants access to protected resources. This scales well and works seamlessly with the PWA's offline capabilities.</p>
+
+            <h3>Development Tools</h3>
+            <div class="tech-badges">
+                <span class="tech-badge">Docker Compose</span>
+                <span class="tech-badge">ESLint</span>
+                <span class="tech-badge">Prettier</span>
+                <span class="tech-badge">Husky</span>
+                <span class="tech-badge">commitlint</span>
+            </div>
+
+            <p>Development quality is maintained through automated tools: ESLint for code quality, Prettier for consistent formatting, Husky for git hooks, and commitlint for conventional commit messages. Docker Compose provides local MongoDB instances for development and testing.</p>
+        </section>
+
+        <!-- PWA Implementation -->
+        <section id="pwa">
+            <h2>Progressive Web App Implementation</h2>
+
+            <p>Transforming Fanpocket into a PWA was one of the most critical architectural decisions. PWAs bridge the gap between web and native apps, providing app-like experiences while maintaining web accessibility.</p>
+
+            <h3>Service Worker Strategy</h3>
+            <p>The service worker handles all caching and offline functionality. I implemented a <strong>cache-first strategy</strong> for static assets (images, CSS, JavaScript) and a <strong>network-first strategy</strong> for dynamic content (match data, team information).</p>
+
+            <pre><code>// next.config.js
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+  runtimeCaching: [
+    {
+      urlPattern: /^https:\/\/api\.fanpocket\.ma\/.*/i,
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'api-cache',
+        expiration: {
+          maxEntries: 50,
+          maxAgeSeconds: 60 * 60 * 24 // 24 hours
+        }
+      }
+    },
+    {
+      urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/i,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'image-cache',
+        expiration: {
+          maxEntries: 100,
+          maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+        }
+      }
+    }
+  ]
+});
+
+module.exports = withPWA({
+  // Next.js config
+});</code></pre>
+
+            <h3>Web App Manifest</h3>
+            <p>The manifest file defines how Fanpocket appears when installed on a device:</p>
+
+            <pre><code>{
+  "name": "Fanpocket - Moroccan Football",
+  "short_name": "Fanpocket",
+  "description": "Discover stadiums, track teams, follow matches",
+  "theme_color": "#e74c3c",
+  "background_color": "#0a0a0a",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}</code></pre>
+
+            <h3>Push Notifications</h3>
+            <p>Firebase Cloud Messaging enables push notifications for match updates, team news, and personalized alerts. The service worker listens for FCM messages and displays notifications even when the app isn't open.</p>
+
+            <div class="info-box">
+                <h4><i class="fas fa-mobile-alt"></i> PWA Benefits for Fanpocket</h4>
+                <ul>
+                    <li><strong>Installable</strong> - Users add to home screen like a native app</li>
+                    <li><strong>Offline Access</strong> - View cached stadiums and teams without internet</li>
+                    <li><strong>Fast Loading</strong> - Instant load from cache on repeat visits</li>
+                    <li><strong>Push Notifications</strong> - Real-time match updates and alerts</li>
+                    <li><strong>No App Store</strong> - Immediate updates without app store approval</li>
+                    <li><strong>Cross-Platform</strong> - Single codebase works on all devices</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Monorepo -->
+        <section id="monorepo">
+            <h2>Monorepo Structure and Workspaces</h2>
+
+            <p>Managing a full-stack application with separate client and server codebases can be challenging. I opted for a monorepo approach using npm workspaces, which provides significant development benefits.</p>
+
+            <h3>Workspace Configuration</h3>
+            <pre><code>// package.json (root)
+{
+  "name": "fanpocket",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server",
+    "shared"
+  ],
+  "scripts": {
+    "dev:all": "concurrently "npm run dev -w client" "npm run dev -w server"",
+    "dev:client": "npm run dev -w client",
+    "dev:server": "npm run dev -w server",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
+    "typecheck": "npm run typecheck --workspaces"
+  }
+}</code></pre>
+
+            <h3>Shared Types</h3>
+            <p>One of the biggest advantages of the monorepo is shared TypeScript types. Both client and server reference the same type definitions, eliminating sync issues:</p>
+
+            <pre><code>// shared/types/stadium.ts
+export interface Stadium {
+  _id: string;
+  name: string;
+  city: string;
+  capacity: number;
+  location: {
+    type: 'Point';
+    coordinates: [number, number]; // [longitude, latitude]
+  };
+  teams: string[]; // Team IDs
+  image: string;
+  amenities: string[];
+}
+
+// Used in both client and server
+import { Stadium } from '@fanpocket/shared/types';</code></pre>
+
+            <h3>Development Workflow</h3>
+            <p>The monorepo enables parallel development with hot reloading on both client and server:</p>
+
+            <pre><code># Start everything at once
+npm run dev:all
+
+# Client runs on http://localhost:3000
+# Server runs on http://localhost:5000
+# Changes to shared types hot-reload both</code></pre>
+
+            <div class="info-box">
+                <h4><i class="fas fa-layer-group"></i> Monorepo Advantages</h4>
+                <ul>
+                    <li><strong>Single Source of Truth</strong> - Shared types eliminate API contract mismatches</li>
+                    <li><strong>Atomic Commits</strong> - Changes across client/server in single commit</li>
+                    <li><strong>Simplified CI/CD</strong> - Build and test entire stack together</li>
+                    <li><strong>Dependency Management</strong> - Shared dependencies reduce duplication</li>
+                    <li><strong>Easy Refactoring</strong> - Changes to shared code immediately visible</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features">
+            <h2>Core Features and Functionality</h2>
+
+            <h3>1. Stadium Discovery</h3>
+            <p>The heart of Fanpocket is the interactive stadium map. Users can:</p>
+            <ul>
+                <li>Browse all Moroccan stadiums on an interactive map</li>
+                <li>Filter by city, capacity, or team</li>
+                <li>View detailed information for each stadium</li>
+                <li>Get directions using their device's map app</li>
+                <li>See which teams play at each stadium</li>
+            </ul>
+
+            <h3>2. Team Tracking</h3>
+            <p>Users can follow their favorite teams and receive:</p>
+            <ul>
+                <li>Upcoming match schedules</li>
+                <li>Match results and statistics</li>
+                <li>Team news and updates</li>
+                <li>Push notifications for match starts and final scores</li>
+                <li>Historical performance data</li>
+            </ul>
+
+            <h3>3. Match Center</h3>
+            <p>Real-time match information including:</p>
+            <ul>
+                <li>Live scores (updated via API polling)</li>
+                <li>Match lineups and substitutions</li>
+                <li>Match events (goals, cards, VAR decisions)</li>
+                <li>Upcoming fixtures across all leagues</li>
+                <li>Match highlights and summaries</li>
+            </ul>
+
+            <h3>4. User Profiles</h3>
+            <p>Personalized experience through:</p>
+            <ul>
+                <li>Favorite teams selection</li>
+                <li>Notification preferences</li>
+                <li>Language preference (English, French, Arabic)</li>
+                <li>Match history and attendance tracking</li>
+                <li>Community features (coming soon)</li>
+            </ul>
+        </section>
+
+        <!-- Internationalization -->
+        <section id="i18n">
+            <h2>Internationalization: Trilingual Support</h2>
+
+            <p>Morocco's linguistic diversity required comprehensive i18n implementation. The country uses Arabic (official), French (business/education), and English (international), so Fanpocket supports all three languages natively.</p>
+
+            <h3>Implementation with next-i18next</h3>
+            <p>I used <code>next-i18next</code> for translation management. This library provides:</p>
+            <ul>
+                <li>Server-side translation rendering for SEO</li>
+                <li>Language detection from browser settings</li>
+                <li>Dynamic language switching without page reload</li>
+                <li>Namespaced translations for better organization</li>
+            </ul>
+
+            <h3>Translation Structure</h3>
+            <pre><code>// public/locales/en/common.json
+{
+  "navigation": {
+    "home": "Home",
+    "stadiums": "Stadiums",
+    "teams": "Teams",
+    "matches": "Matches"
+  },
+  "stadium": {
+    "capacity": "Capacity: {{count}} seats",
+    "location": "Location",
+    "teams": "Home Teams",
+    "directions": "Get Directions"
+  }
+}
+
+// public/locales/fr/common.json
+{
+  "navigation": {
+    "home": "Accueil",
+    "stadiums": "Stades",
+    "teams": "Équipes",
+    "matches": "Matchs"
+  },
+  "stadium": {
+    "capacity": "Capacité: {{count}} places",
+    "location": "Emplacement",
+    "teams": "Équipes à domicile",
+    "directions": "Obtenir l'itinéraire"
+  }
+}</code></pre>
+
+            <h3>Right-to-Left (RTL) Support</h3>
+            <p>Arabic requires RTL layout. I implemented automatic direction switching:</p>
+
+            <pre><code>// components/Layout.tsx
+export default function Layout({ children }: { children: React.ReactNode }) {
+  const { i18n } = useTranslation();
+  const direction = i18n.language === 'ar' ? 'rtl' : 'ltr';
+
+  return (
+    <div dir={direction} className={direction === 'rtl' ? 'font-arabic' : ''}>
+      {children}
+    </div>
+  );
+}</code></pre>
+
+            <div class="warning-box">
+                <h4><i class="fas fa-language"></i> i18n Challenges</h4>
+                <ul>
+                    <li><strong>Number Formatting</strong> - Different decimal and thousand separators per locale</li>
+                    <li><strong>Date Formats</strong> - French uses DD/MM/YYYY, English uses MM/DD/YYYY</li>
+                    <li><strong>Pluralization</strong> - Arabic has complex plural rules</li>
+                    <li><strong>Font Loading</strong> - Arabic fonts require different loading strategy</li>
+                    <li><strong>Layout Shifts</strong> - RTL can cause layout issues if not tested thoroughly</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Maps -->
+        <section id="maps">
+            <h2>Interactive Maps with React Leaflet</h2>
+
+            <p>The stadium discovery feature relies heavily on interactive maps. I chose React Leaflet because it provides a React-friendly wrapper around Leaflet.js, the most popular open-source mapping library.</p>
+
+            <h3>Map Implementation</h3>
+            <pre><code>// components/StadiumMap.tsx
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// Custom stadium marker icon
+const stadiumIcon = L.icon({
+  iconUrl: '/markers/stadium.png',
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32]
+});
+
+export default function StadiumMap({ stadiums }: { stadiums: Stadium[] }) {
+  const center: [number, number] = [33.5731, -7.5898]; // Morocco center
+
+  return (
+    <MapContainer
+      center={center}
+      zoom={6}
+      className="h-screen w-full"
+    >
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; OpenStreetMap contributors'
+      />
+
+      {stadiums.map((stadium) => (
+        <Marker
+          key={stadium._id}
+          position={stadium.location.coordinates.reverse()}
+          icon={stadiumIcon}
+        >
+          <Popup>
+            <div className="p-2">
+              <h3 className="font-bold">{stadium.name}</h3>
+              <p>{stadium.city}</p>
+              <p className="text-sm">Capacity: {stadium.capacity.toLocaleString()}</p>
+              <a href={`/stadiums/${stadium._id}`} className="text-red-600">
+                View Details
+              </a>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
+    </MapContainer>
+  );
+}</code></pre>
+
+            <h3>Map Features</h3>
+            <ul>
+                <li><strong>Custom Markers</strong> - Stadium-specific icons for easy identification</li>
+                <li><strong>Clustering</strong> - Markers group together at low zoom levels</li>
+                <li><strong>Popups</strong> - Quick stadium info on marker click</li>
+                <li><strong>User Location</strong> - "Near Me" feature shows closest stadiums</li>
+                <li><strong>Directions</strong> - Integration with device mapping apps</li>
+            </ul>
+
+            <div class="info-box">
+                <h4><i class="fas fa-map-marked-alt"></i> Map Performance Optimizations</h4>
+                <ul>
+                    <li><strong>Lazy Loading</strong> - Map only loads when user scrolls to it</li>
+                    <li><strong>Marker Clustering</strong> - Reduces DOM nodes for better performance</li>
+                    <li><strong>Tile Caching</strong> - Service worker caches map tiles for offline use</li>
+                    <li><strong>Bounds Limiting</strong> - Map restricted to Morocco to reduce tile requests</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Backend -->
+        <section id="backend">
+            <h2>Backend API Architecture</h2>
+
+            <h3>RESTful API Design</h3>
+            <p>The Express.js backend follows REST principles with clear resource endpoints:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Method</th>
+                        <th>Description</th>
+                        <th>Auth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/api/stadiums</td>
+                        <td>GET</td>
+                        <td>List all stadiums</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>/api/stadiums/:id</td>
+                        <td>GET</td>
+                        <td>Get stadium details</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>/api/teams</td>
+                        <td>GET</td>
+                        <td>List all teams</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>/api/teams/:id</td>
+                        <td>GET</td>
+                        <td>Get team details</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>/api/matches</td>
+                        <td>GET</td>
+                        <td>List matches (with filters)</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>/api/users/favorites</td>
+                        <td>POST</td>
+                        <td>Add favorite team</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>/api/notifications</td>
+                        <td>POST</td>
+                        <td>Register for notifications</td>
+                        <td>Yes</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Database Schema</h3>
+            <p>MongoDB schemas defined with Mongoose:</p>
+
+            <pre><code>// models/Stadium.ts
+import mongoose from 'mongoose';
+
+const stadiumSchema = new mongoose.Schema({
+  name: { type: String, required: true, unique: true },
+  city: { type: String, required: true },
+  capacity: { type: Number, required: true },
+  location: {
+    type: { type: String, enum: ['Point'], default: 'Point' },
+    coordinates: { type: [Number], required: true } // [lon, lat]
+  },
+  teams: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Team' }],
+  image: String,
+  amenities: [String],
+  createdAt: { type: Date, default: Date.now }
+});
+
+// Create geospatial index for location queries
+stadiumSchema.index({ location: '2dsphere' });
+
+export default mongoose.model('Stadium', stadiumSchema);</code></pre>
+
+            <h3>Authentication Middleware</h3>
+            <p>JWT-based authentication protects user-specific endpoints:</p>
+
+            <pre><code>// middleware/auth.ts
+import jwt from 'jsonwebtoken';
+
+export function authenticate(req, res, next) {
+  const token = req.headers.authorization?.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ error: 'No token provided' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (error) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
+}</code></pre>
+        </section>
+
+        <!-- Challenges -->
+        <section id="challenges">
+            <h2>Development Challenges and Solutions</h2>
+
+            <h3>Challenge: Offline Map Functionality</h3>
+            <p><strong>Problem:</strong> Map tiles require network requests. How to provide offline maps?</p>
+            <p><strong>Solution:</strong> Implemented service worker caching for map tiles within Morocco's bounds. When online, tiles are cached aggressively. Offline users see cached tiles for previously visited areas.</p>
+
+            <h3>Challenge: Real-Time Match Updates</h3>
+            <p><strong>Problem:</strong> Live scores require constant data updates, draining battery and data.</p>
+            <p><strong>Solution:</strong> Implemented smart polling that increases frequency during active matches and decreases for pre/post-match states. Used WebSocket fallback for critical matches.</p>
+
+            <h3>Challenge: Arabic RTL Layout</h3>
+            <p><strong>Problem:</strong> RTL breaks certain components (maps, charts, carousels).</p>
+            <p><strong>Solution:</strong> Used Tailwind's RTL plugin with selective LTR override classes for components that shouldn't flip. Extensive testing with native Arabic speakers.</p>
+
+            <h3>Challenge: PWA Installation Prompts</h3>
+            <p><strong>Problem:</strong> Users don't know they can install the app.</p>
+            <p><strong>Solution:</strong> Built custom install prompt that appears after user engagement (visiting 3+ pages). Shows installation benefits specific to football fans.</p>
+
+            <h3>Challenge: Image Optimization</h3>
+            <p><strong>Problem:</strong> Stadium and team images consuming too much bandwidth.</p>
+            <p><strong>Solution:</strong> Next.js Image component with automatic WebP conversion, lazy loading, and responsive sizing. Service worker caches optimized images.</p>
+
+            <h3>Challenge: Geolocation Permissions</h3>
+            <p><strong>Problem:</strong> Many users deny location access, breaking "Near Me" feature.</p>
+            <p><strong>Solution:</strong> Made location optional. If denied, show city-based fallback. Clear messaging about why location improves experience.</p>
+        </section>
+
+        <!-- Deployment -->
+        <section id="deployment">
+            <h2>Deployment Strategy</h2>
+
+            <h3>Client Deployment</h3>
+            <p>The Next.js PWA is deployed on <strong>Vercel</strong>, which provides:</p>
+            <ul>
+                <li>Automatic deployments from GitHub</li>
+                <li>Edge network for global CDN</li>
+                <li>Automatic HTTPS</li>
+                <li>Preview deployments for PRs</li>
+                <li>Environment variable management</li>
+            </ul>
+
+            <h3>Server Deployment</h3>
+            <p>The Express API is deployed on <strong>Railway</strong> with:</p>
+            <ul>
+                <li>Automatic deployments from GitHub</li>
+                <li>Managed MongoDB instance</li>
+                <li>Environment secrets</li>
+                <li>Health checks and monitoring</li>
+                <li>Automatic scaling</li>
+            </ul>
+
+            <h3>Database</h3>
+            <p>MongoDB Atlas hosts the production database with:</p>
+            <ul>
+                <li>Automatic backups</li>
+                <li>Geographic replication</li>
+                <li>Performance monitoring</li>
+                <li>Security alerts</li>
+            </ul>
+
+            <h3>CI/CD Pipeline</h3>
+            <pre><code># .github/workflows/deploy.yml
+name: Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-client:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm ci
+      - run: npm run build -w client
+      - run: npm run deploy:client
+
+  deploy-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm ci
+      - run: npm run build -w server
+      - run: npm run deploy:server</code></pre>
+        </section>
+
+        <!-- Learnings -->
+        <section id="learnings">
+            <h2>Key Learnings and Future Roadmap</h2>
+
+            <h3>Technical Learnings</h3>
+            <ul>
+                <li><strong>PWAs are Production-Ready</strong> - With proper caching strategies, PWAs perform as well as native apps</li>
+                <li><strong>Monorepos Simplify Full-Stack Development</strong> - Shared types eliminate entire classes of bugs</li>
+                <li><strong>i18n Must Be Planned Early</strong> - Retrofitting multilingual support is painful</li>
+                <li><strong>Maps Are Complex</strong> - Seemingly simple features (clustering, offline tiles) require deep optimization</li>
+                <li><strong>TypeScript Pays Off</strong> - The upfront investment in types prevents runtime errors</li>
+            </ul>
+
+            <h3>Product Learnings</h3>
+            <ul>
+                <li><strong>Offline-First Design Matters</strong> - Many Moroccan areas have spotty connectivity</li>
+                <li><strong>Language Preference is Personal</strong> - Users switch between languages frequently</li>
+                <li><strong>Visual Design Conveys Culture</strong> - Red and green color scheme resonates with Moroccan users</li>
+                <li><strong>Mobile-First is Essential</strong> - 95% of users access via mobile</li>
+            </ul>
+
+            <h3>Future Roadmap</h3>
+            <ul>
+                <li><strong>Social Features</strong> - User profiles, friend lists, match check-ins</li>
+                <li><strong>Ticket Integration</strong> - Direct ticket purchasing for matches</li>
+                <li><strong>Live Commentary</strong> - Text-based live updates for major matches</li>
+                <li><strong>Video Highlights</strong> - Short-form match highlights</li>
+                <li><strong>Fantasy League</strong> - Moroccan football fantasy game</li>
+                <li><strong>Podcast Integration</strong> - Football podcasts and analysis</li>
+            </ul>
+        </section>
+
+        <!-- Conclusion -->
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+
+            <p>Building Fanpocket has been an incredible journey of technical growth and cultural connection. Creating a Progressive Web App that serves Moroccan football fans required not just modern web development skills, but also deep understanding of the local football landscape, linguistic diversity, and connectivity challenges.</p>
+
+            <p>The project demonstrates that with careful architecture—monorepo structure, shared TypeScript types, PWA capabilities—it's possible to build production-grade applications that rival native apps in user experience while maintaining web accessibility and instant updates.</p>
+
+            <div class="info-box">
+                <h4><i class="fas fa-trophy"></i> Project Achievements</h4>
+                <ul>
+                    <li>Full Progressive Web App with offline functionality</li>
+                    <li>Trilingual support (English, French, Arabic) with RTL layout</li>
+                    <li>Interactive stadium map with React Leaflet</li>
+                    <li>Real-time match updates and push notifications</li>
+                    <li>Monorepo architecture with shared TypeScript types</li>
+                    <li>Production deployment on Vercel and Railway</li>
+                    <li>MongoDB Atlas database with geospatial queries</li>
+                    <li>Comprehensive CI/CD pipeline</li>
+                </ul>
+            </div>
+
+            <p>The complete source code is available at <a href="https://github.com/Abdennasserbedroune/Fanpocket" target="_blank">GitHub</a>. I encourage developers interested in PWAs, Next.js, or monorepo architecture to explore the codebase and adapt the patterns to their own projects.</p>
+
+            <p>For Moroccan football fans, Fanpocket represents a new way to engage with the beautiful game—one stadium, one team, one match at a time.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>Built with passion by <a href="https://github.com/Abdennasserbedroune" target="_blank">Abdennasser Bedroune</a></p>
+        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.6);">
+            <a href="https://github.com/Abdennasserbedroune/Fanpocket" target="_blank">
+                <i class="fab fa-github"></i> View Source Code
+            </a>
+        </p>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Back to Portfolio</a></li>
+                <li><a href="../chatbot_documentation.html">Chatbot Documentation</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Back to top button
+        document.querySelector('.back-to-top').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const button = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                button.style.display = 'flex';
+            } else {
+                button.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
