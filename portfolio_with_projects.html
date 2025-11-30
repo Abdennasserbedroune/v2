@@ -227,12 +227,19 @@
             min-height: 100vh;
         }
 
-        /* Language Toggle */
-        .language-toggle {
+        /* Top Actions Container */
+        .top-actions {
             position: fixed;
             top: 30px;
             right: 30px;
             z-index: 1001;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
             background: rgba(100, 216, 203, 0.1);
             backdrop-filter: blur(15px);
             border: 2px solid rgba(100, 216, 203, 0.3);
@@ -257,6 +264,72 @@
 
         .language-toggle i {
             margin-right: 8px;
+        }
+
+        /* CV Download Button */
+        .cv-download-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .cv-download-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .cv-download-btn:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+
+        /* Tooltip for CV button */
+        .cv-tooltip {
+            position: absolute;
+            bottom: -40px;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1002;
+        }
+
+        .cv-tooltip::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            right: 20px;
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 4px solid rgba(0, 0, 0, 0.9);
+        }
+
+        .cv-download-btn:hover .cv-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-5px);
         }
 
         /* Sections */
@@ -844,7 +917,22 @@
             footer { margin-left: 0; padding: 30px; }
             .footer-content { flex-direction: column; gap: 20px; text-align: center; }
             .about-grid, .info-grid { grid-template-columns: 1fr; }
-            .language-toggle { top: 20px; right: 20px; }
+            .top-actions { top: 20px; right: 20px; gap: 8px; }
+            .language-toggle { 
+                position: static; 
+                padding: 10px 16px; 
+                font-size: 0.85rem;
+            }
+            .cv-download-btn { 
+                width: 40px; 
+                height: 40px; 
+                font-size: 1rem; 
+            }
+            .cv-tooltip { 
+                font-size: 0.75rem; 
+                bottom: -35px; 
+                padding: 6px 10px; 
+            }
             .profile-card { height: 350px; }
             .bio-card { height: auto; }
             .project-image-container { height: 200px; }
@@ -880,11 +968,20 @@
         }    </style>
 </head>
 <body>
-    <!-- Language Toggle -->
-    <button class="language-toggle" onclick="toggleLanguage()" aria-label="Switch language">
-        <i class="fas fa-globe" aria-hidden="true"></i>
-        <span id="langText">Français</span>
-    </button>
+    <!-- Top Actions -->
+    <div class="top-actions">
+        <!-- CV Download Button -->
+        <button class="cv-download-btn" onclick="downloadCV()" aria-label="Download CV">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            <span class="cv-tooltip" data-en="Download my CV" data-fr="Télécharger mon CV">Download my CV</span>
+        </button>
+        
+        <!-- Language Toggle -->
+        <button class="language-toggle" onclick="toggleLanguage()" aria-label="Switch language">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span id="langText">Français</span>
+        </button>
+    </div>
 
     <!-- Sidebar -->
     <aside class="sidebar" role="navigation" aria-label="Main navigation">
@@ -1267,6 +1364,17 @@
                 clearInterval(placeholderInterval);
                 placeholderInterval = null;
             }
+        }
+
+        function downloadCV() {
+            // You can update this path when you add your CV file
+            const cvPath = 'cv.pdf'; // Change this to your actual CV file path
+            const link = document.createElement('a');
+            link.href = cvPath;
+            link.download = 'Abdennasser_Bedroune_CV.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         function toggleLanguage() {
