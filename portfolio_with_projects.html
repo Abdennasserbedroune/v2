@@ -3,74 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Abdennasser Bedroune - Data Analyst and AI Automation Engineer portfolio.">
-  <title>Abdennasser Bedroune — Portfolio</title>
+  <meta name="description" content="Abdennasser Bedroune - AI Automation Engineer specializing in agentic workflows, computer vision pipelines, and intelligent data systems.">
+  <title>Abdennasser Bedroune — AI Automation Engineer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
     :root {
-      --bg: #f0f0f0;
-      --bg-card: #ffffff;
-      --bg-card2: #f5f5f5;
-      --text: #1a1a2e;
-      --text-muted: #6b7280;
-      --text-light: #9ca3af;
-      --accent: #7c3aed;
-      --accent-light: #a855f7;
-      --border: #e5e7eb;
-      --border2: rgba(0,0,0,0.07);
-      --tag-bg: #f3f4f6;
-      --tag-border: #e5e7eb;
-      --tag-color: #374151;
-      --nav-bg: rgba(240,240,240,0.85);
-      --nav-border: rgba(0,0,0,0.08);
+      --bg: #f0f0f0; --bg-card: #ffffff; --bg-card2: #f5f5f5;
+      --text: #1a1a2e; --text-muted: #6b7280; --text-light: #9ca3af;
+      --accent: #7c3aed; --accent-light: #a855f7;
+      --border: #e5e7eb; --border2: rgba(0,0,0,0.07);
+      --tag-bg: #f3f4f6; --tag-border: #e5e7eb; --tag-color: #374151;
+      --nav-bg: rgba(240,240,240,0.85); --nav-border: rgba(0,0,0,0.08);
       --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
       --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
-      --btn-primary: #7c3aed;
-      --btn-primary-text: #fff;
-      --scroll-up-bg: #7c3aed;
+      --btn-primary: #7c3aed; --btn-primary-text: #fff; --scroll-up-bg: #7c3aed;
     }
     body.dark {
-      --bg: #13131a;
-      --bg-card: #1c1c2a;
-      --bg-card2: #181825;
-      --text: #f1f1f1;
-      --text-muted: #a0a0b8;
-      --text-light: #6b6b80;
-      --border: rgba(255,255,255,0.08);
-      --border2: rgba(255,255,255,0.06);
-      --tag-bg: rgba(124,58,237,0.12);
-      --tag-border: rgba(124,58,237,0.25);
-      --tag-color: #c4b5fd;
-      --nav-bg: rgba(19,19,26,0.85);
-      --nav-border: rgba(255,255,255,0.08);
-      --shadow: 0 2px 8px rgba(0,0,0,0.4);
-      --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+      --bg: #13131a; --bg-card: #1c1c2a; --bg-card2: #181825;
+      --text: #f1f1f1; --text-muted: #a0a0b8; --text-light: #6b6b80;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.06);
+      --tag-bg: rgba(124,58,237,0.12); --tag-border: rgba(124,58,237,0.25); --tag-color: #c4b5fd;
+      --nav-bg: rgba(19,19,26,0.85); --nav-border: rgba(255,255,255,0.08);
+      --shadow: 0 2px 8px rgba(0,0,0,0.4); --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
     }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.3s, color 0.3s;
-      overflow-x: hidden;
-    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; overflow-x: hidden; }
 
     /* NAV */
-    nav {
-      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
-      z-index: 1000;
-      display: flex; align-items: center; gap: 0;
-      background: var(--nav-bg);
-      border: 1px solid var(--nav-border);
-      border-radius: 50px;
-      padding: 6px 8px;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
+    nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 1000; display: flex; align-items: center; gap: 0; background: var(--nav-bg); border: 1px solid var(--nav-border); border-radius: 50px; padding: 6px 8px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
     .nav-logo { font-size: 1.15rem; font-weight: 800; color: var(--accent); padding: 4px 18px 4px 12px; letter-spacing: -0.5px; white-space: nowrap; }
     .nav-links { display: flex; gap: 2px; }
     .nav-links a { text-decoration: none; font-size: 0.88rem; font-weight: 500; color: var(--text-muted); padding: 7px 18px; border-radius: 50px; transition: all 0.2s; }
@@ -97,7 +59,8 @@
     .hero-hello { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
     .hero-name { font-size: 3.8rem; font-weight: 900; letter-spacing: -2px; line-height: 1.05; margin-bottom: 10px; }
     .hero-name span { color: var(--accent-light); }
-    .hero-role { font-size: 1.15rem; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; }
+    .hero-role { font-size: 1.15rem; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; }
+    .hero-value-prop { font-size: 0.95rem; color: var(--text-light); line-height: 1.55; margin-bottom: 28px; max-width: 480px; }
     .hero-typed { font-size: 1rem; color: var(--accent); min-height: 26px; margin-bottom: 30px; font-weight: 500; }
     .hero-btns { display: flex; gap: 14px; align-items: center; margin-bottom: 32px; }
     .btn-primary { padding: 13px 28px; background: var(--btn-primary); color: #fff; border: none; border-radius: 10px; font-size: 0.92rem; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s; }
@@ -109,18 +72,26 @@
     .hero-socials a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
     .hero-photo { flex: 0 0 300px; }
     .hero-photo-placeholder { width: 300px; height: 300px; border-radius: 50%; background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%); display: flex; align-items: center; justify-content: center; font-size: 5rem; font-weight: 900; color: #fff; border: 4px solid var(--accent); box-shadow: 0 0 0 8px rgba(124,58,237,0.10); }
-    .hero-stats { display: flex; gap: 48px; padding: 32px 0 16px; border-top: 1px solid var(--border); margin-top: 20px; }
-    .stat-item { text-align: center; }
-    .stat-num { font-size: 1.9rem; font-weight: 900; color: var(--accent); letter-spacing: -1px; line-height: 1; }
-    .stat-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-top: 4px; }
+
+    /* IMPACT STATS */
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 28px 0 16px; border-top: 1px solid var(--border); margin-top: 24px; }
+    .stat-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 14px; text-align: center; box-shadow: var(--shadow); }
+    .stat-num { font-size: 1.55rem; font-weight: 900; color: var(--accent); letter-spacing: -1px; line-height: 1; }
+    .stat-label { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-light); margin-top: 5px; line-height: 1.4; }
     .hero-scroll { text-align: center; margin-top: 24px; }
     .hero-scroll span { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); display: block; margin-bottom: 6px; }
     .hero-scroll i { color: var(--text-light); font-size: 0.85rem; }
+
+    /* AVAILABLE BADGE */
+    .available-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #16a34a; border-radius: 50px; padding: 5px 14px; font-size: 0.75rem; font-weight: 700; margin-bottom: 16px; }
+    .available-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; animation: pulse-dot 1.8s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
 
     /* ABOUT */
     .about-text { max-width: 760px; margin: 0 auto; font-size: 1rem; line-height: 1.85; color: var(--text-muted); }
     .about-text p { margin-bottom: 18px; }
     .about-text strong { color: var(--text); font-weight: 700; }
+    .about-highlight { display: inline-flex; align-items: center; gap: 8px; background: var(--tag-bg); border: 1px solid var(--tag-border); border-radius: 8px; padding: 3px 12px; font-size: 0.8rem; font-weight: 600; color: var(--accent); margin: 2px 4px 2px 0; }
     .available-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.95rem; font-weight: 600; text-decoration: none; margin-top: 8px; transition: gap 0.2s; }
     .available-link:hover { gap: 10px; }
 
@@ -132,27 +103,16 @@
     .core-card-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 18px; }
     .core-card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .core-tag { padding: 5px 14px; background: var(--tag-bg); border: 1px solid var(--tag-border); color: var(--tag-color); border-radius: 8px; font-size: 0.78rem; font-weight: 500; }
-
     .skills-supporting-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-light); text-align: center; margin-bottom: 24px; }
-
-    /* 4-col supporting grid */
     .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .skill-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 22px 18px; box-shadow: var(--shadow); }
     .skill-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
     .skill-card-icon { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; }
     .skill-card-icon svg { width: 22px; height: 22px; }
     .skill-card-name { font-size: 0.92rem; font-weight: 800; color: var(--text); }
-
-    /* 2x2 icon grid inside each card */
     .skill-items-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .skill-item-cell { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-    .skill-item-icon {
-      width: 44px; height: 44px;
-      background: var(--bg-card2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .skill-item-icon { width: 44px; height: 44px; background: var(--bg-card2); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
     .skill-item-icon svg { width: 24px; height: 24px; }
     .skill-item-label { font-size: 0.72rem; color: var(--text-muted); text-align: center; font-weight: 500; }
 
@@ -183,8 +143,13 @@
     .project-img { width: 100%; height: 220px; object-fit: cover; display: block; }
     .project-img-placeholder { width: 100%; height: 220px; background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #fff; }
     .project-body { padding: 22px 22px 20px; }
+    .project-problem { font-size: 0.75rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
     .project-title { font-size: 1.08rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
-    .project-desc { font-size: 0.85rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 14px; }
+    .project-desc { font-size: 0.85rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 12px; }
+    .project-metrics { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+    .project-metric { display: flex; flex-direction: column; background: var(--tag-bg); border: 1px solid var(--tag-border); border-radius: 8px; padding: 8px 12px; min-width: 80px; }
+    .metric-num { font-size: 1rem; font-weight: 900; color: var(--accent); line-height: 1; }
+    .metric-label { font-size: 0.65rem; font-weight: 500; color: var(--text-light); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
     .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
     .project-tag { padding: 3px 12px; background: var(--tag-bg); border: 1px solid var(--tag-border); color: var(--tag-color); border-radius: 50px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
     .project-links { display: flex; gap: 16px; }
@@ -206,7 +171,6 @@
     .scroll-up { position: fixed; bottom: 30px; right: 30px; width: 42px; height: 42px; background: var(--scroll-up-bg); color: #fff; border: none; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(124,58,237,0.35); transition: opacity 0.3s, transform 0.2s; z-index: 999; }
     .scroll-up:hover { transform: translateY(-3px); }
 
-    /* RESPONSIVE */
     @media (max-width: 900px) {
       .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: 32px; }
       .hero-photo-placeholder { width: 200px; height: 200px; }
@@ -218,6 +182,7 @@
       .projects-grid { grid-template-columns: 1fr; }
       .container { padding: 0 24px; }
       .section-title { font-size: 2.2rem; }
+      .hero-stats { grid-template-columns: repeat(3,1fr); }
     }
     @media (max-width: 600px) {
       nav { top: 10px; width: calc(100% - 24px); padding: 4px 6px; }
@@ -225,197 +190,31 @@
       .nav-links a { padding: 6px 10px; font-size: 0.78rem; }
       .lets-talk-btn { padding: 6px 12px; font-size: 0.78rem; }
       .skills-grid { grid-template-columns: repeat(2,1fr); }
-      .hero-stats { gap: 24px; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .project-metrics { gap: 8px; }
     }
   </style>
 </head>
 <body>
 
-<!-- SVG ICON DEFS (hidden, reusable) -->
+<!-- SVG ICON DEFS -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Python -->
-  <symbol id="icon-python" viewBox="0 0 24 24">
-    <path fill="#3776AB" d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.894S0 5.789 0 11.969c0 6.18 3.403 5.959 3.403 5.959h2.032v-2.867s-.109-3.403 3.348-3.403h5.77s3.24.052 3.24-3.131V3.129S18.338 0 11.914 0zm-3.2 1.812a1.04 1.04 0 0 1 1.041 1.04 1.04 1.04 0 0 1-1.04 1.042A1.04 1.04 0 0 1 7.674 2.85a1.04 1.04 0 0 1 1.04-1.04z"/>
-    <path fill="#FFD43B" d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.752H12v-.826h8.127S24 18.211 24 12.031c0-6.18-3.403-5.959-3.403-5.959h-2.032v2.867s.109 3.403-3.348 3.403h-5.77S6.207 12.29 6.207 15.473v5.398S5.662 24 12.086 24zm3.2-1.812a1.04 1.04 0 0 1-1.041-1.04 1.04 1.04 0 0 1 1.04-1.042 1.04 1.04 0 0 1 1.042 1.041 1.04 1.04 0 0 1-1.041 1.04z"/>
-  </symbol>
-  <!-- SQL / Database -->
-  <symbol id="icon-sql" viewBox="0 0 24 24">
-    <ellipse cx="12" cy="5" rx="9" ry="3" fill="none" stroke="#336791" stroke-width="1.8"/>
-    <path d="M3 5v4c0 1.657 4.03 3 9 3s9-1.343 9-3V5" fill="none" stroke="#336791" stroke-width="1.8"/>
-    <path d="M3 9v4c0 1.657 4.03 3 9 3s9-1.343 9-3V9" fill="none" stroke="#336791" stroke-width="1.8"/>
-    <path d="M3 13v4c0 1.657 4.03 3 9 3s9-1.343 9-3v-4" fill="none" stroke="#336791" stroke-width="1.8"/>
-  </symbol>
-  <!-- n8n -->
-  <symbol id="icon-n8n" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="6" fill="#EA4B71"/>
-    <text x="3" y="16" font-family="monospace" font-size="9" font-weight="bold" fill="white">n8n</text>
-  </symbol>
-  <!-- LangChain -->
-  <symbol id="icon-langchain" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="6" fill="#1C3C3C"/>
-    <path d="M7 12 Q12 6 17 12 Q12 18 7 12Z" fill="none" stroke="#65E8C8" stroke-width="1.5"/>
-    <circle cx="7" cy="12" r="1.5" fill="#65E8C8"/>
-    <circle cx="17" cy="12" r="1.5" fill="#65E8C8"/>
-  </symbol>
-  <!-- YOLO -->
-  <symbol id="icon-yolo" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="6" fill="#111"/>
-    <rect x="4" y="4" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/>
-    <rect x="13" y="4" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/>
-    <rect x="4" y="13" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/>
-    <rect x="13" y="13" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/>
-  </symbol>
-  <!-- Groq -->
-  <symbol id="icon-groq" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="6" fill="#F55036"/>
-    <text x="3.5" y="16" font-family="monospace" font-size="8.5" font-weight="bold" fill="white">groq</text>
-  </symbol>
-  <!-- React -->
-  <symbol id="icon-react" viewBox="0 0 24 24">
-    <circle cx="12" cy="12" r="2.05" fill="#61DAFB"/>
-    <ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="#61DAFB" stroke-width="1.2"/>
-    <ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="#61DAFB" stroke-width="1.2" transform="rotate(60 12 12)"/>
-    <ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="#61DAFB" stroke-width="1.2" transform="rotate(120 12 12)"/>
-  </symbol>
-  <!-- Next.js -->
-  <symbol id="icon-nextjs" viewBox="0 0 24 24">
-    <circle cx="12" cy="12" r="10" fill="#000"/>
-    <path d="M7 16.5V8l8.5 11H17V7.5" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-  <!-- HTML5 -->
-  <symbol id="icon-html" viewBox="0 0 24 24">
-    <path fill="#E44D26" d="M4.136 3l1.561 17.5L12 22.5l6.303-2 1.561-17.5H4.136z"/>
-    <path fill="#F16529" d="M12 21.1l5.1-1.415 1.334-14.942H12v16.357z"/>
-    <path fill="#EBEBEB" d="M12 12.584H9.184l-.2-2.246H12V8.118H6.773l.526 5.884H12v-1.418zm0 4.189l-.009.003-2.548-.688-.163-1.826H7.047l.32 3.589L12 19.025v-2.252z"/>
-    <path fill="#fff" d="M12 12.584v1.418h2.614l-.246 2.749-2.368.64v2.252l4.313-1.196.032-.354.494-5.53.052-.579H12zm0-4.466v2.22h5.026l.042-.466.096-1.072.05-.682H12z"/>
-  </symbol>
-  <!-- GitHub -->
-  <symbol id="icon-github" viewBox="0 0 24 24">
-    <path fill="#181717" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-  </symbol>
-  <!-- Vercel -->
-  <symbol id="icon-vercel" viewBox="0 0 24 24">
-    <path fill="#000" d="M24 22.525H0l12-21.05 12 21.05z"/>
-  </symbol>
-  <!-- MongoDB -->
-  <symbol id="icon-mongodb" viewBox="0 0 24 24">
-    <path fill="#47A248" d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0 1 11.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 0 0 3.639-8.464c.01-.814-.103-1.662-.197-2.218z"/>
-  </symbol>
-  <!-- Power BI -->
-  <symbol id="icon-powerbi" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="3" fill="#F2C811"/>
-    <rect x="4" y="10" width="3" height="10" rx="1" fill="#333"/>
-    <rect x="9" y="6" width="3" height="14" rx="1" fill="#333"/>
-    <rect x="14" y="3" width="3" height="17" rx="1" fill="#333"/>
-    <rect x="19" y="8" width="2" height="12" rx="1" fill="#333"/>
-  </symbol>
-  <!-- Pandas -->
-  <symbol id="icon-pandas" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#130754"/>
-    <rect x="5" y="4" width="3.5" height="7" rx="1.75" fill="#E70488"/>
-    <rect x="5" y="13" width="3.5" height="7" rx="1.75" fill="#E70488"/>
-    <rect x="10.25" y="7.5" width="3.5" height="9" rx="1.75" fill="white"/>
-    <rect x="15.5" y="4" width="3.5" height="7" rx="1.75" fill="#E70488"/>
-    <rect x="15.5" y="13" width="3.5" height="7" rx="1.75" fill="#E70488"/>
-  </symbol>
-  <!-- Jupyter / Notebooks -->
-  <symbol id="icon-jupyter" viewBox="0 0 24 24">
-    <path fill="#F37726" d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 3.43a8.57 8.57 0 1 1 0 17.14A8.57 8.57 0 0 1 12 3.43z"/>
-    <circle cx="7.2" cy="6.4" r="1.6" fill="#F37726"/>
-    <circle cx="16.8" cy="6.4" r="1.6" fill="#F37726"/>
-    <circle cx="12" cy="19.6" r="1.6" fill="#999"/>
-  </symbol>
-  <!-- Synapse -->
-  <symbol id="icon-synapse" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#0078D4"/>
-    <path d="M5 12 L12 5 L19 12 L12 19 Z" fill="none" stroke="white" stroke-width="1.5"/>
-    <circle cx="12" cy="12" r="2" fill="white"/>
-    <line x1="12" y1="5" x2="12" y2="7" stroke="white" stroke-width="1.5"/>
-    <line x1="19" y1="12" x2="17" y2="12" stroke="white" stroke-width="1.5"/>
-    <line x1="12" y1="19" x2="12" y2="17" stroke="white" stroke-width="1.5"/>
-    <line x1="5" y1="12" x2="7" y2="12" stroke="white" stroke-width="1.5"/>
-  </symbol>
-  <!-- T-SQL -->
-  <symbol id="icon-tsql" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#CC2927"/>
-    <text x="2" y="16" font-family="monospace" font-size="8" font-weight="bold" fill="white">T-SQL</text>
-  </symbol>
-  <!-- Data Modeling -->
-  <symbol id="icon-datamodel" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#F25022"/>
-    <rect x="3" y="9" width="7" height="6" rx="1.5" fill="white"/>
-    <rect x="14" y="4" width="7" height="6" rx="1.5" fill="white"/>
-    <rect x="14" y="14" width="7" height="6" rx="1.5" fill="white"/>
-    <line x1="10" y1="12" x2="14" y2="7" stroke="white" stroke-width="1.2"/>
-    <line x1="10" y1="12" x2="14" y2="17" stroke="white" stroke-width="1.2"/>
-  </symbol>
-  <!-- Warehousing -->
-  <symbol id="icon-warehouse" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#00B4D8"/>
-    <path d="M3 10 L12 4 L21 10 V20 H3 Z" fill="none" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
-    <rect x="9" y="14" width="6" height="6" fill="white"/>
-  </symbol>
-  <!-- PySpark -->
-  <symbol id="icon-pyspark" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#E25A1C"/>
-    <path d="M8 18 Q4 12 8 8 Q10 6 12 8 Q14 6 16 8 Q20 12 16 18" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-    <circle cx="12" cy="14" r="2" fill="white"/>
-  </symbol>
-  <!-- Semantic Models -->
-  <symbol id="icon-semantic" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#742774"/>
-    <circle cx="12" cy="8" r="2.5" fill="none" stroke="white" stroke-width="1.4"/>
-    <circle cx="6" cy="17" r="2" fill="none" stroke="white" stroke-width="1.4"/>
-    <circle cx="18" cy="17" r="2" fill="none" stroke="white" stroke-width="1.4"/>
-    <line x1="12" y1="10.5" x2="7" y2="15" stroke="white" stroke-width="1.2"/>
-    <line x1="12" y1="10.5" x2="17" y2="15" stroke="white" stroke-width="1.2"/>
-  </symbol>
-  <!-- DAX -->
-  <symbol id="icon-dax" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#F2C811"/>
-    <text x="3" y="16" font-family="monospace" font-size="9" font-weight="bold" fill="#333">DAX</text>
-  </symbol>
-  <!-- Power Query -->
-  <symbol id="icon-powerquery" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#217346"/>
-    <path d="M5 12 A7 7 0 1 1 12 19" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-    <polyline points="9,16 12,19 9,22" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-  <!-- Visualizations -->
-  <symbol id="icon-viz" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#0078D4"/>
-    <polyline points="4,17 8,11 12,14 16,7 20,10" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-  <!-- Data Factory -->
-  <symbol id="icon-datafactory" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#0F6CBD"/>
-    <rect x="4" y="4" width="7" height="7" rx="2" fill="white" opacity="0.9"/>
-    <rect x="13" y="4" width="7" height="7" rx="2" fill="white" opacity="0.6"/>
-    <rect x="4" y="13" width="7" height="7" rx="2" fill="white" opacity="0.6"/>
-    <rect x="13" y="13" width="7" height="7" rx="2" fill="white" opacity="0.9"/>
-  </symbol>
-  <!-- OneLake -->
-  <symbol id="icon-onelake" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#0078D4"/>
-    <path d="M12 4 C7 4 4 8 4 12 C4 16 7 20 12 20 C17 20 20 16 20 12 C20 8 17 4 12 4Z" fill="none" stroke="white" stroke-width="1.4"/>
-    <path d="M12 8 C9.5 8 8 10 8 12 C8 14 9.5 16 12 16 C14.5 16 16 14 16 12 C16 10 14.5 8 12 8Z" fill="white" opacity="0.7"/>
-  </symbol>
-  <!-- Lakehouse -->
-  <symbol id="icon-lakehouse" viewBox="0 0 24 24">
-    <rect width="24" height="24" rx="4" fill="#217346"/>
-    <path d="M12 3 L20 9 L20 21 L4 21 L4 9 Z" fill="none" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
-    <path d="M12 3 L4 9 L20 9" fill="none" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
-    <ellipse cx="12" cy="15" rx="4" ry="2" fill="none" stroke="white" stroke-width="1.2"/>
-    <line x1="8" y1="15" x2="8" y2="19" stroke="white" stroke-width="1.2"/>
-    <line x1="16" y1="15" x2="16" y2="19" stroke="white" stroke-width="1.2"/>
-  </symbol>
-  <!-- Notebooks -->
-  <symbol id="icon-notebooks" viewBox="0 0 24 24">
-    <rect x="4" y="2" width="16" height="20" rx="2" fill="none" stroke="#6B7280" stroke-width="1.5"/>
-    <line x1="8" y1="7" x2="16" y2="7" stroke="#6B7280" stroke-width="1.3"/>
-    <line x1="8" y1="11" x2="16" y2="11" stroke="#6B7280" stroke-width="1.3"/>
-    <line x1="8" y1="15" x2="13" y2="15" stroke="#6B7280" stroke-width="1.3"/>
-  </symbol>
+  <symbol id="icon-python" viewBox="0 0 24 24"><path fill="#3776AB" d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.894S0 5.789 0 11.969c0 6.18 3.403 5.959 3.403 5.959h2.032v-2.867s-.109-3.403 3.348-3.403h5.77s3.24.052 3.24-3.131V3.129S18.338 0 11.914 0zm-3.2 1.812a1.04 1.04 0 0 1 1.041 1.04 1.04 1.04 0 0 1-1.04 1.042A1.04 1.04 0 0 1 7.674 2.85a1.04 1.04 0 0 1 1.04-1.04z"/><path fill="#FFD43B" d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.752H12v-.826h8.127S24 18.211 24 12.031c0-6.18-3.403-5.959-3.403-5.959h-2.032v2.867s.109 3.403-3.348 3.403h-5.77S6.207 12.29 6.207 15.473v5.398S5.662 24 12.086 24zm3.2-1.812a1.04 1.04 0 0 1-1.041-1.04 1.04 1.04 0 0 1 1.04-1.042 1.04 1.04 0 0 1 1.042 1.041 1.04 1.04 0 0 1-1.041 1.04z"/></symbol>
+  <symbol id="icon-sql" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3" fill="none" stroke="#336791" stroke-width="1.8"/><path d="M3 5v4c0 1.657 4.03 3 9 3s9-1.343 9-3V5" fill="none" stroke="#336791" stroke-width="1.8"/><path d="M3 9v4c0 1.657 4.03 3 9 3s9-1.343 9-3V9" fill="none" stroke="#336791" stroke-width="1.8"/><path d="M3 13v4c0 1.657 4.03 3 9 3s9-1.343 9-3v-4" fill="none" stroke="#336791" stroke-width="1.8"/></symbol>
+  <symbol id="icon-n8n" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#EA4B71"/><text x="3" y="16" font-family="monospace" font-size="9" font-weight="bold" fill="white">n8n</text></symbol>
+  <symbol id="icon-langchain" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#1C3C3C"/><path d="M7 12 Q12 6 17 12 Q12 18 7 12Z" fill="none" stroke="#65E8C8" stroke-width="1.5"/><circle cx="7" cy="12" r="1.5" fill="#65E8C8"/><circle cx="17" cy="12" r="1.5" fill="#65E8C8"/></symbol>
+  <symbol id="icon-yolo" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#111"/><rect x="4" y="4" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/><rect x="13" y="4" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/><rect x="4" y="13" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/><rect x="13" y="13" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/></symbol>
+  <symbol id="icon-groq" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#F55036"/><text x="3.5" y="16" font-family="monospace" font-size="8.5" font-weight="bold" fill="white">groq</text></symbol>
+  <symbol id="icon-react" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.05" fill="#61DAFB"/><ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="#61DAFB" stroke-width="1.2"/><ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="#61DAFB" stroke-width="1.2" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="#61DAFB" stroke-width="1.2" transform="rotate(120 12 12)"/></symbol>
+  <symbol id="icon-nextjs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#000"/><path d="M7 16.5V8l8.5 11H17V7.5" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-html" viewBox="0 0 24 24"><path fill="#E44D26" d="M4.136 3l1.561 17.5L12 22.5l6.303-2 1.561-17.5H4.136z"/><path fill="#F16529" d="M12 21.1l5.1-1.415 1.334-14.942H12v16.357z"/><path fill="#EBEBEB" d="M12 12.584H9.184l-.2-2.246H12V8.118H6.773l.526 5.884H12v-1.418zm0 4.189l-.009.003-2.548-.688-.163-1.826H7.047l.32 3.589L12 19.025v-2.252z"/><path fill="#fff" d="M12 12.584v1.418h2.614l-.246 2.749-2.368.64v2.252l4.313-1.196.032-.354.494-5.53.052-.579H12zm0-4.466v2.22h5.026l.042-.466.096-1.072.05-.682H12z"/></symbol>
+  <symbol id="icon-github" viewBox="0 0 24 24"><path fill="#181717" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+  <symbol id="icon-vercel" viewBox="0 0 24 24"><path fill="#000" d="M24 22.525H0l12-21.05 12 21.05z"/></symbol>
+  <symbol id="icon-mongodb" viewBox="0 0 24 24"><path fill="#47A248" d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0 1 11.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 0 0 3.639-8.464c.01-.814-.103-1.662-.197-2.218z"/></symbol>
+  <symbol id="icon-powerbi" viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#F2C811"/><rect x="4" y="10" width="3" height="10" rx="1" fill="#333"/><rect x="9" y="6" width="3" height="14" rx="1" fill="#333"/><rect x="14" y="3" width="3" height="17" rx="1" fill="#333"/><rect x="19" y="8" width="2" height="12" rx="1" fill="#333"/></symbol>
+  <symbol id="icon-pandas" viewBox="0 0 24 24"><rect width="24" height="24" rx="4" fill="#130754"/><rect x="5" y="4" width="3.5" height="7" rx="1.75" fill="#E70488"/><rect x="5" y="13" width="3.5" height="7" rx="1.75" fill="#E70488"/><rect x="10.25" y="7.5" width="3.5" height="9" rx="1.75" fill="white"/><rect x="15.5" y="4" width="3.5" height="7" rx="1.75" fill="#E70488"/><rect x="15.5" y="13" width="3.5" height="7" rx="1.75" fill="#E70488"/></symbol>
+  <symbol id="icon-jupyter" viewBox="0 0 24 24"><path fill="#F37726" d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 3.43a8.57 8.57 0 1 1 0 17.14A8.57 8.57 0 0 1 12 3.43z"/><circle cx="7.2" cy="6.4" r="1.6" fill="#F37726"/><circle cx="16.8" cy="6.4" r="1.6" fill="#F37726"/><circle cx="12" cy="19.6" r="1.6" fill="#999"/></symbol>
+  <symbol id="icon-notebooks" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" fill="none" stroke="#6B7280" stroke-width="1.5"/><line x1="8" y1="7" x2="16" y2="7" stroke="#6B7280" stroke-width="1.3"/><line x1="8" y1="11" x2="16" y2="11" stroke="#6B7280" stroke-width="1.3"/><line x1="8" y1="15" x2="13" y2="15" stroke="#6B7280" stroke-width="1.3"/></symbol>
 </svg>
 
 <!-- NAV -->
@@ -439,9 +238,11 @@
   <div class="container">
     <div class="hero-inner">
       <div class="hero-left">
+        <div class="available-badge"><span class="available-badge-dot"></span> Open to Opportunities</div>
         <p class="hero-hello">Hello, I am</p>
         <h1 class="hero-name">Abdennasser <span>Bedroune</span></h1>
-        <p class="hero-role">Data Analyst &amp; AI Automation Engineer</p>
+        <p class="hero-role">AI Automation &amp; AI Engineer</p>
+        <p class="hero-value-prop">I build AI pipelines that eliminate manual workflows and turn raw data into automated, intelligent decisions.</p>
         <p class="hero-typed" id="typedText"></p>
         <div class="hero-btns">
           <a href="#projects" class="btn-primary">View My Work</a>
@@ -453,9 +254,18 @@
           <a href="mailto:Abdennasser.bedroune@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
         <div class="hero-stats">
-          <div class="stat-item"><div class="stat-num">2+</div><div class="stat-label">Years<br>Experience</div></div>
-          <div class="stat-item"><div class="stat-num">4+</div><div class="stat-label">Projects<br>Delivered</div></div>
-          <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Languages<br>Spoken</div></div>
+          <div class="stat-item">
+            <div class="stat-num">60%</div>
+            <div class="stat-label">Reduction in<br>manual review time</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">10K+</div>
+            <div class="stat-label">Images processed<br>daily via pipeline</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">75%</div>
+            <div class="stat-label">ATS rejection rate<br>Pathwise tackles</div>
+          </div>
         </div>
       </div>
       <div class="hero-photo">
@@ -470,12 +280,12 @@
 <section id="about">
   <div class="container">
     <p class="section-label">About Me</p>
-    <h2 class="section-title">Engineering <span>AI Solutions</span></h2>
+    <h2 class="section-title">Building the <span>Agentic Layer</span></h2>
     <div class="about-text">
-      <p>I am a <strong>Data Analyst and AI Automation Engineer</strong> with over two years of experience. I specialize in building robust data pipelines and annotation systems for computer vision projects, bridging the gap between complex raw data and actionable, automated workflows.</p>
-      <p>My technical foundation is built on <strong>Python</strong>, <strong>SQL</strong>, <strong>n8n</strong>, and <strong>LangChain</strong>. I don't just process data &mdash; I engineer the intelligence layer so systems can reason autonomously, route decisions, and drive measurable business outcomes.</p>
-      <p>I've successfully delivered end-to-end AI automation solutions across <strong>Insurance</strong>, <strong>E-commerce</strong>, and <strong>Content Moderation</strong>. I focus on the practical outcome: helping organizations eliminate manual bottlenecks and achieve operational efficiency.</p>
-      <a href="mailto:Abdennasser.bedroune@gmail.com" class="available-link">Available for opportunities <i class="fas fa-arrow-up-right-from-square"></i></a>
+      <p>At Beewant, I engineered a <strong>YOLO-based computer vision pipeline</strong> that processes over 10,000 images daily with automated AI inpainting &mdash; cutting manual insurance damage review time by 60%. That's the kind of impact I build toward: real automation that replaces real bottlenecks.</p>
+      <p>My stack is focused on <strong>agentic systems</strong>: Python pipelines, LangChain agents, n8n orchestration, and frontend interfaces with React and Next.js to make those systems usable. I've shipped production solutions across <span class="about-highlight"><i class="fas fa-shield-alt" style="font-size:0.7rem"></i> Insurance</span><span class="about-highlight"><i class="fas fa-store" style="font-size:0.7rem"></i> E-commerce</span><span class="about-highlight"><i class="fas fa-flag" style="font-size:0.7rem"></i> Content Moderation</span></p>
+      <p>I'm now moving deeper into <strong>multi-agent architectures and autonomous AI systems</strong> &mdash; building agents that don't just respond but reason, plan, and execute end-to-end without human intervention. If you're solving a problem that needs AI to think for itself, that's exactly where I want to be.</p>
+      <a href="mailto:Abdennasser.bedroune@gmail.com" class="available-link">Available for agentic AI roles <i class="fas fa-arrow-up-right-from-square"></i></a>
     </div>
   </div>
 </section>
@@ -485,140 +295,85 @@
   <div class="container">
     <p class="section-label">Skills</p>
     <h2 class="section-title">Technical <span>Expertise</span></h2>
-    <p class="section-sub">Specialized in AI automation and data engineering</p>
+    <p class="section-sub">Focused on agentic AI, pipeline design, and modern frontend</p>
 
     <div class="skills-core">
       <div class="core-card">
-        <div class="core-card-cat">AI Automation</div>
-        <div class="core-card-title">AI Agents &amp; Workflows</div>
-        <div class="core-card-desc">End-to-end autonomous AI pipelines using LangChain and n8n &mdash; connecting APIs, CRMs, and communication platforms into intelligent, self-executing workflows.</div>
+        <div class="core-card-cat">Core Specialty</div>
+        <div class="core-card-title">Agentic AI &amp; Workflows</div>
+        <div class="core-card-desc">Designing multi-agent systems with LangChain and n8n that autonomously reason, route decisions, and execute end-to-end workflows without human intervention. Connected to APIs, CRMs, and communication platforms.</div>
         <div class="core-card-tags">
           <span class="core-tag">Agent Orchestration</span>
           <span class="core-tag">n8n Workflows</span>
           <span class="core-tag">LangChain</span>
           <span class="core-tag">API Integration</span>
+          <span class="core-tag">RAG Systems</span>
         </div>
       </div>
       <div class="core-card">
-        <div class="core-card-cat">Computer Vision</div>
+        <div class="core-card-cat">Pipeline Engineering</div>
         <div class="core-card-title">CV &amp; Data Pipelines</div>
-        <div class="core-card-desc">Building annotation systems and YOLO-based detection models. Processing 10,000+ images daily with automated inpainting and moderation workflows.</div>
+        <div class="core-card-desc">Building production-grade annotation systems and YOLO detection models. Processing 10,000+ images daily with automated inpainting. Python-first, built for scale, designed to run unattended.</div>
         <div class="core-card-tags">
           <span class="core-tag">YOLO</span>
           <span class="core-tag">Image Annotation</span>
           <span class="core-tag">Python</span>
-          <span class="core-tag">Data Pipelines</span>
+          <span class="core-tag">Pipeline Design</span>
+          <span class="core-tag">Automation</span>
         </div>
       </div>
     </div>
 
     <div class="skills-supporting-label">SUPPORTING TECHNOLOGIES</div>
     <div class="skills-grid">
-
-      <!-- AI / ML -->
       <div class="skill-card">
         <div class="skill-card-header">
           <div class="skill-card-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" fill="#7c3aed"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12" stroke="#7c3aed" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-          <div class="skill-card-name">AI / ML</div>
+          <div class="skill-card-name">AI / Agentic</div>
         </div>
         <div class="skill-items-grid">
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-langchain"/></svg></div>
-            <div class="skill-item-label">LangChain</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-n8n"/></svg></div>
-            <div class="skill-item-label">n8n</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-yolo"/></svg></div>
-            <div class="skill-item-label">YOLO</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-groq"/></svg></div>
-            <div class="skill-item-label">Groq API</div>
-          </div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-langchain"/></svg></div><div class="skill-item-label">LangChain</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-n8n"/></svg></div><div class="skill-item-label">n8n</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-yolo"/></svg></div><div class="skill-item-label">YOLO</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-groq"/></svg></div><div class="skill-item-label">Groq API</div></div>
         </div>
       </div>
-
-      <!-- Development -->
       <div class="skill-card">
         <div class="skill-card-header">
           <div class="skill-card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="skill-card-name">Development</div>
+          <div class="skill-card-name">Frontend</div>
         </div>
         <div class="skill-items-grid">
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-python"/></svg></div>
-            <div class="skill-item-label">Python</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-react"/></svg></div>
-            <div class="skill-item-label">React</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-nextjs"/></svg></div>
-            <div class="skill-item-label">Next.js</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-html"/></svg></div>
-            <div class="skill-item-label">HTML/CSS</div>
-          </div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-nextjs"/></svg></div><div class="skill-item-label">Next.js</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-react"/></svg></div><div class="skill-item-label">React</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-html"/></svg></div><div class="skill-item-label">HTML/CSS</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-vercel"/></svg></div><div class="skill-item-label">Vercel</div></div>
         </div>
       </div>
-
-      <!-- Data -->
       <div class="skill-card">
         <div class="skill-card-header">
           <div class="skill-card-icon"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="8" ry="3" stroke="#7c3aed" stroke-width="1.6"/><path d="M4 6v6c0 1.657 3.582 3 8 3s8-1.343 8-3V6" stroke="#7c3aed" stroke-width="1.6"/><path d="M4 12v6c0 1.657 3.582 3 8 3s8-1.343 8-3v-6" stroke="#7c3aed" stroke-width="1.6"/></svg></div>
           <div class="skill-card-name">Data</div>
         </div>
         <div class="skill-items-grid">
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-sql"/></svg></div>
-            <div class="skill-item-label">SQL</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-powerbi"/></svg></div>
-            <div class="skill-item-label">Power BI</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-pandas"/></svg></div>
-            <div class="skill-item-label">Pandas</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-mongodb"/></svg></div>
-            <div class="skill-item-label">MongoDB</div>
-          </div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-python"/></svg></div><div class="skill-item-label">Python</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-sql"/></svg></div><div class="skill-item-label">SQL</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-pandas"/></svg></div><div class="skill-item-label">Pandas</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-mongodb"/></svg></div><div class="skill-item-label">MongoDB</div></div>
         </div>
       </div>
-
-      <!-- Tools -->
       <div class="skill-card">
         <div class="skill-card-header">
           <div class="skill-card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="#7c3aed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="skill-card-name">Tools</div>
+          <div class="skill-card-name">Tooling</div>
         </div>
         <div class="skill-items-grid">
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-github"/></svg></div>
-            <div class="skill-item-label">GitHub</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-vercel"/></svg></div>
-            <div class="skill-item-label">Vercel</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-jupyter"/></svg></div>
-            <div class="skill-item-label">Jupyter</div>
-          </div>
-          <div class="skill-item-cell">
-            <div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-notebooks"/></svg></div>
-            <div class="skill-item-label">Notebooks</div>
-          </div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-github"/></svg></div><div class="skill-item-label">GitHub</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-jupyter"/></svg></div><div class="skill-item-label">Jupyter</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-powerbi"/></svg></div><div class="skill-item-label">Power BI</div></div>
+          <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-notebooks"/></svg></div><div class="skill-item-label">Notebooks</div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -643,13 +398,14 @@
             <div class="exp-duration">2+ YRS</div>
           </div>
         </div>
-        <p class="exp-desc">Built end-to-end AI automation systems for computer vision and customer support. Developed a car-damage detection pipeline (800+ images, 15+ categories) reducing manual insurance review time by 60%. Created a YOLO-based content moderation system processing 10,000+ images daily with AI inpainting.</p>
-        <div class="exp-badge">AI Pipeline Architect</div>
+        <p class="exp-desc">Built end-to-end AI automation systems for computer vision and customer support in the Insurance industry. Engineered a YOLO-based car-damage detection pipeline across 800+ images and 15+ damage categories, reducing manual insurance review time by 60%. Created an autonomous content moderation system processing 10,000+ images daily with AI inpainting — fully unattended.</p>
+        <div class="exp-badge">Agentic Pipeline Architect</div>
         <div class="exp-tags">
           <span class="exp-tag">LangChain</span> &nbsp;&bull;&nbsp;
           <span class="exp-tag">YOLO</span> &nbsp;&bull;&nbsp;
           <span class="exp-tag">Python</span> &nbsp;&bull;&nbsp;
-          <span class="exp-tag">n8n</span>
+          <span class="exp-tag">n8n</span> &nbsp;&bull;&nbsp;
+          <span class="exp-tag">Insurance</span>
         </div>
       </div>
       <div class="exp-card">
@@ -666,7 +422,7 @@
             <div class="exp-duration">1 YR</div>
           </div>
         </div>
-        <p class="exp-desc">Reviewed large volumes of user-generated video content for TikTok ensuring compliance with platform safety guidelines and community standards. Made context-based moderation decisions to maintain platform integrity and user safety at scale.</p>
+        <p class="exp-desc">Reviewed high volumes of user-generated video content for TikTok, enforcing platform safety guidelines and community standards at scale. This role deepened my understanding of content classification and moderation logic — directly informing my later work building automated AI moderation pipelines.</p>
         <div class="exp-badge">Platform Integrity</div>
         <div class="exp-tags">
           <span class="exp-tag">Content Moderation</span> &nbsp;&bull;&nbsp;
@@ -683,19 +439,46 @@
   <div class="container">
     <p class="section-label">Projects</p>
     <h2 class="section-title">Featured <span>Work</span></h2>
-    <p class="section-sub">End-to-end projects spanning AI agents, web apps, and automation systems.</p>
+    <p class="section-sub">Agentic AI systems, intelligent tools, and automated pipelines — all shipped to production.</p>
     <div class="projects-filter">
       <button class="filter-btn active">All</button>
-      <button class="filter-btn">AI / Automation</button>
+      <button class="filter-btn">AI / Agentic</button>
       <button class="filter-btn">Web Apps</button>
     </div>
     <div class="projects-grid">
+
+      <!-- Orchestr.ai -->
+      <div class="project-card">
+        <div class="project-img-placeholder" style="background: linear-gradient(135deg,#1C3C3C 0%,#0d1f1f 100%); display:flex"><i class="fas fa-network-wired" style="font-size:3rem;color:#65E8C8"></i></div>
+        <div class="project-body">
+          <div class="project-problem">Problem &rarr; Multi-step AI tasks require too many manual handoffs</div>
+          <div class="project-title">Orchestr.ai</div>
+          <div class="project-desc">A multi-agent orchestration framework that chains specialized AI agents together to complete complex, multi-step tasks autonomously. Each agent handles a specific role — reasoning, retrieval, execution — without human intervention between steps.</div>
+          <div class="project-metrics">
+            <div class="project-metric"><span class="metric-num">0</span><span class="metric-label">Manual steps needed</span></div>
+            <div class="project-metric"><span class="metric-num">Multi</span><span class="metric-label">Agent chains</span></div>
+            <div class="project-metric"><span class="metric-num">End-to-end</span><span class="metric-label">Task execution</span></div>
+          </div>
+          <div class="project-tags"><span class="project-tag">LangChain</span><span class="project-tag">Python</span><span class="project-tag">Agents</span><span class="project-tag">Agentic</span></div>
+          <div class="project-links">
+            <a href="https://github.com/Abdennasserbedroune/Orchestr.ai-main" target="_blank" class="project-link">GitHub <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Agent Chatbot -->
       <div class="project-card">
         <img src="images/vvv.png" alt="AI Agent Assistant" class="project-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="project-img-placeholder" style="display:none"><i class="fas fa-robot"></i></div>
         <div class="project-body">
+          <div class="project-problem">Problem &rarr; Businesses lose leads answering the same questions manually</div>
           <div class="project-title">AI Agent Assistant</div>
-          <div class="project-desc">Production-ready multilingual AI Agent with Groq API and 40+ Q&amp;A entries. Handles natural language queries autonomously with context-aware responses.</div>
+          <div class="project-desc">Production-ready multilingual AI Agent powered by Groq API with 40+ curated Q&amp;A entries. Handles natural language queries autonomously and routes complex requests with context-aware decision logic.</div>
+          <div class="project-metrics">
+            <div class="project-metric"><span class="metric-num">40+</span><span class="metric-label">Q&amp;A entries</span></div>
+            <div class="project-metric"><span class="metric-num">3</span><span class="metric-label">Languages</span></div>
+            <div class="project-metric"><span class="metric-num">&lt;1s</span><span class="metric-label">Response time</span></div>
+          </div>
           <div class="project-tags"><span class="project-tag">Next.js</span><span class="project-tag">TypeScript</span><span class="project-tag">Groq API</span></div>
           <div class="project-links">
             <a href="chatbot_documentation.html" class="project-link">Documentation <i class="fas fa-arrow-right"></i></a>
@@ -703,12 +486,41 @@
           </div>
         </div>
       </div>
+
+      <!-- Pathwise -->
+      <div class="project-card">
+        <img src="images/cv.png" alt="Pathwise" class="project-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="project-img-placeholder" style="display:none"><i class="fas fa-road"></i></div>
+        <div class="project-body">
+          <div class="project-problem">Problem &rarr; 75% of resumes are rejected by ATS before a human ever reads them</div>
+          <div class="project-title">Pathwise</div>
+          <div class="project-desc">AI-powered resume analyzer that scores resume-to-job alignment, generates an improved version instantly, and provides an AI career coach chatbot. Built for job seekers who need to beat ATS systems with specificity, not guesswork.</div>
+          <div class="project-metrics">
+            <div class="project-metric"><span class="metric-num">0–10</span><span class="metric-label">Match score</span></div>
+            <div class="project-metric"><span class="metric-num">10s</span><span class="metric-label">Feedback loop</span></div>
+            <div class="project-metric"><span class="metric-num">AI</span><span class="metric-label">Career coach</span></div>
+          </div>
+          <div class="project-tags"><span class="project-tag">Next.js</span><span class="project-tag">Groq API</span><span class="project-tag">AI Agent</span></div>
+          <div class="project-links">
+            <a href="Pathwisedoc.html" class="project-link">Documentation <i class="fas fa-arrow-right"></i></a>
+            <a href="https://pathwise-app.vercel.app" target="_blank" class="project-link">Live Site <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fanpocket -->
       <div class="project-card">
         <img src="images/afcon.png" alt="Fanpocket PWA" class="project-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="project-img-placeholder" style="display:none"><i class="fas fa-futbol"></i></div>
         <div class="project-body">
+          <div class="project-problem">Problem &rarr; Football fans lack a real-time, offline-ready companion for live events</div>
           <div class="project-title">Fanpocket PWA</div>
-          <div class="project-desc">Progressive Web App for Moroccan football fans with offline maps and trilingual support. Real-time match data, stadium navigation, and fan community features.</div>
+          <div class="project-desc">Progressive Web App for Moroccan football fans with offline maps, trilingual support (AR/FR/EN), real-time match data, and stadium navigation. Engineered for zero-connectivity environments — fully functional without internet.</div>
+          <div class="project-metrics">
+            <div class="project-metric"><span class="metric-num">3</span><span class="metric-label">Languages</span></div>
+            <div class="project-metric"><span class="metric-num">100%</span><span class="metric-label">Offline-ready</span></div>
+            <div class="project-metric"><span class="metric-num">PWA</span><span class="metric-label">Native-like UX</span></div>
+          </div>
           <div class="project-tags"><span class="project-tag">Next.js</span><span class="project-tag">PWA</span><span class="project-tag">MongoDB</span></div>
           <div class="project-links">
             <a href="fanpocket_documentation.html" class="project-link">Documentation <i class="fas fa-arrow-right"></i></a>
@@ -716,30 +528,7 @@
           </div>
         </div>
       </div>
-      <div class="project-card">
-        <img src="images/writer.png" alt="Truetale" class="project-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="project-img-placeholder" style="display:none"><i class="fas fa-pen-nib"></i></div>
-        <div class="project-body">
-          <div class="project-title">Truetale</div>
-          <div class="project-desc">AI-powered content creation platform for writers and creators. Intelligent text generation, style adaptation, and collaborative storytelling tools.</div>
-          <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Scikit-learn</span><span class="project-tag">NLP</span></div>
-          <div class="project-links">
-            <a href="Truetaledoc.html" class="project-link">Documentation <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="project-card">
-        <img src="images/cv.png" alt="Pathwise" class="project-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="project-img-placeholder" style="display:none"><i class="fas fa-road"></i></div>
-        <div class="project-body">
-          <div class="project-title">Pathwise</div>
-          <div class="project-desc">AI-powered career path analyzer and resume builder. Analyzes skills, market trends, and experience to recommend personalized career trajectories.</div>
-          <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">OpenAI</span></div>
-          <div class="project-links">
-            <a href="Pathwisedoc.html" class="project-link">Documentation <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -749,7 +538,7 @@
   <div class="container">
     <p class="section-label">Contact</p>
     <h2 class="section-title">Let's <span>Connect</span></h2>
-    <p class="section-sub">Have a project in mind or want to discuss opportunities? I'd love to hear from you.</p>
+    <p class="section-sub">Have an agentic AI project or want to discuss opportunities? I'd love to hear from you.</p>
     <div class="contact-form">
       <div class="form-group">
         <label class="form-label">Name</label>
@@ -780,7 +569,12 @@
     themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
   });
 
-  const phrases = ['Building AI Automation Systems', 'Designing Data Pipelines', 'Engineering Intelligent Workflows', 'Developing Computer Vision Solutions'];
+  const phrases = [
+    'Designing Agentic AI Systems',
+    'Building Autonomous Pipelines',
+    'Engineering Multi-Agent Workflows',
+    'Shipping AI That Works Unattended'
+  ];
   let pi = 0, ci = 0, deleting = false;
   const el = document.getElementById('typedText');
   function type() {
