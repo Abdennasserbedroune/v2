@@ -509,6 +509,9 @@
 <button class="scroll-up" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 
 <script>
+  /* ── CRITICAL: declare currentLang FIRST before any code that references it ── */
+  let currentLang = 'en';
+
   /* ── THEME ── */
   const themeBtn = document.getElementById('themeBtn');
   const themeIcon = document.getElementById('themeIcon');
@@ -562,7 +565,6 @@
   function handleContact(e) { e.preventDefault(); alert(currentLang === 'fr' ? 'Merci ! Je vous répondrai bientôt.' : 'Thank you! I will get back to you soon.'); }
 
   /* ── LANGUAGE SWITCHER ── */
-  let currentLang = 'en';
   const langSwitcher = document.getElementById('langSwitcher');
   const langBtn = document.getElementById('langBtn');
   const langFlag = document.getElementById('langFlag');
@@ -587,7 +589,7 @@
     });
   });
 
-  /* ── TRANSLATIONS (Task 2-4 will populate FR strings) ── */
+  /* ── TRANSLATIONS ── */
   const i18n = {
     en: {},
     fr: {
@@ -596,23 +598,23 @@
       'nav.skills': 'Compétences',
       'nav.projects': 'Projets',
       'nav.experience': 'Expérience',
-      'nav.letstalk': 'Me Contacter',
+      'nav.letstalk': 'Me Contacter <i class="fas fa-arrow-right"></i>',
       'hero.badge': 'Disponible',
       'hero.hello': 'Bonjour, je suis',
       'hero.role': 'Ingénieur IA & Automatisation',
       'hero.valueprop': 'Je construis des pipelines IA qui éliminent les tâches manuelles et transforment les données brutes en décisions intelligentes et automatisées.',
       'hero.cta1': 'Voir mes Projets',
       'hero.cta2': 'CV',
-      'stat1': 'Réduction du temps\nde traitement manuel',
-      'stat2': 'Images traitées\nquotidiennement',
-      'stat3': 'Taux de rejet ATS\nque Pathwise résout',
+      'stat1': 'Réduction du temps<br>de traitement manuel',
+      'stat2': 'Images traitées<br>quotidiennement',
+      'stat3': 'Taux de rejet ATS<br>que Pathwise résout',
       'scroll': 'DÉFILER',
       'about.label': 'À Propos',
       'about.title': 'Construire la <span>Couche Agentique</span>',
       'about.p1': 'Chez Beewant, j\'ai conçu un <strong>pipeline de vision par ordinateur basé sur YOLO</strong> qui traite plus de 10 000 images par jour avec inpainting IA automatisé — réduisant le temps de traitement manuel des sinistres de 60 %.',
       'about.p2': 'Ma stack est centrée sur les <strong>systèmes agentiques</strong> : pipelines Python, agents LangChain, orchestration n8n, et interfaces React/Next.js. J\'ai livré des solutions en production dans <span class="about-highlight"><i class="fas fa-shield-alt" style="font-size:0.7rem"></i> Assurance</span><span class="about-highlight"><i class="fas fa-store" style="font-size:0.7rem"></i> E-commerce</span><span class="about-highlight"><i class="fas fa-flag" style="font-size:0.7rem"></i> Modération de contenu</span>',
       'about.p3': 'Je me dirige maintenant vers les <strong>architectures multi-agents et les systèmes IA autonomes</strong> — des agents qui ne se contentent pas de répondre, mais qui raisonnent, planifient et exécutent de bout en bout sans intervention humaine.',
-      'about.link': 'Disponible pour des rôles en IA agentique',
+      'about.link': 'Disponible pour des rôles en IA agentique <i class="fas fa-arrow-up-right-from-square"></i>',
       'skills.label': 'Compétences',
       'skills.title': 'Expertise <span>Technique</span>',
       'skills.sub': 'Spécialisé en IA agentique, conception de pipelines et frontend moderne',
@@ -655,8 +657,8 @@
       'p3.m1': 'Score d\'adéquation',
       'p3.m2': 'Boucle de feedback',
       'p3.m3': 'Coach carrière',
-      'link.docs': 'Docs',
-      'link.live': 'Live',
+      'link.docs': 'Docs <i class="fas fa-arrow-right"></i>',
+      'link.live': 'Live <i class="fas fa-arrow-right"></i>',
       'contact.label': 'Contact',
       'contact.title': 'Entrons en <span>Contact</span>',
       'contact.sub': 'Vous avez un projet IA agentique ou souhaitez discuter d\'opportunités ? Je serais ravi de vous entendre.',
