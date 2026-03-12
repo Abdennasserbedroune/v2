@@ -85,7 +85,7 @@
     .available-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #16a34a; border-radius: 50px; padding: 5px 14px; font-size: 0.75rem; font-weight: 700; margin-bottom: 16px; }
     .available-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; animation: pulse-dot 1.8s infinite; }
     @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
-    .about-text { max-width: 760px; margin: 0 auto; font-size: 1rem; line-height: 1.85; color: var(--text-muted); }
+    .about-text { max-width: 760px; margin: 0 auto; font-size: 1.05rem; line-height: 1.9; color: var(--text-muted); }
     .about-text p { margin-bottom: 18px; }
     .about-text strong { color: var(--text); font-weight: 700; }
     .skills-core { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 48px; }
@@ -123,9 +123,6 @@
     .exp-badge { display: inline-block; padding: 5px 16px; border: 1px solid var(--border); border-radius: 50px; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 12px; }
     .exp-tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .exp-tag { font-size: 0.75rem; color: var(--text-light); font-weight: 500; }
-    .projects-filter { display: flex; gap: 10px; justify-content: center; margin-bottom: 36px; }
-    .filter-btn { padding: 8px 22px; border: 1px solid var(--border); border-radius: 50px; background: var(--bg-card); color: var(--text-muted); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-    .filter-btn.active, .filter-btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
     .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.25s, box-shadow 0.25s; }
     .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
@@ -144,16 +141,17 @@
     .project-links { display: flex; gap: 14px; }
     .project-link { display: flex; align-items: center; gap: 6px; font-size: 0.83rem; font-weight: 700; color: var(--accent); text-decoration: none; transition: gap 0.2s; }
     .project-link:hover { gap: 10px; }
-    .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 800px; margin: 0 auto; }
-    .cert-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; box-shadow: var(--shadow); cursor: pointer; transition: transform 0.22s, box-shadow 0.22s; position: relative; overflow: hidden; }
-    .cert-card::before { content:''; position:absolute; inset:0; background: linear-gradient(135deg, rgba(124,58,237,0.05) 0%, transparent 60%); pointer-events:none; }
-    .cert-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .cert-card-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--accent), #a855f7); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-    .cert-card-icon i { color: #fff; font-size: 1.3rem; }
-    .cert-issuer { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
-    .cert-name { font-size: 1.05rem; font-weight: 800; color: var(--text); margin-bottom: 6px; }
-    .cert-year { font-size: 0.8rem; color: var(--text-light); font-weight: 500; margin-bottom: 14px; }
-    .cert-preview-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 700; color: var(--accent); border: 1px solid var(--tag-border); border-radius: 8px; padding: 6px 14px; background: var(--tag-bg); transition: all 0.2s; }
+    .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 900px; margin: 0 auto; }
+    .cert-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px 36px; box-shadow: var(--shadow); cursor: pointer; transition: transform 0.22s, box-shadow 0.22s; position: relative; overflow: hidden; }
+    .cert-card::before { content:''; position:absolute; inset:0; background: linear-gradient(135deg, rgba(124,58,237,0.06) 0%, transparent 60%); pointer-events:none; }
+    .cert-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .cert-card-icon { width: 56px; height: 56px; background: linear-gradient(135deg, var(--accent), #a855f7); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .cert-card-icon i { color: #fff; font-size: 1.5rem; }
+    .cert-issuer { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .cert-name { font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+    .cert-year { font-size: 0.85rem; color: var(--text-light); font-weight: 500; margin-bottom: 20px; }
+    .cert-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 22px; }
+    .cert-preview-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; color: var(--accent); border: 1px solid var(--tag-border); border-radius: 10px; padding: 9px 18px; background: var(--tag-bg); transition: all 0.2s; }
     .cert-card:hover .cert-preview-btn { background: var(--accent); color: #fff; border-color: var(--accent); }
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: opacity 0.25s, visibility 0.25s; backdrop-filter: blur(4px); }
     .modal-overlay.open { opacity: 1; visibility: visible; }
@@ -179,17 +177,14 @@
 
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
   <symbol id="icon-python" viewBox="0 0 24 24"><path fill="#3776AB" d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.894S0 5.789 0 11.969c0 6.18 3.403 5.959 3.403 5.959h2.032v-2.867s-.109-3.403 3.348-3.403h5.77s3.24.052 3.24-3.131V3.129S18.338 0 11.914 0zm-3.2 1.812a1.04 1.04 0 0 1 1.041 1.04 1.04 1.04 0 0 1-1.04 1.042A1.04 1.04 0 0 1 7.674 2.85a1.04 1.04 0 0 1 1.04-1.04z"/><path fill="#FFD43B" d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.752H12v-.826h8.127S24 18.211 24 12.031c0-6.18-3.403-5.959-3.403-5.959h-2.032v2.867s.109 3.403-3.348 3.403h-5.77S6.207 12.29 6.207 15.473v5.398S5.662 24 12.086 24zm3.2-1.812a1.04 1.04 0 0 1-1.041-1.04 1.04 1.04 0 0 1 1.04-1.042 1.04 1.04 0 0 1 1.042 1.041 1.04 1.04 0 0 1-1.041 1.04z"/></symbol>
-  <symbol id="icon-sql" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3" fill="none" stroke="#336791" stroke-width="1.8"/><path d="M3 5v4c0 1.657 4.03 3 9 3s9-1.343 9-3V5" fill="none" stroke="#336791" stroke-width="1.8"/><path d="M3 9v4c0 1.657 4.03 3 9 3s9-1.343 9-3V9" fill="none" stroke="#336791" stroke-width="1.8"/><path d="M3 13v4c0 1.657 4.03 3 9 3s9-1.343 9-3v-4" fill="none" stroke="#336791" stroke-width="1.8"/></symbol>
   <symbol id="icon-n8n" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#EA4B71"/><text x="3" y="16" font-family="monospace" font-size="9" font-weight="bold" fill="white">n8n</text></symbol>
   <symbol id="icon-supabase" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#1C1C1C"/><path d="M13 3L4 14h9V3z" fill="#3ECF8E"/><path d="M11 21l9-11h-9v11z" fill="#3ECF8E" opacity="0.5"/></symbol>
   <symbol id="icon-groq" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#F55036"/><text x="3.5" y="16" font-family="monospace" font-size="8.5" font-weight="bold" fill="white">groq</text></symbol>
   <symbol id="icon-react" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.05" fill="#61DAFB"/><ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="#61DAFB" stroke-width="1.2"/><ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="#61DAFB" stroke-width="1.2" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="3.8" fill="none" stroke="#61DAFB" stroke-width="1.2" transform="rotate(120 12 12)"/></symbol>
   <symbol id="icon-nextjs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#000"/><path d="M7 16.5V8l8.5 11H17V7.5" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="icon-html" viewBox="0 0 24 24"><path fill="#E44D26" d="M4.136 3l1.561 17.5L12 22.5l6.303-2 1.561-17.5H4.136z"/><path fill="#F16529" d="M12 21.1l5.1-1.415 1.334-14.942H12v16.357z"/><path fill="#EBEBEB" d="M12 12.584H9.184l-.2-2.246H12V8.118H6.773l.526 5.884H12v-1.418zm0 4.189l-.009.003-2.548-.688-.163-1.826H7.047l.32 3.589L12 19.025v-2.252z"/><path fill="#fff" d="M12 12.584v1.418h2.614l-.246 2.749-2.368.64v2.252l4.313-1.196.032-.354.494-5.53.052-.579H12zm0-4.466v2.22h5.026l.042-.466.096-1.072.05-.682H12z"/></symbol>
-  <symbol id="icon-github" viewBox="0 0 24 24"><path fill="#181717" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
   <symbol id="icon-vercel" viewBox="0 0 24 24"><path fill="#000" d="M24 22.525H0l12-21.05 12 21.05z"/></symbol>
   <symbol id="icon-langchain" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#1C3C3C"/><path d="M7 12 Q12 6 17 12 Q12 18 7 12Z" fill="none" stroke="#65E8C8" stroke-width="1.5"/><circle cx="7" cy="12" r="1.5" fill="#65E8C8"/><circle cx="17" cy="12" r="1.5" fill="#65E8C8"/></symbol>
-  <symbol id="icon-yolo" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#111"/><rect x="4" y="4" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/><rect x="13" y="4" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/><rect x="4" y="13" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/><rect x="13" y="13" width="7" height="7" rx="1" fill="none" stroke="#00D4AA" stroke-width="1.5"/></symbol>
 </svg>
 
 <nav>
@@ -219,6 +214,7 @@
   </div>
 </nav>
 
+<!-- HOME -->
 <section id="home">
   <div class="container">
     <div class="hero-inner">
@@ -249,6 +245,7 @@
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <p class="section-label">About Me</p>
@@ -259,16 +256,17 @@
   </div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills">
   <div class="container">
     <p class="section-label">Skills</p>
     <h2 class="section-title" data-i18n="skills.title">Technical <span>Expertise</span></h2>
-    <p class="section-sub" data-i18n="skills.sub">Focused on agentic AI, pipeline design, and modern frontend</p>
+    <p class="section-sub" data-i18n="skills.sub">Focused on agentic AI, automation pipelines, and modern web development</p>
     <div class="skills-core">
       <div class="core-card">
-        <div class="core-card-cat" data-i18n="skills.core1cat">Sp&#233;cialit&#233; Principale</div>
-        <div class="core-card-title" data-i18n="skills.core1title">IA Agentique &amp; Workflows</div>
-        <div class="core-card-desc" data-i18n="skills.core1desc">Conception de syst&#232;mes multi-agents avec LangChain et n8n qui raisonnent, routent des d&#233;cisions et ex&#233;cutent des workflows de bout en bout sans intervention humaine. Connect&#233;s aux APIs, CRMs et plateformes de communication.</div>
+        <div class="core-card-cat" data-i18n="skills.core1cat">Main Specialty</div>
+        <div class="core-card-title" data-i18n="skills.core1title">Agentic AI &amp; Workflows</div>
+        <div class="core-card-desc" data-i18n="skills.core1desc">Designing multi-agent systems with LangChain and n8n that reason, route decisions, and execute end-to-end workflows without human intervention. Connected to APIs, CRMs, and communication platforms to handle real-world business processes autonomously and at scale.</div>
         <div class="core-card-tags">
           <span class="core-tag">Agent Orchestration</span>
           <span class="core-tag">n8n Workflows</span>
@@ -277,7 +275,7 @@
         </div>
       </div>
     </div>
-    <div class="skills-supporting-label" data-i18n="skills.supporting">TECHNOLOGIES COMPL&#201;MENTAIRES</div>
+    <div class="skills-supporting-label">TECHNOLOGIES</div>
     <div class="skills-comp-wrap">
       <div>
         <div class="skills-comp-title" data-i18n="skills.frontend">Frontend</div>
@@ -313,30 +311,28 @@
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
   <div class="container">
     <p class="section-label">Projects</p>
-    <h2 class="section-title" data-i18n="proj.title">Mes projets <span>professionnel</span></h2>
-    <p class="section-sub" data-i18n="proj.sub">Syst&#232;mes IA agentiques, outils intelligents et pipelines automatis&#233;s.</p>
-    <div class="projects-filter">
-      <button class="filter-btn active" data-i18n="proj.filter.all">All</button>
-      <button class="filter-btn" data-i18n="proj.filter.ai">AI / Agentic</button>
-      <button class="filter-btn" data-i18n="proj.filter.web">Web Apps</button>
-    </div>
+    <h2 class="section-title" data-i18n="proj.title">My <span>Projects</span></h2>
+    <p class="section-sub" data-i18n="proj.sub">Agentic AI systems, intelligent tools, and automated pipelines built for real-world impact.</p>
     <div class="projects-grid">
       <div class="project-card">
         <div class="project-img-placeholder" style="background: linear-gradient(135deg,#1C3C3C 0%,#0d1f1f 100%);"><i class="fas fa-network-wired" style="font-size:2.8rem;color:#65E8C8"></i></div>
         <div class="project-body">
           <div class="project-problem" data-i18n="p1.problem">Problem &rarr; Multi-step AI tasks need constant manual handoffs</div>
           <div class="project-title">Orchestr.ai</div>
-          <div class="project-desc" data-i18n="p1.desc">A multi-agent orchestration framework that chains specialized AI agents to complete complex tasks autonomously.</div>
+          <div class="project-desc" data-i18n="p1.desc">A multi-agent orchestration framework that chains specialized AI agents to complete complex tasks end-to-end without any human intervention.</div>
           <div class="project-metrics">
             <div class="project-metric"><span class="metric-num">0</span><span class="metric-label">Manual steps</span></div>
             <div class="project-metric"><span class="metric-num">Multi</span><span class="metric-label">Agent chains</span></div>
             <div class="project-metric"><span class="metric-num">E2E</span><span class="metric-label">Execution</span></div>
           </div>
           <div class="project-tags"><span class="project-tag">LangChain</span><span class="project-tag">Python</span><span class="project-tag">Agentic</span></div>
-          <div class="project-links"><a href="https://github.com/Abdennasserbedroune/Orchestr.ai-main" target="_blank" class="project-link">GitHub <i class="fas fa-arrow-right"></i></a></div>
+          <div class="project-links">
+            <a href="https://github.com/Abdennasserbedroune/Orchestr.ai-main" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
       <div class="project-card">
@@ -345,7 +341,7 @@
         <div class="project-body">
           <div class="project-problem" data-i18n="p2.problem">Problem &rarr; Businesses lose leads answering the same questions manually</div>
           <div class="project-title">AI Agent Assistant</div>
-          <div class="project-desc" data-i18n="p2.desc">Production-ready multilingual AI Agent powered by Groq API with 40+ curated Q&amp;A entries.</div>
+          <div class="project-desc" data-i18n="p2.desc">Production-ready multilingual AI Agent powered by Groq API with 40+ curated Q&amp;A entries, deployed and ready to handle client inquiries 24/7.</div>
           <div class="project-metrics">
             <div class="project-metric"><span class="metric-num">40+</span><span class="metric-label">Q&amp;A entries</span></div>
             <div class="project-metric"><span class="metric-num">3</span><span class="metric-label">Languages</span></div>
@@ -353,8 +349,8 @@
           </div>
           <div class="project-tags"><span class="project-tag">Next.js</span><span class="project-tag">TypeScript</span><span class="project-tag">Groq API</span></div>
           <div class="project-links">
-            <a href="chatbot_documentation.html" class="project-link">Docs <i class="fas fa-arrow-right"></i></a>
-            <a href="https://chatbot-v1-teal.vercel.app" target="_blank" class="project-link">Live <i class="fas fa-arrow-right"></i></a>
+            <a href="https://github.com/Abdennasserbedroune/chatbot" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub <i class="fas fa-arrow-right"></i></a>
+            <a href="https://chatbot-v1-teal.vercel.app/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -364,7 +360,7 @@
         <div class="project-body">
           <div class="project-problem" data-i18n="p3.problem">Problem &rarr; 75% of resumes are rejected by ATS before anyone reads them</div>
           <div class="project-title">Pathwise</div>
-          <div class="project-desc" data-i18n="p3.desc">AI-powered resume analyzer that scores job-fit, generates an improved resume instantly, and provides a career coach chatbot.</div>
+          <div class="project-desc" data-i18n="p3.desc">AI-powered resume analyzer that scores job-fit, generates an optimized resume version instantly, and provides a personalized career coach chatbot.</div>
           <div class="project-metrics">
             <div class="project-metric"><span class="metric-num">0-10</span><span class="metric-label">Match score</span></div>
             <div class="project-metric"><span class="metric-num">10s</span><span class="metric-label">Feedback</span></div>
@@ -372,8 +368,8 @@
           </div>
           <div class="project-tags"><span class="project-tag">Next.js</span><span class="project-tag">Groq API</span><span class="project-tag">AI Agent</span></div>
           <div class="project-links">
-            <a href="Pathwisedoc.html" class="project-link">Docs <i class="fas fa-arrow-right"></i></a>
-            <a href="https://pathwise-app.vercel.app" target="_blank" class="project-link">Live <i class="fas fa-arrow-right"></i></a>
+            <a href="https://github.com/Abdennasserbedroune/Pathwise" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub <i class="fas fa-arrow-right"></i></a>
+            <a href="https://pathwise-liart.vercel.app/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -381,6 +377,7 @@
   </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section id="experience">
   <div class="container">
     <p class="section-label">Experience</p>
@@ -389,19 +386,18 @@
       <div class="exp-card">
         <div class="exp-card-top">
           <div class="exp-meta">
-            <div class="exp-logo"><img src="images/bee.jpeg" alt="Beewant" onerror="this.style.display='none';this.parentNode.innerHTML='<i class=&quot;fas fa-briefcase&quot;></i>';">
-            </div>
+            <div class="exp-logo"><img src="images/bee.jpeg" alt="Beewant" onerror="this.style.display='none';this.parentNode.innerHTML='<i class=&quot;fas fa-briefcase&quot;></i>';"></div>
             <div>
               <div class="exp-company">Beewant</div>
               <div class="exp-title" data-i18n="exp1.title">AI Automation Engineer</div>
             </div>
           </div>
           <div class="exp-dates">
-            <div class="exp-period">2023 - PRESENT</div>
+            <div class="exp-period">2023 &mdash; PRESENT</div>
             <div class="exp-duration">2+ YRS</div>
           </div>
         </div>
-        <p class="exp-desc" data-i18n="exp1.desc">Participation in projects related to the preparation and management of datasets for AI model training. Used Label Studio to organize annotation tasks, structure classes, and ensure data quality before model training. In parallel, implemented automation workflows with n8n to connect different APIs and facilitate data processing. For example, automating flows to retrieve images from external sources, organize them into an annotation pipeline, then centralize annotated data for use in training and evaluation of models.</p>
+        <p class="exp-desc" data-i18n="exp1.desc">Participation in projects related to the preparation and management of datasets for AI model training. Used Label Studio to organize annotation tasks, structure classes, and ensure data quality before model training. In parallel, implemented automation workflows with n8n to connect different APIs and facilitate data processing &mdash; including automating flows to retrieve images from external sources, organize them in an annotation pipeline, then centralize the annotated data for use in model training and evaluation.</p>
         <div class="exp-badge">AI &amp; Data Pipeline</div>
         <div class="exp-tags">
           <span class="exp-tag">Label Studio</span> &nbsp;&bull;&nbsp;
@@ -413,15 +409,14 @@
       <div class="exp-card">
         <div class="exp-card-top">
           <div class="exp-meta">
-            <div class="exp-logo"><img src="images/tik.png" alt="TikTok" onerror="this.style.display='none';this.parentNode.innerHTML='<i class=&quot;fab fa-tiktok&quot;></i>';">
-            </div>
+            <div class="exp-logo"><img src="images/tik.png" alt="TikTok" onerror="this.style.display='none';this.parentNode.innerHTML='<i class=&quot;fab fa-tiktok&quot;></i>';"></div>
             <div>
               <div class="exp-company">Majorel (TikTok)</div>
               <div class="exp-title" data-i18n="exp2.title">Content Moderator</div>
             </div>
           </div>
           <div class="exp-dates">
-            <div class="exp-period">2021 - 2022</div>
+            <div class="exp-period">2021 &mdash; 2022</div>
             <div class="exp-duration">1 YR</div>
           </div>
         </div>
@@ -437,30 +432,34 @@
   </div>
 </section>
 
+<!-- CERTIFICATIONS -->
 <section id="certifications">
   <div class="container">
     <p class="section-label">Certifications</p>
     <h2 class="section-title" data-i18n="cert.title">My <span>Certifications</span></h2>
-    <p class="section-sub" data-i18n="cert.sub">Click on a certificate to preview it closely.</p>
+    <p class="section-sub" data-i18n="cert.sub">Click on a certificate card to preview it in full detail.</p>
     <div class="cert-grid">
       <div class="cert-card" onclick="openCertModal('cert1')">
         <div class="cert-card-icon"><i class="fas fa-award"></i></div>
         <div class="cert-issuer">ALX Africa</div>
-        <div class="cert-name">Software Engineering</div>
-        <div class="cert-year">2024</div>
+        <div class="cert-name">Software Engineering Program</div>
+        <div class="cert-year">Issued 2024</div>
+        <div class="cert-desc">Completed an intensive 12-month program covering software engineering fundamentals, systems programming, and real-world project development.</div>
         <div class="cert-preview-btn"><i class="fas fa-eye"></i> Preview Certificate</div>
       </div>
       <div class="cert-card" onclick="openCertModal('cert2')">
         <div class="cert-card-icon"><i class="fas fa-certificate"></i></div>
         <div class="cert-issuer">Add Issuer</div>
         <div class="cert-name">Add Certificate Name</div>
-        <div class="cert-year">2024</div>
+        <div class="cert-year">Issued 2024</div>
+        <div class="cert-desc">Add a short description of what this certification covers and what skills it validates.</div>
         <div class="cert-preview-btn"><i class="fas fa-eye"></i> Preview Certificate</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- MODAL -->
 <div class="modal-overlay" id="certModal" onclick="closeCertModal(event)">
   <div class="modal-box">
     <div class="modal-header">
@@ -522,13 +521,6 @@
     });
   });
 
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
-
   const langSwitcher = document.getElementById('langSwitcher');
   const langBtn = document.getElementById('langBtn');
   const langFlag = document.getElementById('langFlag');
@@ -575,31 +567,34 @@
       'nav.projects': 'Projets', 'nav.experience': 'Exp\u00e9rience', 'nav.certifications': 'Certifications',
       'hero.badge': 'Disponible', 'hero.hello': 'Bonjour, je suis',
       'hero.role': 'Ing\u00e9nieur IA &amp; Automatisation',
-      'hero.valueprop': 'Je construis des pipelines IA qui \u00e9liminent les t\u00e2ches manuelles.',
+      'hero.valueprop': 'Je construis des pipelines IA qui \u00e9liminent les t\u00e2ches manuelles et transforment les donn\u00e9es brutes en d\u00e9cisions automatis\u00e9es.',
       'hero.cta1': 'Voir mes Projets', 'hero.cta2': 'CV', 'scroll': 'D\u00c9FILER',
       'about.title': 'Qui <span>Je Suis</span>',
       'about.p1': 'Issu d\u2019un premier parcours en droit, je me suis ensuite r\u00e9orient\u00e9 vers le d\u00e9veloppement web et l\u2019automatisation. Depuis pr\u00e8s de deux ans, je travaille sur des projets m\u00ealant intelligence artificielle, workflows automatis\u00e9s et applications web. Je m\u2019int\u00e9resse particuli\u00e8rement \u00e0 la mani\u00e8re dont les technologies peuvent optimiser les processus et transformer les m\u00e9thodes de travail.',
       'skills.title': 'Expertise <span>Technique</span>',
-      'skills.sub': 'Sp\u00e9cialis\u00e9 en IA agentique, conception de pipelines et frontend moderne',
-      'skills.core1cat': 'Sp\u00e9cialit\u00e9 Principale', 'skills.core1title': 'IA Agentique &amp; Workflows',
-      'skills.core1desc': 'Conception de syst\u00e8mes multi-agents avec LangChain et n8n qui raisonnent et ex\u00e9cutent des workflows de bout en bout sans intervention humaine.',
-      'skills.supporting': 'TECHNOLOGIES COMPL\u00c9MENTAIRES', 'skills.frontend': 'Frontend', 'skills.aidata': 'AI &amp; Data',
+      'skills.sub': 'Sp\u00e9cialis\u00e9 en IA agentique, pipelines d\u2019automatisation et d\u00e9veloppement web moderne',
+      'skills.core1cat': 'Sp\u00e9cialit\u00e9 Principale',
+      'skills.core1title': 'IA Agentique &amp; Workflows',
+      'skills.core1desc': 'Conception de syst\u00e8mes multi-agents avec LangChain et n8n qui raisonnent, routent des d\u00e9cisions et ex\u00e9cutent des workflows de bout en bout sans intervention humaine. Connect\u00e9s aux APIs, CRMs et plateformes de communication pour g\u00e9rer des processus m\u00e9tier r\u00e9els de mani\u00e8re autonome et \u00e0 grande \u00e9chelle.',
+      'skills.frontend': 'Frontend', 'skills.aidata': 'IA &amp; Data',
       'exp.title': 'Parcours <span>Professionnel</span>',
       'exp1.title': 'Ing\u00e9nieur en Automatisation IA',
-      'exp1.desc': 'Participation \u00e0 des projets li\u00e9s \u00e0 la pr\u00e9paration et \u00e0 la gestion de datasets destin\u00e9s \u00e0 l\u2019entra\u00eenement de mod\u00e8les d\u2019IA. Utilisation de Label Studio pour organiser les t\u00e2ches d\u2019annotation et assurer la qualit\u00e9 des donn\u00e9es. Mise en place de workflows d\u2019automatisation avec n8n.',
+      'exp1.desc': 'Participation \u00e0 des projets li\u00e9s \u00e0 la pr\u00e9paration et \u00e0 la gestion de datasets destin\u00e9s \u00e0 l\u2019entra\u00eenement de mod\u00e8les d\u2019IA. Utilisation de Label Studio pour organiser les t\u00e2ches d\u2019annotation, structurer les classes et assurer la qualit\u00e9 des donn\u00e9es. Mise en place de workflows d\u2019automatisation avec n8n pour connecter diff\u00e9rentes APIs et automatiser la r\u00e9cup\u00e9ration, l\u2019organisation et la centralisation des donn\u00e9es annot\u00e9es.',
       'exp2.title': 'Mod\u00e9rateur de Contenu',
-      'exp2.desc': 'Examen de volumes importants de contenu vid\u00e9o pour TikTok, en appliquant les directives de s\u00e9curit\u00e9 de la plateforme et les normes communautaires.',
-      'proj.title': 'Mes projets <span>professionnel</span>',
-      'proj.sub': 'Syst\u00e8mes IA agentiques, outils intelligents et pipelines automatis\u00e9s.',
-      'proj.filter.all': 'Tous', 'proj.filter.ai': 'IA / Agentique', 'proj.filter.web': 'Applications Web',
-      'cert.title': 'Mes <span>Certifications</span>', 'cert.sub': 'Cliquez sur un certificat pour le pr\u00e9visualiser.'
+      'exp2.desc': 'Examen de volumes importants de contenu vid\u00e9o g\u00e9n\u00e9r\u00e9 par les utilisateurs pour TikTok, en appliquant les directives de s\u00e9curit\u00e9 de la plateforme et les normes communautaires \u00e0 grande \u00e9chelle.',
+      'proj.title': 'Mes <span>Projets</span>',
+      'proj.sub': 'Syst\u00e8mes IA agentiques, outils intelligents et pipelines automatis\u00e9s con\u00e7us pour un impact r\u00e9el.',
+      'p1.desc': 'Un framework d\u2019orchestration multi-agents qui cha\u00eene des agents IA sp\u00e9cialis\u00e9s pour accomplir des t\u00e2ches complexes de bout en bout sans intervention humaine.',
+      'p2.desc': 'Agent IA multilingue pr\u00eat pour la production, aliment\u00e9 par Groq API avec plus de 40 entr\u00e9es Q&amp;R, d\u00e9ploy\u00e9 pour g\u00e9rer les demandes clients 24h/24.',
+      'p3.desc': 'Analyseur de CV aliment\u00e9 par IA qui \u00e9value l\u2019ad\u00e9quation avec un poste, g\u00e9n\u00e8re instantan\u00e9ment une version optimis\u00e9e et propose un coach carri\u00e8re personnalis\u00e9.',
+      'cert.title': 'Mes <span>Certifications</span>',
+      'cert.sub': 'Cliquez sur une carte pour pr\u00e9visualiser le certificat en d\u00e9tail.'
     }
   };
   function applyTranslations(lang) {
     if (lang === 'en') { location.reload(); return; }
     const t = i18n[lang];
     document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; if (t[k]) el.innerHTML = t[k]; });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const k = el.dataset.i18nPlaceholder; if (t[k]) el.placeholder = t[k]; });
   }
 </script>
 </body>
