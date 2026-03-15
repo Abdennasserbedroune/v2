@@ -239,7 +239,8 @@
     .modal-title { font-size:0.95rem; font-weight:700; color:var(--text); }
     .modal-close { width:32px; height:32px; border-radius:50%; border:1px solid var(--border); background:var(--bg-card2); color:var(--text-muted); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:0.85rem; transition:all .2s; }
     .modal-close:hover { border-color:var(--accent); color:var(--accent); }
-    .modal-img-wrap { flex:1; overflow:auto; display:flex; align-items:center; justify-content:center; padding:20px; background:var(--bg-card2); }
+    .modal-img-wrap { flex:1; overflow:auto; display:flex; align-items:center; justify-content:center; padding:0; background:var(--bg-card2); min-height:60vh; }
+    .modal-img-wrap iframe { width:100%; height:70vh; border:none; border-radius:8px; }
     .modal-img-wrap img { max-width:100%; max-height:70vh; border-radius:8px; object-fit:contain; box-shadow:0 4px 24px rgba(0,0,0,.2); }
     .modal-img-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; color:var(--text-light); padding:60px; }
     .modal-img-placeholder i { font-size:3.5rem; color:var(--accent); }
@@ -282,26 +283,15 @@
   <nav>
     <div class="nav-logo">AB.</div>
     <div class="nav-links">
-      <a href="#home" data-section="home" data-i18n="nav.home">Home</a>
-      <a href="#about" data-section="about" data-i18n="nav.about">About</a>
-      <a href="#skills" data-section="skills" data-i18n="nav.skills">Skills</a>
-      <a href="#projects" data-section="projects" data-i18n="nav.projects">Projects</a>
-      <a href="#experience" data-section="experience" data-i18n="nav.experience">Experience</a>
+      <a href="#home" data-section="home" data-i18n="nav.home">Accueil</a>
+      <a href="#about" data-section="about" data-i18n="nav.about">À propos</a>
+      <a href="#skills" data-section="skills" data-i18n="nav.skills">Compétences</a>
+      <a href="#projects" data-section="projects" data-i18n="nav.projects">Projets</a>
+      <a href="#experience" data-section="experience" data-i18n="nav.experience">Expérience</a>
       <a href="#certifications" data-section="certifications" data-i18n="nav.certifications">Certifications</a>
     </div>
     <div class="nav-right">
       <button class="theme-btn" id="themeBtn" title="Toggle theme"><i class="fas fa-moon" id="themeIcon"></i></button>
-      <div class="lang-switcher" id="langSwitcher">
-        <button class="lang-btn" id="langBtn">
-          <span id="langFlag">&#127468;&#127463;</span>
-          <span id="langLabel">EN</span>
-          <i class="fas fa-chevron-down lang-chevron"></i>
-        </button>
-        <div class="lang-dropdown" id="langDropdown">
-          <button class="lang-option active" data-lang="en">&#127468;&#127463; English</button>
-          <button class="lang-option" data-lang="fr">&#127467;&#127479; Fran&ccedil;ais</button>
-        </div>
-      </div>
       <a href="mailto:Abdennasser.bedroune@gmail.com" class="lets-talk-btn">Contact <i class="fas fa-arrow-right"></i></a>
     </div>
   </nav>
@@ -312,15 +302,15 @@
   <div class="container">
     <div class="hero-inner">
       <div class="hero-left">
-        <div class="available-badge"><span class="available-badge-dot"></span><span data-i18n="hero.badge">Open to Opportunities</span></div>
-        <p class="hero-hello" data-i18n="hero.hello">Hello, I am</p>
+        <div class="available-badge"><span class="available-badge-dot"></span><span data-i18n="hero.badge">Disponible</span></div>
+        <p class="hero-hello" data-i18n="hero.hello">Bonjour, je suis</p>
         <h1 class="hero-name">Abdennasser <span>Bedroune</span></h1>
-        <p class="hero-role" data-i18n="hero.role">AI Automation &amp; AI Engineer</p>
-        <p class="hero-value-prop" data-i18n="hero.valueprop">I build AI pipelines that eliminate manual workflows and turn raw data into automated, intelligent decisions.</p>
+        <p class="hero-role" data-i18n="hero.role">Ingénieur IA &amp; Automatisation</p>
+        <p class="hero-value-prop" data-i18n="hero.valueprop">Je construis des pipelines IA qui éliminent les tâches manuelles et transforment les données brutes en décisions automatisées.</p>
         <div class="hero-typed-wrap"><span class="hero-typed" id="typedText"></span><span class="typed-cursor"></span></div>
         <div class="hero-btns">
-          <a href="#projects" class="btn-primary" data-i18n="hero.cta1">View My Work</a>
-          <a href="cv.pdf" download class="btn-secondary"><i class="fas fa-file-alt"></i><span data-i18n="hero.cta2">Resume</span></a>
+          <a href="#projects" class="btn-primary" data-i18n="hero.cta1">Voir mes Projets</a>
+          <a href="images/ABDENNASSER.pdf" download class="btn-secondary"><i class="fas fa-file-alt"></i><span data-i18n="hero.cta2">CV</span></a>
         </div>
         <div class="hero-socials">
           <a href="https://www.linkedin.com/in/abdennasser-bedroune-19308917a/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -338,10 +328,10 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
-    <p class="section-label">About Me</p>
-    <h2 class="section-title reveal" data-i18n="about.title">Who <span>I Am</span></h2>
+    <p class="section-label">À propos de moi</p>
+    <h2 class="section-title reveal" data-i18n="about.title">Qui <span>Je Suis</span></h2>
     <div class="about-text reveal">
-      <p data-i18n="about.p1">Coming from an initial background in law, I later transitioned into web development and automation. For the past two years, I have been working on projects combining artificial intelligence, automated workflows, and web applications. I am particularly interested in how technology can optimize processes and transform the way organizations operate.</p>
+      <p data-i18n="about.p1">Issu d'un premier parcours en droit, je me suis ensuite réorienté vers le développement web et l'automatisation. Depuis près de deux ans, je travaille sur des projets mêlant intelligence artificielle, workflows automatisés et applications web. Je m'intéresse particulièrement à la manière dont les technologies peuvent optimiser les processus et transformer les méthodes de travail.</p>
     </div>
   </div>
 </section>
@@ -349,14 +339,14 @@
 <!-- SKILLS -->
 <section id="skills">
   <div class="container">
-    <p class="section-label">Skills</p>
-    <h2 class="section-title reveal" data-i18n="skills.title">Technical <span>Expertise</span></h2>
-    <p class="section-sub reveal" data-i18n="skills.sub">Focused on agentic AI, automation pipelines, and modern web development</p>
+    <p class="section-label">Compétences</p>
+    <h2 class="section-title reveal" data-i18n="skills.title">Expertise <span>Technique</span></h2>
+    <p class="section-sub reveal" data-i18n="skills.sub">Spécialisé en IA agentique, pipelines d'automatisation et développement web moderne</p>
     <div class="skills-core reveal">
       <div class="core-card">
-        <div class="core-card-cat" data-i18n="skills.core1cat">Main Specialty</div>
-        <div class="core-card-title" data-i18n="skills.core1title">Agentic AI &amp; Workflows</div>
-        <div class="core-card-desc" data-i18n="skills.core1desc">Designing multi-agent systems with LangChain and n8n that reason, route decisions, and execute end-to-end workflows without human intervention. Connected to APIs, CRMs, and communication platforms to handle real-world business processes autonomously and at scale.</div>
+        <div class="core-card-cat" data-i18n="skills.core1cat">Spécialité Principale</div>
+        <div class="core-card-title" data-i18n="skills.core1title">IA Agentique &amp; Workflows</div>
+        <div class="core-card-desc" data-i18n="skills.core1desc">Je travaille principalement sur des projets web et d'automatisation, où j'utilise des outils modernes pour créer des interfaces, automatiser des tâches et connecter différents systèmes entre eux. J'aime comprendre comment une application fonctionne dans son ensemble : du front-end jusqu'aux workflows internes.<br>Au fil de mes projets, j'ai appris à mettre en place des pipelines automatisés, à utiliser des APIs et à développer des outils pratiques pour faciliter le travail quotidien des équipes. Je continue d'apprendre chaque jour, et je cherche à consolider toutes ces compétences à travers un master orienté numérique et transformation digitale.</div>
         <div class="core-card-tags">
           <span class="core-tag">Agent Orchestration</span>
           <span class="core-tag">n8n Workflows</span>
@@ -383,11 +373,11 @@
         </div>
       </div>
       <div>
-        <div class="skills-comp-title" data-i18n="skills.aidata">AI &amp; Data</div>
+        <div class="skills-comp-title" data-i18n="skills.aidata">IA &amp; Data</div>
         <div class="skill-card">
           <div class="skill-card-header">
             <div class="skill-card-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" fill="#7c3aed"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="#7c3aed" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-            <div class="skill-card-name">AI &amp; Data</div>
+            <div class="skill-card-name">IA &amp; Data</div>
           </div>
           <div class="skill-items-grid">
             <div class="skill-item-cell"><div class="skill-item-icon"><svg viewBox="0 0 24 24"><use href="#icon-n8n"/></svg></div><div class="skill-item-label">n8n</div></div>
@@ -404,16 +394,17 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="container">
-    <p class="section-label">Projects</p>
-    <h2 class="section-title reveal" data-i18n="proj.title">My <span>Projects</span></h2>
-    <p class="section-sub reveal" data-i18n="proj.sub">Agentic AI systems, intelligent tools, and automated pipelines built for real-world impact.</p>
+    <p class="section-label">Projets</p>
+    <h2 class="section-title reveal" data-i18n="proj.title">Mes <span>Projets</span></h2>
+    <p class="section-sub reveal" data-i18n="proj.sub">Systèmes IA agentiques, outils intelligents et pipelines automatisés conçus pour un impact réel.</p>
     <div class="projects-grid">
       <div class="project-card reveal">
-        <div class="project-img-placeholder" style="background:linear-gradient(135deg,#1C3C3C 0%,#0d1f1f 100%);"><i class="fas fa-network-wired" style="font-size:2.4rem;color:#65E8C8"></i></div>
+        <img src="images/orches.png" alt="Orchestr.ai" class="project-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="project-img-placeholder" style="display:none;background:linear-gradient(135deg,#1C3C3C 0%,#0d1f1f 100%);"><i class="fas fa-network-wired" style="font-size:2.4rem;color:#65E8C8"></i></div>
         <div class="project-body">
-          <div class="project-problem" data-i18n="p1.problem">Problem &rarr; Multi-step AI tasks need constant manual handoffs</div>
+          <div class="project-problem" data-i18n="p1.problem">Problème → Les tâches IA multi-étapes nécessitent des interventions manuelles constantes</div>
           <div class="project-title">Orchestr.ai</div>
-          <div class="project-desc" data-i18n="p1.desc">A multi-agent orchestration framework that chains specialized AI agents to complete complex tasks end-to-end without any human intervention.</div>
+          <div class="project-desc" data-i18n="p1.desc">Orchestr.ai est la plateforme qui transforme vos processus métier en équipes d'agents intelligents, capables d'agir, décider et automatiser à votre place.<br>Connectez vos outils (GitHub, Notion, Slack, n8n…) via des intégrations MCP et laissez vos agents travailler en parallèle, 24h/24.<br>Construite sur Next.js 14, Supabase et Groq (Llama 3.3 70B), elle offre une expérience fluide, rapide et production-ready. Vous définissez les objectifs — l'IA orchestre l'exécution.</div>
           <div class="project-metrics">
             <div class="project-metric"><span class="metric-num">0</span><span class="metric-label">Manual steps</span></div>
             <div class="project-metric"><span class="metric-num">Multi</span><span class="metric-label">Agent chains</span></div>
@@ -422,16 +413,17 @@
           <div class="project-tags"><span class="project-tag">LangChain</span><span class="project-tag">Python</span><span class="project-tag">Agentic</span></div>
           <div class="project-links">
             <a href="https://github.com/Abdennasserbedroune/Orchestr.ai-main" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub <i class="fas fa-arrow-right"></i></a>
+            <a href="https://orchestr-ai-main.vercel.app/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
       <div class="project-card reveal">
-        <img src="images/vvv.png" alt="AI Agent Assistant" class="project-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="project-img-placeholder" style="display:none;background:linear-gradient(135deg,#7c3aed,#a855f7)"><i class="fas fa-robot"></i></div>
+        <img src="images/image copy.png" alt="AI Agent Assistant" class="project-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="project-img-placeholder" style="display:none;background:linear-gradient(135deg,#7c3aed,#a855f7);"><i class="fas fa-robot"></i></div>
         <div class="project-body">
-          <div class="project-problem" data-i18n="p2.problem">Problem &rarr; Businesses lose leads answering the same questions manually</div>
+          <div class="project-problem" data-i18n="p2.problem">Problème → Les entreprises perdent des prospects en répondant manuellement aux mêmes questions</div>
           <div class="project-title">AI Agent Assistant</div>
-          <div class="project-desc" data-i18n="p2.desc">Production-ready multilingual AI Agent powered by Groq API with 40+ curated Q&amp;A entries, deployed and ready to handle client inquiries 24/7.</div>
+          <div class="project-desc" data-i18n="p2.desc">Ce chatbot alimenté par Groq API répond à toutes les questions sur votre profil professionnel — en français comme en anglais — avec une précision contextuelle remarquable.<br>Grâce à un moteur d'orchestration de contexte intelligent, il sélectionne automatiquement les informations les plus pertinentes parmi plus de 40 entrées de profil avant chaque réponse.<br>La sécurité est au cœur de l'architecture : validation Zod, prévention des injections de prompt, rate limiting par IP (30 req/min), et clés API jamais exposées au frontend. Les réponses arrivent en streaming temps réel via Server-Sent Events.</div>
           <div class="project-metrics">
             <div class="project-metric"><span class="metric-num">40+</span><span class="metric-label">Q&amp;A entries</span></div>
             <div class="project-metric"><span class="metric-num">3</span><span class="metric-label">Languages</span></div>
@@ -445,12 +437,12 @@
         </div>
       </div>
       <div class="project-card reveal">
-        <img src="images/cv.png" alt="Pathwise" class="project-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="project-img-placeholder" style="display:none;background:linear-gradient(135deg,#0f172a,#7c3aed)"><i class="fas fa-road"></i></div>
+        <img src="images/image.png" alt="Pathwise" class="project-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="project-img-placeholder" style="display:none;background:linear-gradient(135deg,#0f172a,#7c3aed);"><i class="fas fa-road"></i></div>
         <div class="project-body">
-          <div class="project-problem" data-i18n="p3.problem">Problem &rarr; 75% of resumes are rejected by ATS before anyone reads them</div>
+          <div class="project-problem" data-i18n="p3.problem">Problème → 75% des CV sont rejetés par les ATS avant toute lecture</div>
           <div class="project-title">Pathwise</div>
-          <div class="project-desc" data-i18n="p3.desc">AI-powered resume analyzer that scores job-fit, generates an optimized resume version instantly, and provides a personalized career coach chatbot.</div>
+          <div class="project-desc" data-i18n="p3.desc">Pathwise est la plateforme qui révolutionne la recherche d'emploi : uploadez votre CV, collez une description de poste, et obtenez instantanément un score ATS accompagné d'une analyse détaillée des écarts à combler.<br>Un coach carrière IA intégré répond à toutes vos questions — réécriture de sections, mise en valeur de compétences, préparation aux entretiens — avec la connaissance complète de votre profil et du poste ciblé.<br>Côté recruteurs, traitez jusqu'à 10 candidats en parallèle en moins de 60 secondes, avec classement automatique et verdicts IA pour chaque profil.</div>
           <div class="project-metrics">
             <div class="project-metric"><span class="metric-num">0-10</span><span class="metric-label">Match score</span></div>
             <div class="project-metric"><span class="metric-num">10s</span><span class="metric-label">Feedback</span></div>
@@ -470,7 +462,7 @@
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="container">
-    <p class="section-label">Experience</p>
+    <p class="section-label">Expérience</p>
     <h2 class="section-title reveal">Parcours <span>Professionnel</span></h2>
     <div class="exp-grid">
       <div class="exp-card reveal">
@@ -479,15 +471,15 @@
             <div class="exp-logo"><img src="images/bee.jpeg" alt="Beewant" onerror="this.style.display='none';this.parentNode.innerHTML='<i class=&quot;fas fa-briefcase&quot;></i>';"></div>
             <div>
               <div class="exp-company">Beewant</div>
-              <div class="exp-title" data-i18n="exp1.title">AI Automation Engineer</div>
+              <div class="exp-title" data-i18n="exp1.title">Ingénieur en Automatisation IA</div>
             </div>
           </div>
           <div class="exp-dates">
-            <div class="exp-period">2023 &mdash; PRESENT</div>
+            <div class="exp-period">2023 &mdash; Aujourd'hui, Marrakech</div>
             <div class="exp-duration">2+ YRS</div>
           </div>
         </div>
-        <p class="exp-desc" data-i18n="exp1.desc">Participation in projects related to the preparation and management of datasets for AI model training. Used Label Studio to organize annotation tasks, structure classes, and ensure data quality before model training. In parallel, implemented automation workflows with n8n to connect different APIs and facilitate data processing &mdash; including automating flows to retrieve images from external sources, organize them in an annotation pipeline, then centralize the annotated data for use in model training and evaluation.</p>
+        <p class="exp-desc" data-i18n="exp1.desc">Chez Beewant, j'ai travaillé sur des projets qui combinent développement web, automatisation et outils d'intelligence artificielle. J'ai participé à la création d'outils internes, de workflows automatisés et d'assistants capables d'exécuter des tâches utiles au quotidien.<br>J'ai également contribué au développement web sur plusieurs projets, ce qui m'a permis de toucher à tout : front-end, APIs, pipelines de données et travail en équipe.<br>Cette expérience m'a appris à aborder un projet dans sa globalité et à comprendre comment les solutions numériques peuvent vraiment améliorer l'organisation d'une entreprise.</p>
         <div class="exp-badge">AI &amp; Data Pipeline</div>
         <div class="exp-tags"><span class="exp-tag">Label Studio</span>&nbsp;&bull;&nbsp;<span class="exp-tag">n8n</span>&nbsp;&bull;&nbsp;<span class="exp-tag">Python</span>&nbsp;&bull;&nbsp;<span class="exp-tag">Dataset Management</span></div>
       </div>
@@ -497,15 +489,15 @@
             <div class="exp-logo"><img src="images/tik.png" alt="TikTok" onerror="this.style.display='none';this.parentNode.innerHTML='<i class=&quot;fab fa-tiktok&quot;></i>';"></div>
             <div>
               <div class="exp-company">Majorel (TikTok)</div>
-              <div class="exp-title" data-i18n="exp2.title">Content Moderator</div>
+              <div class="exp-title" data-i18n="exp2.title">Modérateur de Contenu — Majorel (TikTok)</div>
             </div>
           </div>
           <div class="exp-dates">
-            <div class="exp-period">2021 &mdash; 2022</div>
+            <div class="exp-period">2022 &mdash; 2023, Marrakech</div>
             <div class="exp-duration">1 YR</div>
           </div>
         </div>
-        <p class="exp-desc" data-i18n="exp2.desc">Reviewed high volumes of user-generated video content for TikTok, enforcing platform safety guidelines and community standards at scale. This role deepened my understanding of content classification and moderation logic, directly informing my later work building automated AI moderation pipelines.</p>
+        <p class="exp-desc" data-i18n="exp2.desc">Chez Majorel, j'étais chargé d'examiner et d'évaluer des contenus vidéo en suivant des règles strictes de sécurité. Ce travail m'a appris à analyser rapidement des informations, à appliquer des consignes précises et à prendre des décisions équilibrées dans un environnement exigeant.<br>Cette expérience a renforcé ma rigueur, mon sens des responsabilités et ma capacité à travailler avec régularité.</p>
         <div class="exp-badge">Platform Integrity</div>
         <div class="exp-tags"><span class="exp-tag">Content Moderation</span>&nbsp;&bull;&nbsp;<span class="exp-tag">Policy Enforcement</span>&nbsp;&bull;&nbsp;<span class="exp-tag">Safety Review</span></div>
       </div>
@@ -517,24 +509,36 @@
 <section id="certifications">
   <div class="container">
     <p class="section-label">Certifications</p>
-    <h2 class="section-title reveal" data-i18n="cert.title">My <span>Certifications</span></h2>
-    <p class="section-sub reveal" data-i18n="cert.sub">Click on a certificate card to preview it in full detail.</p>
+    <h2 class="section-title reveal" data-i18n="cert.title">Mes <span>Certifications</span></h2>
+    <p class="section-sub reveal" data-i18n="cert.sub">Cliquez sur une carte pour prévisualiser le certificat en détail.</p>
     <div class="cert-grid">
       <div class="cert-card reveal" onclick="openCertModal('cert1')">
         <div class="cert-card-icon"><i class="fas fa-award"></i></div>
         <div class="cert-issuer">ALX Africa</div>
         <div class="cert-name">Software Engineering Program</div>
-        <div class="cert-year">Issued 2024</div>
-        <div class="cert-desc">Completed an intensive 12-month program covering software engineering fundamentals, systems programming, and real-world project development. Focused on C, Python, and collaborative engineering practices.</div>
-        <div class="cert-preview-btn"><i class="fas fa-eye"></i> Preview Certificate</div>
+        <div class="cert-desc">Programme intensif de 12 mois couvrant les fondamentaux du génie logiciel, la programmation système et le développement de projets réels. Focus sur C, Python et les pratiques d'ingénierie collaborative.</div>
+        <div class="cert-preview-btn"><i class="fas fa-eye"></i> Voir le Certificat</div>
       </div>
       <div class="cert-card reveal" onclick="openCertModal('cert2')">
         <div class="cert-card-icon"><i class="fas fa-certificate"></i></div>
-        <div class="cert-issuer">Add Issuer</div>
-        <div class="cert-name">Add Certificate Name</div>
-        <div class="cert-year">Issued 2024</div>
-        <div class="cert-desc">Add a short description of what this certification covers and what skills or technologies it validates.</div>
-        <div class="cert-preview-btn"><i class="fas fa-eye"></i> Preview Certificate</div>
+        <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
+        <div class="cert-name">Microsoft Azure AI Essentials</div>
+        <div class="cert-desc">Certification professionnelle couvrant les fondamentaux Azure IA, les services de machine learning et la mise en œuvre de solutions IA sur la plateforme Microsoft Azure.</div>
+        <div class="cert-preview-btn"><i class="fas fa-eye"></i> Voir le Certificat</div>
+      </div>
+      <div class="cert-card reveal" onclick="openCertModal('cert3')">
+        <div class="cert-card-icon"><i class="fas fa-certificate"></i></div>
+        <div class="cert-issuer">PMI</div>
+        <div class="cert-name">Agile Foundations</div>
+        <div class="cert-desc">Certification professionnelle en méthodologies Agile, couvrant les frameworks Scrum, le développement itératif et les meilleures pratiques de gestion de projet.</div>
+        <div class="cert-preview-btn"><i class="fas fa-eye"></i> Voir le Certificat</div>
+      </div>
+      <div class="cert-card reveal" onclick="openCertModal('cert4')">
+        <div class="cert-card-icon"><i class="fas fa-certificate"></i></div>
+        <div class="cert-issuer">LinkedIn</div>
+        <div class="cert-name">Master Digital Marketing</div>
+        <div class="cert-desc">Certification complète couvrant les stratégies de marketing digital, le SEO, le marketing sur les réseaux sociaux et les campagnes publicitaires en ligne.</div>
+        <div class="cert-preview-btn"><i class="fas fa-eye"></i> Voir le Certificat</div>
       </div>
     </div>
   </div>
@@ -544,11 +548,11 @@
 <div class="modal-overlay" id="certModal" onclick="closeCertModal(event)">
   <div class="modal-box">
     <div class="modal-header">
-      <div class="modal-title" id="modalTitle">Certificate Preview</div>
+      <div class="modal-title" id="modalTitle">Prévisualisation du Certificat</div>
       <button class="modal-close" onclick="closeCertModalBtn()"><i class="fas fa-times"></i></button>
     </div>
     <div class="modal-img-wrap" id="modalImgWrap">
-      <div class="modal-img-placeholder"><i class="fas fa-image"></i><p>Loading...</p></div>
+      <div class="modal-img-placeholder"><i class="fas fa-image"></i><p>Chargement...</p></div>
     </div>
   </div>
 </div>
@@ -567,7 +571,7 @@
   });
 
   /* ─── TYPEWRITER ─── */
-  let currentLang = 'en';
+  let currentLang = 'fr';
   const phrasesEN = ['Designing Agentic AI Systems','Building Autonomous Pipelines','Engineering Multi-Agent Workflows','Shipping AI That Works Unattended'];
   const phrasesFR = ['Conception de Syst\u00e8mes IA Agentiques','Pipelines Autonomes','Workflows Multi-Agents','IA qui Travaille Sans Intervention'];
   let pi=0, ci=0, deleting=false;
@@ -635,16 +639,25 @@
 
   /* ─── CERT MODAL ─── */
   const certData = {
-    cert1: { title: 'ALX Software Engineering Certificate', img: 'images/alx_certificate.jpg' },
-    cert2: { title: 'Certificate 2', img: '' }
+    cert1: { title: 'ALX Software Engineering Certificate', img: 'images/final.pdf' },
+    cert2: { title: 'Microsoft Azure AI Essentials', img: 'images/CertificateOfCompletion_Microsoft Azure AI Essentials Professional Certificate by Microsoft and LinkedIn.pdf' },
+    cert3: { title: 'Agile Foundations by PMI', img: 'images/CertificateOfCompletion_Agile Foundations.pdf' },
+    cert4: { title: 'Master Digital Marketing', img: '' }
   };
   function openCertModal(id) {
     const data = certData[id];
     document.getElementById('modalTitle').textContent = data.title;
     const wrap = document.getElementById('modalImgWrap');
-    wrap.innerHTML = data.img
-      ? '<img src="'+data.img+'" alt="'+data.title+'" onerror="this.parentNode.innerHTML=\'<div class=\\\"modal-img-placeholder\\\"><i class=\\\"fas fa-image\\\"></i><p>Image not found.</p></div>\'">'
-      : '<div class="modal-img-placeholder"><i class="fas fa-image"></i><p>Add certificate image path in certData.</p></div>';
+    if (data.img) {
+      const isPDF = data.img.toLowerCase().endsWith('.pdf');
+      if (isPDF) {
+        wrap.innerHTML = '<iframe src="' + data.img + '" width="100%" height="70vh" style="border:none; border-radius:8px;"></iframe>';
+      } else {
+        wrap.innerHTML = '<img src="' + data.img + '" alt="' + data.title + '" style="max-width:100%; max-height:70vh; border-radius:8px;" onerror="this.parentNode.innerHTML=\'<div class=\\\'modal-img-placeholder\\\'><i class=\\\'fas fa-image\\\'></i><p>Image not found.</p></div>\'">';
+      }
+    } else {
+      wrap.innerHTML = '<div class="modal-img-placeholder"><i class="fas fa-image"></i><p>Add certificate image path in certData.</p></div>';
+    }
     document.getElementById('certModal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -667,20 +680,20 @@
       'skills.title':'Expertise <span>Technique</span>',
       'skills.sub':'Sp\u00e9cialis\u00e9 en IA agentique, pipelines d\u2019automatisation et d\u00e9veloppement web moderne',
       'skills.core1cat':'Sp\u00e9cialit\u00e9 Principale','skills.core1title':'IA Agentique &amp; Workflows',
-      'skills.core1desc':'Conception de syst\u00e8mes multi-agents avec LangChain et n8n qui raisonnent, routent des d\u00e9cisions et ex\u00e9cutent des workflows de bout en bout sans intervention humaine. Connect\u00e9s aux APIs, CRMs et plateformes de communication pour g\u00e9rer des processus m\u00e9tier r\u00e9els de mani\u00e8re autonome et \u00e0 grande \u00e9chelle.',
+      'skills.core1desc':'Je travaille principalement sur des projets web et d\u2019automatisation, o\u00f9 j\u2019utilise des outils modernes pour cr\u00e9er des interfaces, automatiser des t\u00e2ches et connecter diff\u00e9rents syst\u00e8mes entre eux. J\u2019aime comprendre comment une application fonctionne dans son ensemble : du front-end jusqu\u2019aux workflows internes. Au fil de mes projets, j\u2019ai appris \u00e0 mettre en place des pipelines automatis\u00e9s, \u00e0 utiliser des APIs et \u00e0 d\u00e9velopper des outils pratiques pour faciliter le travail quotidien des \u00e9quipes. Je continue d\u2019apprendre chaque jour, et je cherche \u00e0 consolider toutes ces comp\u00e9tences \u00e0 travers un master orient\u00e9 num\u00e9rique et transformation digitale.',
       'skills.frontend':'Frontend','skills.aidata':'IA &amp; Data',
       'proj.title':'Mes <span>Projets</span>',
       'proj.sub':'Syst\u00e8mes IA agentiques, outils intelligents et pipelines automatis\u00e9s con\u00e7us pour un impact r\u00e9el.',
       'p1.problem':'Probl\u00e8me \u2192 Les t\u00e2ches IA multi-\u00e9tapes n\u00e9cessitent des interventions manuelles constantes',
-      'p1.desc':'Un framework d\u2019orchestration multi-agents qui cha\u00eene des agents IA sp\u00e9cialis\u00e9s pour accomplir des t\u00e2ches complexes de bout en bout sans intervention humaine.',
+      'p1.desc':'Orchestr.ai est la plateforme qui transforme vos processus m\u00e9tier en \u00e9quipes d\u2019agents intelligents, capables d\u2019agir, d\u00e9cider et automatiser \u00e0 votre place. Connectez vos outils (GitHub, Notion, Slack, n8n\u2026) via des int\u00e9grations MCP et laissez vos agents travailler en parall\u00e8le, 24h/24. Construite sur Next.js 14, Supabase et Groq (Llama 3.3 70B), elle offre une exp\u00e9rience fluide, rapide et production-ready. Vous d\u00e9finissez les objectifs \u2014 l\u2019IA orchestre l\u2019ex\u00e9cution.',
       'p2.problem':'Probl\u00e8me \u2192 Les entreprises perdent des prospects en r\u00e9pondant manuellement aux m\u00eames questions',
-      'p2.desc':'Agent IA multilingue pr\u00eat pour la production, aliment\u00e9 par Groq API avec plus de 40 entr\u00e9es Q&amp;R, d\u00e9ploy\u00e9 pour g\u00e9rer les demandes clients 24h/24.',
+      'p2.desc':'Ce chatbot aliment\u00e9 par Groq API r\u00e9pond \u00e0 toutes les questions sur votre profil professionnel \u2014 en fran\u00e7ais comme en anglais \u2014 avec une pr\u00e9cision contextuelle remarquable. Gr\u00e2ce \u00e0 un moteur d\u2019orchestration de contexte intelligent, il s\u00e9lectionne automatiquement les informations les plus pertinentes parmi plus de 40 entr\u00e9es de profil avant chaque r\u00e9ponse. La s\u00e9curit\u00e9 est au c\u0153ur de l\u2019architecture : validation Zod, pr\u00e9vention des injections de prompt, rate limiting par IP (30 req/min), et cl\u00e9s API jamais expos\u00e9es au frontend. Les r\u00e9ponses arrivent en streaming temps r\u00e9el via Server-Sent Events.',
       'p3.problem':'Probl\u00e8me \u2192 75% des CV sont rejet\u00e9s par les ATS avant toute lecture',
-      'p3.desc':'Analyseur de CV aliment\u00e9 par IA qui \u00e9value l\u2019ad\u00e9quation avec un poste, g\u00e9n\u00e8re instantan\u00e9ment une version optimis\u00e9e et propose un coach carri\u00e8re personnalis\u00e9.',
+      'p3.desc':'Pathwise est la plateforme qui r\u00e9volutionne la recherche d\u2019emploi : uploadez votre CV, collez une description de poste, et obtenez instantan\u00e9ment un score ATS accompagn\u00e9 d\u2019une analyse d\u00e9taill\u00e9e des \u00e9carts \u00e0 combler. Un coach carri\u00e8re IA int\u00e9gr\u00e9 r\u00e9pond \u00e0 toutes vos questions \u2014 r\u00e9\u00e9criture de sections, mise en valeur de comp\u00e9tences, pr\u00e9paration aux entretiens \u2014 avec la connaissance compl\u00e8te de votre profil et du poste cibl\u00e9. C\u00f4t\u00e9 recruteurs, traitez jusqu\u2019\u00e0 10 candidats en parall\u00e8le en moins de 60 secondes, avec classement automatique et verdicts IA pour chaque profil.',
       'exp1.title':'Ing\u00e9nieur en Automatisation IA',
-      'exp1.desc':'Participation \u00e0 des projets li\u00e9s \u00e0 la pr\u00e9paration et \u00e0 la gestion de datasets destin\u00e9s \u00e0 l\u2019entra\u00eenement de mod\u00e8les d\u2019IA. Utilisation de Label Studio pour organiser les t\u00e2ches d\u2019annotation, structurer les classes et assurer la qualit\u00e9 des donn\u00e9es. Mise en place de workflows d\u2019automatisation avec n8n pour connecter diff\u00e9rentes APIs et automatiser la r\u00e9cup\u00e9ration, l\u2019organisation et la centralisation des donn\u00e9es annot\u00e9es.',
-      'exp2.title':'Mod\u00e9rateur de Contenu',
-      'exp2.desc':'Examen de volumes importants de contenu vid\u00e9o g\u00e9n\u00e9r\u00e9 par les utilisateurs pour TikTok, en appliquant les directives de s\u00e9curit\u00e9 de la plateforme et les normes communautaires \u00e0 grande \u00e9chelle.',
+      'exp1.desc':'Chez Beewant, j\u2019ai travaill\u00e9 sur des projets qui combinent d\u00e9veloppement web, automatisation et outils d\u2019intelligence artificielle. J\u2019ai particip\u00e9 \u00e0 la cr\u00e9ation d\u2019outils internes, de workflows automatis\u00e9s et d\u2019assistants capables d\u2019ex\u00e9cuter des t\u00e2ches utiles au quotidien. J\u2019ai \u00e9galement contribu\u00e9 au d\u00e9veloppement web sur plusieurs projets, ce qui m\u2019a permis de toucher \u00e0 tout : front-end, APIs, pipelines de donn\u00e9es et travail en \u00e9quipe. Cette exp\u00e9rience m\u2019a appris \u00e0 aborder un projet dans sa globalit\u00e9 et \u00e0 comprendre comment les solutions num\u00e9riques peuvent vraiment am\u00e9liorer l\u2019organisation d\u2019une entreprise.',
+      'exp2.title':'Mod\u00e9rateur de Contenu \u2014 Majorel (TikTok)',
+      'exp2.desc':'Chez Majorel, j\u2019\u00e9tais charg\u00e9 d\u2019examiner et d\u2019\u00e9valuer des contenus vid\u00e9o en suivant des r\u00e8gles strictes de s\u00e9curit\u00e9. Ce travail m\u2019a appris \u00e0 analyser rapidement des informations, \u00e0 appliquer des consignes pr\u00e9cises et \u00e0 prendre des d\u00e9cisions \u00e9quilibr\u00e9es dans un environnement exigeant. Cette exp\u00e9rience a renforc\u00e9 ma rigueur, mon sens des responsabilit\u00e9s et ma capacit\u00e9 \u00e0 travailler avec r\u00e9gularit\u00e9.',
       'cert.title':'Mes <span>Certifications</span>',
       'cert.sub':'Cliquez sur une carte pour pr\u00e9visualiser le certificat en d\u00e9tail.'
     }
