@@ -640,9 +640,9 @@
   /* ─── CERT MODAL ─── */
   const certData = {
     cert1: { title: 'ALX Software Engineering Certificate', img: 'images/final.pdf' },
-    cert2: { title: 'Microsoft Azure AI Essentials', img: 'images/CertificateOfCompletion_Microsoft Azure AI Essentials Professional Certificate by Microsoft and LinkedIn.pdf' },
-    cert3: { title: 'Agile Foundations by PMI', img: 'images/CertificateOfCompletion_Agile Foundations.pdf' },
-    cert4: { title: 'Master Digital Marketing', img: '' }
+    cert2: { title: 'Microsoft Azure AI Essentials', img: 'images/CertificateOfCompletion_Microsoft%20Azure%20AI%20Essentials%20Professional%20Certificate%20by%20Microsoft%20and%20LinkedIn.pdf' },
+    cert3: { title: 'Agile Foundations by PMI', img: 'images/CertificateOfCompletion_Agile%20Foundations.pdf' },
+    cert4: { title: 'Master Digital Marketing', img: 'images/CertificateOfCompletion_Master%20Digital%20Marketing(4).pdf' }
   };
   function openCertModal(id) {
     const data = certData[id];
@@ -651,7 +651,7 @@
     if (data.img) {
       const isPDF = data.img.toLowerCase().endsWith('.pdf');
       if (isPDF) {
-        wrap.innerHTML = '<iframe src="' + data.img + '" width="100%" height="70vh" style="border:none; border-radius:8px;"></iframe>';
+        wrap.innerHTML = '<iframe src="' + data.img + '" style="width:100%; height:70vh; border:none; border-radius:8px;"></iframe>';
       } else {
         wrap.innerHTML = '<img src="' + data.img + '" alt="' + data.title + '" style="max-width:100%; max-height:70vh; border-radius:8px;" onerror="this.parentNode.innerHTML=\'<div class=\\\'modal-img-placeholder\\\'><i class=\\\'fas fa-image\\\'></i><p>Image not found.</p></div>\'">';
       }
